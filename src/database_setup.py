@@ -6,6 +6,7 @@ def main():
     """Drop tables then creates the new prototype db."""
     drop_tables()
     create_tables()
+    insert_into()
 
 
 def drop_tables():
@@ -16,6 +17,11 @@ def drop_tables():
 def create_tables():
     """Execute create_tables.sql."""
     execute_sql('src/sql/create_tables.sql')
+
+
+def insert_into():
+    """Execute insert_into_tables.sql."""
+    execute_sql('src/sql/insert_into_tables.sql')
 
 
 if __name__ == '__main__':
