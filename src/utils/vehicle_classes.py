@@ -1,30 +1,30 @@
 """Defines classes to be used in this project."""
 
 
-class Veichle:
-    """Veichle class, defines methods and variables to be inherited."""
+class Vehicle:
+    """vehicle class, defines methods and variables to be inherited."""
 
-    _veichle_type: str = None
+    _vehicle_type: str = None
     _number_plate: str = None
     _colour: str = None
     _mot_due_date: str = None
     _tax_due_date: str = None
 
     def __init__(self, number_plate: str, 
-                 colour: str, veichle_type: str,
+                 colour: str, vehicle_type: str,
                  mot_due_date: str, tax_due_date: str):
         """Initialise car class.
 
         Args:
             number_plate (str): The cars number plate.
             colour (str): The cars colour.
-            veichle_type (str): The type of veichle being represented as string
+            vehicle_type (str): The type of vehicle being represented as string
             mot_due_date (str): The cars mot due date.
             tax_due_date (str): The cars tax due date.
         """
         self._number_plate = number_plate
         self._colour = colour
-        self._veichle_type = veichle_type
+        self._vehicle_type = vehicle_type
         self._mot_due_date = mot_due_date
         self._tax_due_date = tax_due_date
 
@@ -47,13 +47,13 @@ class Veichle:
         return self._colour
 
     @property
-    def veichle_type(self) -> str:
-        """Get current veichle type.
+    def vehicle_type(self) -> str:
+        """Get current vehicle type.
 
         Returns:
-            veichle type.
+            vehicle type.
         """
-        return self._veichle_type
+        return self._vehicle_type
 
     @property
     def mot_due_date(self) -> str:
@@ -74,13 +74,13 @@ class Veichle:
         return self._tax_due_date
 
 
-class Car(Veichle):
-    """Car class that inherits from Veichle."""
+class Car(Vehicle):
+    """Car class that inherits from vehicle."""
 
     __num_of_seats: int = None
 
     def __init__(self, number_plate: str, colour: str, 
-                 veichle_type: str, num_of_seats: int,
+                 vehicle_type: str, num_of_seats: int,
                  mot_due_date: str, tax_due_date: str):
         """Initialise car class.
 
@@ -88,11 +88,11 @@ class Car(Veichle):
             number_plate (str): The cars number plate.
             colour (str): The cars colour.
             num_of_seats (int): The number of seats in the car.
-            veichle_type (str): The type of veichle being represented as string
+            vehicle_type (str): The type of vehicle being represented as string
             mot_due_date (str): The cars mot due date.
             tax_due_date (str): The cars tax due date.
         """
-        super().__init__(number_plate, colour, veichle_type, mot_due_date,
+        super().__init__(number_plate, colour, vehicle_type, mot_due_date,
                          tax_due_date)
         self.__num_of_seats = num_of_seats
 
@@ -106,25 +106,25 @@ class Car(Veichle):
         return self.__num_of_seats
 
 
-class Van(Veichle):
-    """Van class that inherits from Veichle."""
+class Van(Vehicle):
+    """Van class that inherits from vehicle."""
 
     __cargo_capacity: int = None
 
     def __init__(self, number_plate: str, colour: str, 
-                 veichle_type: str, cargo_capacity: int,
+                 vehicle_type: str, cargo_capacity: int,
                  mot_due_date: str, tax_due_date: str):
         """Initialise car class.
 
         Args:
             number_plate (str): The cars number plate.
             colour (str): The cars colour.
-            veichle_type (str): The type of veichle being represented as string
+            vehicle_type (str): The type of vehicle being represented as string
             cargo_capacity (int): The capcity in litres of the van.
             mot_due_date (str): The cars mot due date.
             tax_due_date (str): The cars tax due date.
         """
-        super().__init__(number_plate, colour, veichle_type, mot_due_date,
+        super().__init__(number_plate, colour, vehicle_type, mot_due_date,
                          tax_due_date)
         self.__cargo_capacity = cargo_capacity
 
@@ -138,14 +138,14 @@ class Van(Veichle):
         return self.__cargo_capacity
 
 
-class LorryOrPickup(Veichle):
-    """Lorry class that inherits from veichle."""
+class LorryOrPickup(Vehicle):
+    """Lorry class that inherits from vehicle."""
     
     __cargo_capacity: int = None
     __cab_type: str = None
 
     def __init__(self, number_plate: str, colour: str, 
-                 veichle_type: str, cargo_capacity: int,
+                 vehicle_type: str, cargo_capacity: int,
                  cab_type: str,
                  mot_due_date: str, tax_due_date: str):
         """Initialise lorry class.
@@ -153,13 +153,13 @@ class LorryOrPickup(Veichle):
         Args:
             number_plate (str): The cars number plate.
             colour (str): The cars colour.
-            veichle_type (str): The type of veichle being represented as string
+            vehicle_type (str): The type of vehicle being represented as string
             cargo_capacity (int): The capcity in litres of the lorry.
             cab_type (str): The type of cab for the lorry or pickup
             mot_due_date (str): The cars mot due date.
             tax_due_date (str): The cars tax due date.
         """
-        super().__init__(number_plate, colour, veichle_type, mot_due_date,
+        super().__init__(number_plate, colour, vehicle_type, mot_due_date,
                          tax_due_date)
         self.__cargo_capacity = cargo_capacity
         self.__cab_type = cab_type

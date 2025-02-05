@@ -48,26 +48,26 @@ class MainWindow(AbstractWindow):
         self._button1 = tk.Button(self._frame, text='Search By Number Plate', 
                                   width=25, 
                                   command=self.all_viechles_window)
-        self._button2 = tk.Button(self._frame, text='List All Veichles', 
+        self._button2 = tk.Button(self._frame, text='List All vehicles', 
                                   width=25, 
                                   command=self.all_viechles_window)
         self._button3 = tk.Button(self._frame,
-                                  text='Veichles With Tax Due', 
+                                  text='vehicles With Tax Due', 
                                   width=25, 
                                   command=self.all_viechles_window)
         self._button4 = tk.Button(self._frame,
-                                  text='Veichles With Service Due', 
+                                  text='vehicles With Service Due', 
                                   width=25, 
                                   command=self.all_viechles_window)
         self._button5 = tk.Button(self._frame,
-                                  text='List Veichles By Fuel Type', 
+                                  text='List vehicles By Fuel Type', 
                                   width=25, 
                                   command=self.all_viechles_window)
 
     def all_viechles_window(self):
         """Initialise new window when button is clicked."""
         self.newWindow = tk.Toplevel(self._master)
-        self.app = ListAllVeichles(self.newWindow)
+        self.app = ListAllvehicles(self.newWindow)
         self.app.build_window()
 
     def build_window(self):
@@ -80,7 +80,7 @@ class MainWindow(AbstractWindow):
         self._frame.pack()
 
 
-class ListAllVeichles(AbstractWindow):
+class ListAllvehicles(AbstractWindow):
     """Class representing secondary window."""
 
     _text: object = None

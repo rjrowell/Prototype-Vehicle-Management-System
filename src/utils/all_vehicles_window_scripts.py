@@ -1,9 +1,9 @@
-"""Scripts that are used by the 'display all veichles' window."""
-from classes import Car, Van, LorryOrPickup
+"""Scripts that are used by the 'display all vehicles' window."""
+from .vehicle_classes import Car, Van, LorryOrPickup
 
 
-def all_veichles_build_classes(sql_output: list):
-    """Build the classes 'list all veichles' window.
+def all_vehicles_build_classes(sql_output: list):
+    """Build the classes 'list all vehicles' window.
 
     Args:
         sql_output(list): the output of an sql select statement

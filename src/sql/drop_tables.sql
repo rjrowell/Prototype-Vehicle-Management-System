@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS veichle;
+DROP TABLE IF EXISTS vehicle;
 DROP TABLE IF EXISTS car;
 DROP TABLE IF EXISTS van;
 DROP TABLE IF EXISTS lorries_and_pickups;
-DROP TABLE IF EXISTS veichle_types;
+DROP TABLE IF EXISTS vehicle_types;
 DROP TABLE IF EXISTS colours;
