@@ -6,8 +6,8 @@ from abc import abstractmethod
 class AbstractWindow:
     """An abstract class to provide a framework for other window classes."""
 
-    _master = None
-    _frame = None
+    _master: object = None
+    _frame: object = None
 
     def __init__(self, master):
         """Init default method for GUI windows.
@@ -35,7 +35,8 @@ class AbstractWindow:
 class MainWindow(AbstractWindow):
     """Class representing the main window."""
 
-    _button1 = None
+    _button1: object = None
+    _button2: object = None
 
     def __init__(self, master):
         """Init class for main window.
@@ -44,25 +45,46 @@ class MainWindow(AbstractWindow):
             master (Tk): the Tk object used to build the GUI
         """
         super().__init__(master)
-        self._button1 = tk.Button(self._frame, text='New Window', width=25, 
-                                  command=self.new_window)
+        self._button1 = tk.Button(self._frame, text='Search By Number Plate', 
+                                  width=25, 
+                                  command=self.all_viechles_window)
+        self._button2 = tk.Button(self._frame, text='List All Veichles', 
+                                  width=25, 
+                                  command=self.all_viechles_window)
+        self._button3 = tk.Button(self._frame,
+                                  text='Veichles With Tax Due', 
+                                  width=25, 
+                                  command=self.all_viechles_window)
+        self._button4 = tk.Button(self._frame,
+                                  text='Veichles With Service Due', 
+                                  width=25, 
+                                  command=self.all_viechles_window)
+        self._button5 = tk.Button(self._frame,
+                                  text='List Veichles By Fuel Type', 
+                                  width=25, 
+                                  command=self.all_viechles_window)
 
-    def new_window(self):
+    def all_viechles_window(self):
         """Initialise new window when button is clicked."""
         self.newWindow = tk.Toplevel(self._master)
-        self.app = Window2(self.newWindow)
+        self.app = ListAllVeichles(self.newWindow)
         self.app.build_window()
 
     def build_window(self):
         """Build main menu window from private variables."""
         self._button1.pack()
+        self._button2.pack()
+        self._button3.pack()
+        self._button4.pack()
+        self._button5.pack()
         self._frame.pack()
 
 
-class Window2(AbstractWindow):
+class ListAllVeichles(AbstractWindow):
     """Class representing secondary window."""
 
-    _quit_button = None
+    _text: object = None
+    _quit_button: object = None
 
     def __init__(self, master):
         """Init class for this window.
@@ -71,11 +93,14 @@ class Window2(AbstractWindow):
             master (Tk): the Tk object used to build the window
         """
         super().__init__(master)
-        self._quit_button = tk.Button(self._frame, text='Quit', width=25, 
+        self._text = tk.Text(self._frame, width=25, height=1)
+        self._quit_button = tk.Button(self._frame, text='Exit', width=25, 
                                       command=self.close_windows)
 
     def build_window(self):
         """Build this window from private variables."""
+        self._text.insert(tk.END, 'Test')
+        self._text.pack()
         self._quit_button.pack()
         self._frame.pack()
 

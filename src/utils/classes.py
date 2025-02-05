@@ -80,7 +80,8 @@ class Car(Veichle):
     __num_of_seats: int = None
 
     def __init__(self, number_plate: str, colour: str, 
-                 veichle_type: str, num_of_seats: int):
+                 veichle_type: str, num_of_seats: int,
+                 mot_due_date: str, tax_due_date: str):
         """Initialise car class.
 
         Args:
@@ -88,8 +89,11 @@ class Car(Veichle):
             colour (str): The cars colour.
             num_of_seats (int): The number of seats in the car.
             veichle_type (str): The type of veichle being represented as string
+            mot_due_date (str): The cars mot due date.
+            tax_due_date (str): The cars tax due date.
         """
-        super().__init__(number_plate, colour, veichle_type)
+        super().__init__(number_plate, colour, veichle_type, mot_due_date,
+                         tax_due_date)
         self.__num_of_seats = num_of_seats
 
     @property
@@ -108,7 +112,8 @@ class Van(Veichle):
     __cargo_capacity: int = None
 
     def __init__(self, number_plate: str, colour: str, 
-                 veichle_type: str, cargo_capacity: int):
+                 veichle_type: str, cargo_capacity: int,
+                 mot_due_date: str, tax_due_date: str):
         """Initialise car class.
 
         Args:
@@ -116,8 +121,11 @@ class Van(Veichle):
             colour (str): The cars colour.
             veichle_type (str): The type of veichle being represented as string
             cargo_capacity (int): The capcity in litres of the van.
+            mot_due_date (str): The cars mot due date.
+            tax_due_date (str): The cars tax due date.
         """
-        super().__init__(number_plate, colour), veichle_type
+        super().__init__(number_plate, colour, veichle_type, mot_due_date,
+                         tax_due_date)
         self.__cargo_capacity = cargo_capacity
 
     @property
@@ -138,7 +146,8 @@ class LorryOrPickup(Veichle):
 
     def __init__(self, number_plate: str, colour: str, 
                  veichle_type: str, cargo_capacity: int,
-                 cab_type: str):
+                 cab_type: str,
+                 mot_due_date: str, tax_due_date: str):
         """Initialise lorry class.
 
         Args:
@@ -147,8 +156,11 @@ class LorryOrPickup(Veichle):
             veichle_type (str): The type of veichle being represented as string
             cargo_capacity (int): The capcity in litres of the lorry.
             cab_type (str): The type of cab for the lorry or pickup
+            mot_due_date (str): The cars mot due date.
+            tax_due_date (str): The cars tax due date.
         """
-        super().__init__(number_plate, colour, veichle_type)
+        super().__init__(number_plate, colour, veichle_type, mot_due_date,
+                         tax_due_date)
         self.__cargo_capacity = cargo_capacity
         self.__cab_type = cab_type
 
