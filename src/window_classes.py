@@ -1,6 +1,7 @@
 """File of classes for bulding the GUI."""
 import tkinter as tk
 from abc import abstractmethod
+from utils import all_vehicles_window_scripts as av
 
 
 class AbstractWindow:
@@ -93,13 +94,14 @@ class ListAllvehicles(AbstractWindow):
             master (Tk): the Tk object used to build the window
         """
         super().__init__(master)
-        self._text = tk.Text(self._frame, width=25, height=1)
+        self._text = tk.Text(self._frame, width=25, height=5)
         self._quit_button = tk.Button(self._frame, text='Exit', width=25, 
                                       command=self.close_windows)
 
     def build_window(self):
         """Build this window from private variables."""
-        self._text.insert(tk.END, 'Test')
+        vehicles_list = av.all_vehicles_build_classes()
+        self._text = av.get_text_to_display(self._text, vehicles_list)
         self._text.pack()
         self._quit_button.pack()
         self._frame.pack()
