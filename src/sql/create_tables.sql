@@ -1,4 +1,4 @@
-CREATE TABLE vehicle(number_plate varchar(8) PRIMARY KEY, vehicle_type INTEGER, colour_id INTEGER, tax_due_date varchar(8), mot_due_date varchar(8));
+CREATE TABLE vehicle(number_plate varchar(8) PRIMARY KEY, vehicle_type INTEGER, colour_id INTEGER, tax_due_date DATE, mot_due_date DATE);
 CREATE TABLE car(number_plate varchar(8) PRIMARY KEY, number_of_seats INTEGER);
 CREATE TABLE van(number_plate varchar(8) PRIMARY KEY, cargo_capacity INTEGER);
 CREATE TABLE lorries_and_pickups(number_plate varchar(8) PRIMARY KEY, cargo_capacity INTEGER, cab_type varchar(8));

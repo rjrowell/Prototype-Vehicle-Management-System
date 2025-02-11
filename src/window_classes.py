@@ -1,7 +1,7 @@
 """File of classes for bulding the GUI."""
 import tkinter as tk
 from abc import abstractmethod
-from utils import all_vehicles_window_scripts as av
+from utils import window_scripts as ws
 
 
 class AbstractWindow:
@@ -36,9 +36,6 @@ class AbstractWindow:
 class MainWindow(AbstractWindow):
     """Class representing the main window."""
 
-    _button1: object = None
-    _button2: object = None
-
     def __init__(self, master):
         """Init class for main window.
 
@@ -48,27 +45,41 @@ class MainWindow(AbstractWindow):
         super().__init__(master)
         self._button1 = tk.Button(self._frame, text='Search By Number Plate', 
                                   width=25, 
-                                  command=self.all_viechles_window)
+                                  command=self.all_vehicles_window)
         self._button2 = tk.Button(self._frame, text='List All vehicles', 
                                   width=25, 
-                                  command=self.all_viechles_window)
+                                  command=self.all_vehicles_window)
+        self._button6 = tk.Button(self._frame,
+                                  text='Search By Vehicle Type', 
+                                  width=25, 
+                                  command=self.all_vehicles_window)
         self._button3 = tk.Button(self._frame,
-                                  text='vehicles With Tax Due', 
+                                  text='Vehicles With Tax Due', 
                                   width=25, 
-                                  command=self.all_viechles_window)
+                                  command=self.tax_due_window)
         self._button4 = tk.Button(self._frame,
-                                  text='vehicles With Service Due', 
+                                  text='Vehicles With Service Due', 
                                   width=25, 
-                                  command=self.all_viechles_window)
+                                  command=self.all_vehicles_window)
         self._button5 = tk.Button(self._frame,
-                                  text='List vehicles By Fuel Type', 
+                                  text='Update Vehicle', 
                                   width=25, 
-                                  command=self.all_viechles_window)
+                                  command=self.all_vehicles_window)
+        self._button6 = tk.Button(self._frame,
+                                  text='Insert New Vehicle', 
+                                  width=25, 
+                                  command=self.all_vehicles_window)
 
-    def all_viechles_window(self):
+    def all_vehicles_window(self):
         """Initialise new window when button is clicked."""
         self.newWindow = tk.Toplevel(self._master)
         self.app = ListAllvehicles(self.newWindow)
+        self.app.build_window()
+
+    def tax_due_window(self):
+        """Initialise new window when button is clicked."""
+        self.newWindow = tk.Toplevel(self._master)
+        self.app = VehiclesWithTaxDue(self.newWindow)
         self.app.build_window()
 
     def build_window(self):
@@ -100,8 +111,36 @@ class ListAllvehicles(AbstractWindow):
 
     def build_window(self):
         """Build this window from private variables."""
-        vehicles_list = av.all_vehicles_build_classes()
-        self._text = av.get_text_to_display(self._text, vehicles_list)
+        vehicles_list = ws.build_classes('src/sql/select_all_vehicles.sql',
+                                         'all_vehicles')
+        self._text = ws.get_text_to_display(self._text, vehicles_list)
+        self._text.pack()
+        self._quit_button.pack()
+        self._frame.pack()
+
+
+class VehiclesWithTaxDue(AbstractWindow):
+    """Class representing Vehicles With Tax Due window."""
+
+    _text: object = None
+    _quit_button: object = None
+
+    def __init__(self, master):
+        """Init class for this window.
+
+        Args:
+            master (Tk): the Tk object used to build the window
+        """
+        super().__init__(master)
+        self._text = tk.Text(self._frame, width=45, height=5)
+        self._quit_button = tk.Button(self._frame, text='Exit', width=25, 
+                                      command=self.close_windows)
+
+    def build_window(self):
+        """Build this window from private variables."""
+        vehicles_list = ws.build_classes('src/sql/select_tax_due_vehicles.sql',
+                                         'tax_due')
+        self._text = ws.get_text_to_display(self._text, vehicles_list)
         self._text.pack()
         self._quit_button.pack()
         self._frame.pack()

@@ -7,25 +7,25 @@ class Vehicle:
     _vehicle_type: str = None
     _number_plate: str = None
     _colour: str = None
-    _mot_due_date: str = None
+    _service_due_date: str = None
     _tax_due_date: str = None
 
     def __init__(self, number_plate: str, 
                  colour: str, vehicle_type: str,
-                 mot_due_date: str, tax_due_date: str):
+                 service_due_date: str, tax_due_date: str):
         """Initialise car class.
 
         Args:
             number_plate (str): The cars number plate.
             colour (str): The cars colour.
             vehicle_type (str): The type of vehicle being represented as string
-            mot_due_date (str): The cars mot due date.
+            service_due_date (str): The cars service due date.
             tax_due_date (str): The cars tax due date.
         """
         self._number_plate = number_plate
         self._colour = colour
         self._vehicle_type = vehicle_type
-        self._mot_due_date = mot_due_date
+        self._mot_due_date = service_due_date
         self._tax_due_date = tax_due_date
 
     @property
@@ -56,20 +56,20 @@ class Vehicle:
         return self._vehicle_type
 
     @property
-    def mot_due_date(self) -> str:
+    def service_due_date(self) -> str:
         """Get mot due date.
-        
+
         Returns:
             MOT due date 
         """
         return self._mot_due_date
-    
+
     @property
     def tax_due_date(self) -> str:
         """Get tax due date.
-        
+
         Returns:
-            tax due date 
+            tax due date
         """
         return self._tax_due_date
 
