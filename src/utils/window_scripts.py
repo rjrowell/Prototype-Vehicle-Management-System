@@ -20,6 +20,8 @@ def build_classes(filepath: str, window: str):
         output: list = assign_all_vehicles_classes(sql_output)
     elif window == 'tax_due':
         output: list = assign_tax_due_classes(sql_output)
+    elif window == 'service_due':
+        output: list = assign_service_due_classes(sql_output)
 
     return output
 
@@ -34,8 +36,11 @@ def get_text_to_display(text_object: tk.Text, vehicles_list: list):
     Returns:
         text_object(tkinter.Text): The modified text object
     """
-    for i in vehicles_list:
-        text_object.insert(tk.END, get_text_by_vehicle(i) + '\n')
+    if not vehicles_list:
+        text_object.insert(tk.END, 'No vehicles found.\n')
+    else:
+        for i in vehicles_list:
+            text_object.insert(tk.END, get_text_by_vehicle(i) + '\n')
 
     return text_object
 
@@ -71,7 +76,7 @@ def get_text_by_vehicle(vehicle: object) -> str:
 
     Args:
         vehicle(object): The vehicle class to generate text from
-    
+
     Returns:
         output(str): The generated text
     """
@@ -122,5 +127,30 @@ def assign_tax_due_classes(sql_result: list) -> list:
         elif row[1] == 'lorry' or row[1] == 'pickup':
             new_lorry = LorryOrPickup(row[0], row[2], row[1], None, None, None,
                                       row[3])
+            output.append(new_lorry)
+    return output
+
+
+def assign_service_due_classes(sql_result: list) -> list:
+    """Assign values to classes for 'vehicles by tax due' window.
+
+    Args:
+        sql_result(list): The result of an SQL select query
+
+    Returns:
+        output(list): list of classes with assigned values
+    """
+    output: list = []
+    for row in sql_result:
+        if row[1] == 'car':
+            new_car = Car(row[0], row[2], row[1], None, row[3], None)
+            output.append(new_car)
+        elif row[1] == 'van':
+            new_van = Van(row[0], row[2], row[1], None, row[3], None)
+            output.append(new_van)
+        elif row[1] == 'lorry' or row[1] == 'pickup':
+            new_lorry = LorryOrPickup(row[0], row[2], row[1], None, None,
+                                      row[3],
+                                      None)
             output.append(new_lorry)
     return output

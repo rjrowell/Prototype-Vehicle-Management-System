@@ -25,7 +25,7 @@ class Vehicle:
         self._number_plate = number_plate
         self._colour = colour
         self._vehicle_type = vehicle_type
-        self._mot_due_date = service_due_date
+        self._service_due_date = service_due_date
         self._tax_due_date = tax_due_date
 
     @property
@@ -62,7 +62,7 @@ class Vehicle:
         Returns:
             MOT due date 
         """
-        return self._mot_due_date
+        return self._service_due_date
 
     @property
     def tax_due_date(self) -> str:
