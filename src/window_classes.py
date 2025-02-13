@@ -2,6 +2,7 @@
 import tkinter as tk
 from abc import abstractmethod
 from utils import window_scripts as ws
+from utils import select_from_num_plate
 
 
 class AbstractWindow:
@@ -10,6 +11,7 @@ class AbstractWindow:
     _master: object = None
     _frame: object = None
     _title: object = None
+    _text: tk.Text = None
 
     def __init__(self, master: tk.Tk):
         """Init default method for GUI windows.
@@ -24,6 +26,15 @@ class AbstractWindow:
     def close_windows(self):
         """Destroys a window."""
         self._master.destroy()
+
+    def process_text(self) -> str:
+        """Get text from a text field.
+
+        Returns:
+            text_out(str): The text from the windows text field
+        """
+        text_out = self._text.get('1.0', tk.END).strip()
+        return text_out
 
     @abstractmethod
     def build_window(self):
@@ -48,12 +59,8 @@ class MainWindow(AbstractWindow):
         self._title = tk.Label(self._frame, text='Main Menu', width=25)
         self._button1 = tk.Button(self._frame, text='Search By Number Plate', 
                                   width=25, 
-                                  command=self.all_vehicles_window)
+                                  command=self.num_plate_search_window)
         self._button2 = tk.Button(self._frame, text='List All vehicles', 
-                                  width=25, 
-                                  command=self.all_vehicles_window)
-        self._button6 = tk.Button(self._frame,
-                                  text='Search By Vehicle Type', 
                                   width=25, 
                                   command=self.all_vehicles_window)
         self._button3 = tk.Button(self._frame,
@@ -91,6 +98,12 @@ class MainWindow(AbstractWindow):
         self.app = VehiclesWithServiceDue(self.newWindow)
         self.app.build_window()
 
+    def num_plate_search_window(self):
+        """Initialise a search by num plate window."""
+        self.newWindow = tk.Toplevel(self._master)
+        self.app = SearchByNumberPlate(self.newWindow)
+        self.app.build_window()
+
     def build_window(self):
         """Build main menu window from private variables."""
         self._title.pack()
@@ -99,13 +112,13 @@ class MainWindow(AbstractWindow):
         self._button3.pack()
         self._button4.pack()
         self._button5.pack()
+        self._button6.pack()
         self._frame.pack()
 
 
 class ListAllvehicles(AbstractWindow):
     """Class representing secondary window."""
 
-    _text: object = None
     _quit_button: object = None
 
     def __init__(self, master: tk.Tk):
@@ -135,7 +148,6 @@ class ListAllvehicles(AbstractWindow):
 class VehiclesWithTaxDue(AbstractWindow):
     """Class representing Vehicles With Tax Due window."""
 
-    _text: object = None
     _quit_button: object = None
 
     def __init__(self, master: tk.Tk):
@@ -166,7 +178,6 @@ class VehiclesWithTaxDue(AbstractWindow):
 class VehiclesWithServiceDue(AbstractWindow):
     """Class representing Vehicles With Service Due window."""
 
-    _text: object = None
     _quit_button: object = None
 
     def __init__(self, master: tk.Tk):
@@ -190,6 +201,41 @@ class VehiclesWithServiceDue(AbstractWindow):
         self._text = ws.get_text_to_display(self._text, vehicles_list)
         self._title.pack()
         self._text.pack()
+        self._quit_button.pack()
+        self._frame.pack()
+
+
+class SearchByNumberPlate(AbstractWindow):
+    """Class representing Vehicles With Service Due window."""
+
+    _quit_button: object = None
+    _enter_button: object = None
+
+    def __init__(self, master: tk.Tk):
+        """Init class for this window.
+
+        Args:
+            master (Tk): the Tk object used to build the window
+        """
+        super().__init__(master)
+        title_text = 'Please Enter a Vehicle Number Plate:'
+        self._title = tk.Label(self._frame, text=title_text, width=35)
+        self._text = tk.Text(self._frame, width=55, height=1)
+        self._enter_button = tk.Button(self._frame, text='Enter', width=25, 
+                                       command=self.submit_text)
+        self._quit_button = tk.Button(self._frame, text='Exit', width=25, 
+                                      command=self.close_windows)
+
+    def submit_text(self):
+        """Run logic when enter button is pressed."""
+        num_plate_to_search: str = self.process_text()
+        select_from_num_plate(num_plate_to_search)
+
+    def build_window(self):
+        """Build this window from private variables."""
+        self._title.pack()
+        self._text.pack()
+        self._enter_button.pack()
         self._quit_button.pack()
         self._frame.pack()
 
