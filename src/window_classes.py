@@ -19,6 +19,7 @@ class AbstractWindow:
         """
         self._master = master
         self._frame = tk.Frame(self._master)
+        master.title('Yuma Council Vehicle Manager')
 
     def close_windows(self):
         """Destroys a window."""
