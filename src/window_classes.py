@@ -232,6 +232,7 @@ class SearchByNumberPlate(AbstractWindow):
         vehicles_list = ws.build_classes(
             self._num_plate_to_search,
             'num_plate')
+        self._text = ws.get_text_to_display(self._text, vehicles_list)
 
     def build_window(self):
         """Build this window from private variables."""
