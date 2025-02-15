@@ -2,7 +2,6 @@
 import tkinter as tk
 from abc import abstractmethod
 from utils import window_scripts as ws
-from utils import select_from_num_plate
 
 
 class AbstractWindow:
@@ -210,6 +209,7 @@ class SearchByNumberPlate(AbstractWindow):
 
     _quit_button: object = None
     _enter_button: object = None
+    _num_plate_to_search: str = None
 
     def __init__(self, master: tk.Tk):
         """Init class for this window.
@@ -228,8 +228,10 @@ class SearchByNumberPlate(AbstractWindow):
 
     def submit_text(self):
         """Run logic when enter button is pressed."""
-        num_plate_to_search: str = self.process_text()
-        select_from_num_plate(num_plate_to_search)
+        self._num_plate_to_search: str = self.process_text()
+        vehicles_list = ws.build_classes(
+            self._num_plate_to_search,
+            'num_plate')
 
     def build_window(self):
         """Build this window from private variables."""

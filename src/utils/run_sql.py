@@ -38,11 +38,14 @@ def execute_sql_select(filename: str) -> list:
     return output
 
 
-def select_from_num_plate(num_plate: str):
+def select_type_from_num_plate(num_plate: str) -> str:
     """Select from the database a vehicle with a number plate.
 
     Args:
         num_plate(str): The number plate to attempt to retrieve from DB
+    
+    Returns:
+        vehicle_type (str): The type of selected vehicle
     """
     filepath: str = 'src/sql/select_vehicle_type_from_numplate.sql'
     with open(filepath, 'r') as sql_file:
@@ -53,9 +56,32 @@ def select_from_num_plate(num_plate: str):
     conn = sqlite3.connect('vehicles.db')
     cursor = conn.cursor()
 
-    print(sql_script)
     # fetch the vehicle type of the vehicle with number plate
     vehicle_type: str = cursor.execute(sql_script).fetchone()[0]
-    print(vehicle_type)
 
     conn.close()
+    return vehicle_type
+
+
+def select_based_on_type(vehicle_type: str, num_plate: str) -> list:
+    if vehicle_type == 'car':
+        filepath: str = 'src/sql/select_car.sql'
+    elif vehicle_type == 'van':
+        filepath: str = 'src/sql/select_van.sql'
+    elif vehicle_type == 'lorry' or vehicle_type == 'pickup':
+        filepath: str = 'src/sql/select_lorry.sql'
+
+    with open(filepath, 'r') as sql_file:
+        sql_script: str = sql_file.read()
+    # Programmatically insert number plate var into sql script
+    sql_script: str = sql_script.replace('?NUM_PLATE?', num_plate)
+
+    print(sql_script)
+
+    conn = sqlite3.connect('vehicles.db')
+    cursor = conn.cursor()
+
+    output: list = cursor.execute(sql_script).fetchall()
+
+    conn.close()
+    return output

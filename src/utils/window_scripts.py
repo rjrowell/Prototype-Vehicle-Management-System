@@ -1,11 +1,11 @@
 """Scripts that are used to generate different GUI windows."""
 from .vehicle_classes import Car, Van, LorryOrPickup
-from .run_sql import execute_sql_select
+from .run_sql import execute_sql_select, select_type_from_num_plate, select_based_on_type
 import tkinter as tk
 
 
 def build_classes(filepath: str, window: str):
-    """Build the classes 'list all vehicles' window.
+    """Build the classes for some GUI windows.
 
     Args:
         filepath(str): the path to sql file
@@ -14,7 +14,12 @@ def build_classes(filepath: str, window: str):
     Returns:
         output(list): a list of new classes for the window
     """
-    sql_output: list = execute_sql_select(filepath)
+    # We pass in the filepath, but on select occasions we pass in
+    # information to be used directly, this try catch detects such scenarios
+    try:
+        sql_output: list = execute_sql_select(filepath)
+    except FileNotFoundError:
+        sql_output: str = filepath
 
     if window == 'all_vehicles':
         output: list = assign_all_vehicles_classes(sql_output)
@@ -22,6 +27,8 @@ def build_classes(filepath: str, window: str):
         output: list = assign_tax_due_classes(sql_output)
     elif window == 'service_due':
         output: list = assign_service_due_classes(sql_output)
+    elif window == 'num_plate':
+        output: list = assign_num_plate_classes(sql_output)
 
     return output
 
@@ -149,6 +156,27 @@ def assign_service_due_classes(sql_result: list) -> list:
             new_van = Van(row[0], row[2], row[1], None, row[3], None)
             output.append(new_van)
         elif row[1] == 'lorry' or row[1] == 'pickup':
+            new_lorry = LorryOrPickup(row[0], row[2], row[1], None, None,
+                                      row[3],
+                                      None)
+            output.append(new_lorry)
+    return output
+
+
+def assign_num_plate_classes(num_plate: str) -> object:
+    vehicle_type = select_type_from_num_plate(num_plate)
+    sql_result: list = select_based_on_type(vehicle_type, num_plate)
+
+    output: list = []
+    for row in sql_result:
+        if vehicle_type == 'car':
+            new_car = Car(num_plate, row[0], vehicle_type, row[3], row[2],
+                          row[1])
+            output.append(new_car)
+        elif vehicle_type == 'van':
+            new_van = Van(row[0], row[2], row[1], None, row[3], None)
+            output.append(new_van)
+        elif vehicle_type == 'lorry' or vehicle_type == 'pickup':
             new_lorry = LorryOrPickup(row[0], row[2], row[1], None, None,
                                       row[3],
                                       None)
