@@ -43,7 +43,7 @@ def select_type_from_num_plate(num_plate: str) -> str:
 
     Args:
         num_plate(str): The number plate to attempt to retrieve from DB
-    
+
     Returns:
         vehicle_type (str): The type of selected vehicle
     """
@@ -64,6 +64,15 @@ def select_type_from_num_plate(num_plate: str) -> str:
 
 
 def select_based_on_type(vehicle_type: str, num_plate: str) -> list:
+    """Select from database a specific vehicle based on its type.
+
+    Args:
+        vehicle_type (str): The type of vehicle we are selecting.
+        num_plate (str): The number plate of the vehicle we are selecting.
+
+    Returns:
+        list: The output of the SQL select statement.
+    """
     if vehicle_type == 'car':
         filepath: str = 'src/sql/select_car.sql'
     elif vehicle_type == 'van':
@@ -75,8 +84,6 @@ def select_based_on_type(vehicle_type: str, num_plate: str) -> list:
         sql_script: str = sql_file.read()
     # Programmatically insert number plate var into sql script
     sql_script: str = sql_script.replace('?NUM_PLATE?', num_plate)
-
-    print(sql_script)
 
     conn = sqlite3.connect('vehicles.db')
     cursor = conn.cursor()

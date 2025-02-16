@@ -229,10 +229,18 @@ class SearchByNumberPlate(AbstractWindow):
     def submit_text(self):
         """Run logic when enter button is pressed."""
         self._num_plate_to_search: str = self.process_text()
-        vehicles_list = ws.build_classes(
-            self._num_plate_to_search,
-            'num_plate')
-        self._text = ws.get_text_to_display(self._text, vehicles_list)
+        try:
+            vehicles_list = ws.build_classes(
+                self._num_plate_to_search,
+                'num_plate')
+
+            self._text.config(width=105)
+            self._text = ws.get_text_to_display(self._text, vehicles_list)
+            self._text.pack()
+        except TypeError:
+            error_text = 'No Vehicle found, Please enter a Valid Number Plate'
+            self._title.config(text=error_text)
+            self._title.pack()
 
     def build_window(self):
         """Build this window from private variables."""

@@ -44,6 +44,10 @@ def get_text_to_display(text_object: tk.Text, vehicles_list: list):
     Returns:
         text_object(tkinter.Text): The modified text object
     """
+
+    # Clears all text from the Text widget
+    text_object.delete("1.0", "end")
+
     if not vehicles_list:
         text_object.insert(tk.END, 'No vehicles found.\n')
     else:
@@ -93,14 +97,14 @@ def get_text_by_vehicle(vehicle: object) -> str:
 
     if vehicle.vehicle_type == 'car':
         if vehicle.num_of_seats is not None:
-            output = output + ', ' + vehicle.num_of_seats + ' seater '
+            output = output + ', ' + str(vehicle.num_of_seats) + ' seater '
     elif vehicle.vehicle_type == 'van':
         if vehicle.cargo_capacity is not None:
-            output = output + ', ' + vehicle.cargo_capacity
+            output = output + ', ' + str(vehicle.cargo_capacity)
             output = output + 'l cargo capacity '
     elif vehicle.vehicle_type == 'lorry' or vehicle.vehicle_type == 'pickup':
         if vehicle.cargo_capacity is not None:
-            output = output + ', ' + vehicle.cargo_capacity
+            output = output + ', ' + str(vehicle.cargo_capacity)
             output = output + 'l cargo capacity '
 
         if vehicle.cab_type is not None:
@@ -140,7 +144,7 @@ def assign_tax_due_classes(sql_result: list) -> list:
 
 
 def assign_service_due_classes(sql_result: list) -> list:
-    """Assign values to classes for 'vehicles by tax due' window.
+    """Assign values to classes for 'vehicles by service due' window.
 
     Args:
         sql_result(list): The result of an SQL select query
@@ -164,7 +168,15 @@ def assign_service_due_classes(sql_result: list) -> list:
     return output
 
 
-def assign_num_plate_classes(num_plate: str) -> object:
+def assign_num_plate_classes(num_plate: str) -> list:
+    """Assign values to classes for 'vehicles by number plate' window.
+
+    Args:
+        num_plate(str): the number plate of the vehicle
+
+    Returns:
+         output(list): list of classes with assigned values
+    """
     vehicle_type = select_type_from_num_plate(num_plate)
     sql_result: list = select_based_on_type(vehicle_type, num_plate)
 
@@ -175,11 +187,13 @@ def assign_num_plate_classes(num_plate: str) -> object:
                           row[1])
             output.append(new_car)
         elif vehicle_type == 'van':
-            new_van = Van(row[0], row[2], row[1], None, row[3], None)
+            new_van = Van(num_plate, row[0], vehicle_type, row[3], row[2],
+                          row[1])
             output.append(new_van)
         elif vehicle_type == 'lorry' or vehicle_type == 'pickup':
-            new_lorry = LorryOrPickup(row[0], row[2], row[1], None, None,
-                                      row[3],
-                                      None)
+            new_lorry = LorryOrPickup(num_plate, row[0], vehicle_type, row[3],
+                                      row[4],
+                                      row[2],
+                                      row[1])
             output.append(new_lorry)
     return output
