@@ -44,9 +44,8 @@ def get_text_to_display(text_object: tk.Text, vehicles_list: list):
     Returns:
         text_object(tkinter.Text): The modified text object
     """
-
     # Clears all text from the Text widget
-    text_object.delete("1.0", "end")
+    text_object.delete('1.0', 'end')
 
     if not vehicles_list:
         text_object.insert(tk.END, 'No vehicles found.\n')

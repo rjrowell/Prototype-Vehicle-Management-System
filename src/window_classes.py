@@ -26,14 +26,35 @@ class AbstractWindow:
         """Destroys a window."""
         self._master.destroy()
 
+    def set_next_window(self, window_name: str):
+        """Set the next window to be displayed.
+
+        Args:
+            window_name(str): The name of the window to be set
+
+        Returns:
+            app(object): The next window to be displayed
+        """
+        self.newWindow = tk.Toplevel(self._master)
+
+        if window_name == 'SearchByNumberPlate':
+            self.app = SearchByNumberPlate(self.newWindow)
+        elif window_name == 'ListAllvehicles':
+            self.app = ListAllvehicles(self.newWindow)
+        elif window_name == 'VehiclesWithTaxDue':
+            self.app = VehiclesWithTaxDue(self.newWindow)
+        elif window_name == 'VehiclesWithServiceDue':
+            self.app = VehiclesWithServiceDue(self.newWindow)
+
+        return self.app
+
     def process_text(self) -> str:
         """Get text from a text field.
 
         Returns:
             text_out(str): The text from the windows text field
         """
-        text_out = self._text.get('1.0', tk.END).strip()
-        return text_out
+        return self._text.get('1.0', tk.END).strip()
 
     @abstractmethod
     def build_window(self):
@@ -81,26 +102,22 @@ class MainWindow(AbstractWindow):
 
     def all_vehicles_window(self):
         """Initialise new window when button is clicked."""
-        self.newWindow = tk.Toplevel(self._master)
-        self.app = ListAllvehicles(self.newWindow)
+        self.app = self.set_next_window('ListAllvehicles')
         self.app.build_window()
 
     def tax_due_window(self):
         """Initialise new window when button is clicked."""
-        self.newWindow = tk.Toplevel(self._master)
-        self.app = VehiclesWithTaxDue(self.newWindow)
+        self.app = self.set_next_window('VehiclesWithTaxDue')
         self.app.build_window()
 
     def service_due_window(self):
         """Initialise new window when button is clicked."""
-        self.newWindow = tk.Toplevel(self._master)
-        self.app = VehiclesWithServiceDue(self.newWindow)
+        self.app = self.set_next_window('VehiclesWithServiceDue')
         self.app.build_window()
 
     def num_plate_search_window(self):
         """Initialise a search by num plate window."""
-        self.newWindow = tk.Toplevel(self._master)
-        self.app = SearchByNumberPlate(self.newWindow)
+        self.app = self.set_next_window('SearchByNumberPlate')
         self.app.build_window()
 
     def build_window(self):
