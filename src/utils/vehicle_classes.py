@@ -140,7 +140,7 @@ class Van(Vehicle):
 
 class LorryOrPickup(Vehicle):
     """Lorry class that inherits from vehicle."""
-    
+
     __cargo_capacity: int = None
     __cab_type: str = None
 
@@ -172,7 +172,7 @@ class LorryOrPickup(Vehicle):
             Lorry's cargo capacity
         """
         return self.__cargo_capacity
-    
+
     @property
     def cab_type(self) -> int:
         """Get cab type of lorry.

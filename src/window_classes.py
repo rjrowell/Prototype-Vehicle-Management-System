@@ -147,7 +147,7 @@ class ListAllvehicles(AbstractWindow):
         self._title = tk.Label(self._frame, text='All Vehicles in the Fleet',
                                width=25)
         self._text = tk.Text(self._frame, width=25, height=5)
-        self._quit_button = tk.Button(self._frame, text='Exit', width=25, 
+        self._quit_button = tk.Button(self._frame, text='Exit', width=25,
                                       command=self.close_windows)
 
     def build_window(self):
@@ -253,11 +253,18 @@ class SearchByNumberPlate(AbstractWindow):
 
             self._text.config(width=105)
             self._text = ws.get_text_to_display(self._text, vehicles_list)
+
+            self._title.config(text='Number Plate Found:')
+
+            self._title.pack()
             self._text.pack()
         except TypeError:
             error_text = 'No Vehicle found, Please enter a Valid Number Plate'
             self._title.config(text=error_text)
+            self._text.config(width=55)
+
             self._title.pack()
+            self._text.pack()
 
     def build_window(self):
         """Build this window from private variables."""

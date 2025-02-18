@@ -50,14 +50,12 @@ def select_type_from_num_plate(num_plate: str) -> str:
     filepath: str = 'src/sql/select_vehicle_type_from_numplate.sql'
     with open(filepath, 'r') as sql_file:
         sql_script: str = sql_file.read()
-    # Programmatically insert number plate var into sql script
-    sql_script: str = sql_script.replace('?NUM_PLATE?', num_plate)
 
     conn = sqlite3.connect('vehicles.db')
     cursor = conn.cursor()
 
     # fetch the vehicle type of the vehicle with number plate
-    vehicle_type: str = cursor.execute(sql_script).fetchone()[0]
+    vehicle_type: str = cursor.execute(sql_script, (num_plate,)).fetchone()[0]
 
     conn.close()
     return vehicle_type
@@ -82,13 +80,11 @@ def select_based_on_type(vehicle_type: str, num_plate: str) -> list:
 
     with open(filepath, 'r') as sql_file:
         sql_script: str = sql_file.read()
-    # Programmatically insert number plate var into sql script
-    sql_script: str = sql_script.replace('?NUM_PLATE?', num_plate)
 
     conn = sqlite3.connect('vehicles.db')
     cursor = conn.cursor()
 
-    output: list = cursor.execute(sql_script).fetchall()
+    output: list = cursor.execute(sql_script, (num_plate,)).fetchall()
 
     conn.close()
     return output

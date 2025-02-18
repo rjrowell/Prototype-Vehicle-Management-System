@@ -61,7 +61,7 @@ def assign_all_vehicles_classes(sql_result: list) -> list:
 
     Args:
         sql_result(list): The result of an sql select query
-    
+
     Returns:
         output(list): list of classes with values assigned
     """
