@@ -45,6 +45,8 @@ class AbstractWindow:
             self.app = VehiclesWithTaxDue(self.newWindow)
         elif window_name == 'VehiclesWithServiceDue':
             self.app = VehiclesWithServiceDue(self.newWindow)
+        elif window_name == 'InsertVehicle':
+            self.app = InsertVehicle(self.newWindow)
 
         return self.app
 
@@ -77,28 +79,28 @@ class MainWindow(AbstractWindow):
         """
         super().__init__(master)
         self._title = tk.Label(self._frame, text='Main Menu', width=25)
-        self._button1 = tk.Button(self._frame, text='Search By Number Plate', 
-                                  width=25, 
+        self._button1 = tk.Button(self._frame, text='Search By Number Plate',
+                                  width=25,
                                   command=self.num_plate_search_window)
-        self._button2 = tk.Button(self._frame, text='List All vehicles', 
-                                  width=25, 
+        self._button2 = tk.Button(self._frame, text='List All vehicles',
+                                  width=25,
                                   command=self.all_vehicles_window)
         self._button3 = tk.Button(self._frame,
-                                  text='Vehicles With Tax Due', 
-                                  width=25, 
+                                  text='Vehicles With Tax Due',
+                                  width=25,     
                                   command=self.tax_due_window)
         self._button4 = tk.Button(self._frame,
                                   text='Vehicles With Service Due', 
                                   width=25, 
                                   command=self.service_due_window)
         self._button5 = tk.Button(self._frame,
-                                  text='Update Vehicle', 
-                                  width=25, 
+                                  text='Update Vehicle',
+                                  width=25,
                                   command=self.all_vehicles_window)
         self._button6 = tk.Button(self._frame,
-                                  text='Insert New Vehicle', 
-                                  width=25, 
-                                  command=self.all_vehicles_window)
+                                  text='Insert New Vehicle',
+                                  width=25,
+                                  command=self.insert_new_vehicle_window)
 
     def all_vehicles_window(self):
         """Initialise new window when button is clicked."""
@@ -118,6 +120,11 @@ class MainWindow(AbstractWindow):
     def num_plate_search_window(self):
         """Initialise a search by num plate window."""
         self.app = self.set_next_window('SearchByNumberPlate')
+        self.app.build_window()
+
+    def insert_new_vehicle_window(self):
+        """Initialise a search by insert vehicle window."""
+        self.app = self.set_next_window('InsertVehicle')
         self.app.build_window()
 
     def build_window(self):
@@ -270,6 +277,62 @@ class SearchByNumberPlate(AbstractWindow):
         """Build this window from private variables."""
         self._title.pack()
         self._text.pack()
+        self._enter_button.pack()
+        self._quit_button.pack()
+        self._frame.pack()
+
+
+class InsertVehicle(AbstractWindow):
+    """Class representing Insert New Vehicle window."""
+
+    _quit_button: object = None
+
+    def __init__(self, master: tk.Tk):
+        """Init class for this window.
+
+        Args:
+            master (Tk): the Tk object used to build the window
+        """
+        super().__init__(master)
+        self.selected_value = tk.StringVar(self._frame)
+        # Default value for dropdown
+        self.selected_value.set('Select type of Vehicle to insert')
+
+        self._options = ['Car', 'Van', 'Lorry', 'Pickup']
+        self._option_menu = tk.OptionMenu(self._frame, self.selected_value,
+                                          *self._options)
+        self._enter_button = tk.Button(self._frame, text='Enter', width=25,
+                                       command=self.submit_type)
+        self._quit_button = tk.Button(self._frame, text='Exit', width=25,
+                                      command=self.close_windows)
+
+    def submit_type(self):
+        """Generate window based on type selection."""
+        accepted_types = ['Car', 'Van', 'Lorry', 'Pickup']
+        vehicle_type = self.selected_value.get()
+        print(vehicle_type)
+
+        # Check if a type has been selected
+        if vehicle_type not in accepted_types:
+            pass
+        else:
+            self._option_menu.destroy()
+            self._enter_button.config(command=self._insert_text)
+            self._enter_button.pack()
+
+            # Generate elements for next window
+            element_list = ws.generate_insert_widgets(self._frame,
+                                                      vehicle_type)
+
+            for i in element_list:
+                i.pack()
+
+    def _insert_text(self):
+        print('Hello')
+
+    def build_window(self):
+        """Build this window from private variables."""
+        self._option_menu.pack()
         self._enter_button.pack()
         self._quit_button.pack()
         self._frame.pack()

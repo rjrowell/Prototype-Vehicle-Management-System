@@ -196,3 +196,56 @@ def assign_num_plate_classes(num_plate: str) -> list:
                                       row[1])
             output.append(new_lorry)
     return output
+
+
+def generate_insert_widgets(frame: tk.Frame, vehicle_type: str):
+    """Generate the widgets to be used in the insert vehicle window.
+
+    Args:
+        frame (tk.Frame): The frame used in the widgets
+        vehicle_type (str): The selected vehicle type
+
+    Returns:
+        element_list (list): The list of generated widgets
+    """
+    element_list: list = []
+
+    title = tk.Label(frame,
+                     text='Write information into text boxes',
+                     width=35)
+    element_list.append(title)
+
+    num_plate = tk.Text(frame, width=55, height=1)
+    num_plate.insert(tk.END, 'Number Plate')
+    element_list.append(num_plate)
+
+    colour = tk.Text(frame, width=55, height=1)
+    colour.insert(tk.END, 'Colour')
+    element_list.append(colour)
+
+    tax_date = tk.Text(frame, width=55, height=1)
+    tax_date.insert(tk.END, 'Tax Due Date')
+    element_list.append(tax_date)
+
+    service_date = tk.Text(frame, width=55, height=1)
+    service_date.insert(tk.END, 'Service Date')
+    element_list.append(service_date)
+
+    if vehicle_type == 'Car':
+        num_of_seats = tk.Text(frame, width=55, height=1)
+        num_of_seats.insert(tk.END, 'Number of Seats')
+        element_list.append(num_of_seats)
+    elif vehicle_type == 'Van':
+        cargo_capacity = tk.Text(frame, width=55, height=1)
+        cargo_capacity.insert(tk.END, 'Cargo Capacity')
+        element_list.append(cargo_capacity)
+    elif vehicle_type == 'Lorry' or vehicle_type == 'Pickup':
+        cargo_capacity = tk.Text(frame, width=55, height=1)
+        cargo_capacity.insert(tk.END, 'Cargo Capacity')
+        element_list.append(cargo_capacity)
+
+        cab_type = tk.Text(frame, width=55, height=1)
+        cab_type.insert(tk.END, 'Cab Type')
+        element_list.append(cab_type)
+
+    return element_list
