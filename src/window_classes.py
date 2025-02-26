@@ -307,13 +307,15 @@ class InsertVehicle(AbstractWindow):
                                       command=self.close_windows)
 
     def submit_type(self):
-        """Generate window based on type selection."""
+        """Do actions after vehicle type is submitted.
+
+        Generates next set of widgets
+        """
         accepted_types = ['Car', 'Van', 'Lorry', 'Pickup']
-        vehicle_type = self.selected_value.get()
-        print(vehicle_type)
+        self._vehicle_type = self.selected_value.get()
 
         # Check if a type has been selected
-        if vehicle_type not in accepted_types:
+        if self._vehicle_type not in accepted_types:
             pass
         else:
             self._option_menu.destroy()
@@ -321,14 +323,19 @@ class InsertVehicle(AbstractWindow):
             self._enter_button.pack()
 
             # Generate elements for next window
-            element_list = ws.generate_insert_widgets(self._frame,
-                                                      vehicle_type)
+            v_type = self._vehicle_type
+            self._element_list: list = ws.generate_insert_widgets(self._frame,
+                                                                  v_type)
 
-            for i in element_list:
+            for i in self._element_list:
                 i.pack()
 
     def _insert_text(self):
-        print('Hello')
+        try:
+            ws.set_insert_values(self._element_list, self._vehicle_type)
+        except TypeError:
+            label_text = 'One or more entries is incorrect please re-enter'
+            self._element_list[0].config(text=label_text)
 
     def build_window(self):
         """Build this window from private variables."""

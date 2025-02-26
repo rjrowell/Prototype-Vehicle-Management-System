@@ -2,6 +2,7 @@
 from .vehicle_classes import Car, Van, LorryOrPickup
 from .run_sql import execute_sql_select, select_type_from_num_plate
 from .run_sql import select_based_on_type
+from .verify_inputs import verify_inputs
 import tkinter as tk
 
 
@@ -224,11 +225,11 @@ def generate_insert_widgets(frame: tk.Frame, vehicle_type: str):
     element_list.append(colour)
 
     tax_date = tk.Text(frame, width=55, height=1)
-    tax_date.insert(tk.END, 'Tax Due Date')
+    tax_date.insert(tk.END, 'Tax Due Date (YYYY-MM-DD)')
     element_list.append(tax_date)
 
     service_date = tk.Text(frame, width=55, height=1)
-    service_date.insert(tk.END, 'Service Date')
+    service_date.insert(tk.END, 'Service Date (YYYY-MM-DD)')
     element_list.append(service_date)
 
     if vehicle_type == 'Car':
@@ -249,3 +250,33 @@ def generate_insert_widgets(frame: tk.Frame, vehicle_type: str):
         element_list.append(cab_type)
 
     return element_list
+
+
+def set_insert_values(element_list: list[tk.Text], vehicle_type: str):
+    vehicle: object = None
+    number_plate: str = element_list[1].get('1.0', tk.END).strip()
+    colour: str = element_list[2].get('1.0', tk.END).strip()
+    tax_date: str = element_list[3].get('1.0', tk.END).strip()
+    service_date: str = element_list[4].get('1.0', tk.END).strip()
+    # TODO write colour conversion to convert colour into id
+    if vehicle_type == 'Car':
+        num_of_seats = element_list[5].get('1.0', tk.END).strip()
+        vehicle = Car(number_plate.upper(), colour, vehicle_type.lower(),
+                      num_of_seats,
+                      service_date, tax_date)
+    elif vehicle_type == 'Van':
+        cargo_capacity = element_list[5].get('1.0', tk.END).strip()
+        vehicle = Van(number_plate.upper(), colour, vehicle_type.lower(),
+                      cargo_capacity,
+                      service_date, tax_date)
+    elif vehicle_type == 'Lorry' or vehicle_type == 'Pickup':
+        cargo_capacity = element_list[5].get('1.0', tk.END).strip()
+        cab_type = element_list[6].get('1.0', tk.END).strip()
+        vehicle = LorryOrPickup(number_plate.upper(), colour,
+                                vehicle_type.lower(),
+                                cargo_capacity, cab_type.lower(),
+                                service_date, tax_date)
+
+    verify_inputs(vehicle)
+
+    return vehicle
