@@ -1,9 +1,18 @@
+"""This module verifies inputs entered.
+
+Throws type errors if they are incorrect.
+"""
 from .vehicle_classes import Vehicle, Car, Van, LorryOrPickup
 from datetime import datetime
 import re
 
 
 def verify_inputs(vehicle: Vehicle):
+    """Verify inputs from Vehicle object.
+
+    Args:
+        vehicle (Vehicle): Vehicle object to check
+    """
     verify_numplate(vehicle.number_plate)
     verify_date(vehicle.service_due_date)
     verify_date(vehicle.tax_due_date)
@@ -21,14 +30,30 @@ def verify_inputs(vehicle: Vehicle):
 
 
 def verify_numplate(num_plate: str):
-    regex = r"^[A-Z]{2}[0-9]{2}[ ]?[A-Z]{3}$"
+    """Verify a numberplate is correct format.
+
+    Args:
+        num_plate (str): The number plate to check
+
+    Raises:
+        TypeError: if number plate is invalid
+    """
+    regex = r'^[A-Z]{2}[0-9]{2}[ ]?[A-Z]{3}$'
     if not bool(re.match(regex, num_plate)):
         raise TypeError
 
 
 def verify_date(date: str):
+    """Verify a date is correct format.
+
+    Args:
+        date (str): The date to check
+
+    Raises:
+        TypeError: if date is invalid
+    """
     try:
-        date: datetime = datetime.strptime(date, "%Y-%m-%d")
+        date: datetime = datetime.strptime(date, '%Y-%m-%d')
         today = datetime.today().date()
 
         # Ensure the entered date is in the future
@@ -40,13 +65,30 @@ def verify_date(date: str):
 
 
 def verify_integer(input: int):
+    """Verify a integer input is an integer.
+
+    Args:
+        input (int): The integer to check
+
+    Raises:
+        TypeError: if integer is not an int
+    """
     try:
         int(input)
     except ValueError:
         raise TypeError
 
 
-def verify_cab_type(cab_type, vehicle_type):
+def verify_cab_type(cab_type: str, vehicle_type: str):
+    """Verify a cab type is correct for vehicle type.
+
+    Args:
+        cab_type (str): The cab type to check
+        vehicle_type (str): The vehicle type to check against
+
+    Raises:
+        TypeError: if cab type is invalid
+    """
     if vehicle_type == 'lorry':
         if not cab_type == 'sleeper' and not cab_type == 'day':
             raise TypeError

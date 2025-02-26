@@ -253,6 +253,17 @@ def generate_insert_widgets(frame: tk.Frame, vehicle_type: str):
 
 
 def set_insert_values(element_list: list[tk.Text], vehicle_type: str):
+    """Assign the values entered to a vehicle class.
+
+    Verify entered data is all correct.
+
+    Args:
+        element_list (list[tk.Text]): The list of elements in the window
+        vehicle_type (str): Selected type of vehicle
+
+    Returns:
+        vehicle (object): The vehicle object
+    """
     vehicle: object = None
     number_plate: str = element_list[1].get('1.0', tk.END).strip()
     colour: str = element_list[2].get('1.0', tk.END).strip()
