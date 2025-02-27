@@ -2,9 +2,9 @@
 
 Throws type errors if they are incorrect.
 """
+import re
 from .vehicle_classes import Vehicle, Car, Van, LorryOrPickup
 from datetime import datetime
-import re
 
 
 def verify_inputs(vehicle: Vehicle):

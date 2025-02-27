@@ -29,6 +29,18 @@ class Vehicle:
         self._tax_due_date = tax_due_date
 
     @property
+    def properties(self) -> list:
+        """Get all vehicle properties as a list.
+
+        Returns:
+            vehicle_properties (list): The list of the vehicles properties
+        """
+        vehicle_properties: list = [self._number_plate, self._colour,
+                                    self._vehicle_type, self._service_due_date,
+                                    self._tax_due_date]
+        return vehicle_properties
+
+    @property
     def number_plate(self) -> str:
         """Get current plate.
 
@@ -97,6 +109,17 @@ class Car(Vehicle):
         self.__num_of_seats = num_of_seats
 
     @property
+    def properties(self) -> list:
+        """Get all car properties as a list.
+
+        Returns:
+            vehicle_properties (list): The list of the vehicles properties
+        """
+        vehicle_properties: list = super().properties
+        vehicle_properties.append(self.__num_of_seats)
+        return vehicle_properties
+
+    @property
     def num_of_seats(self) -> int:
         """Get current number of seats.
 
@@ -127,6 +150,17 @@ class Van(Vehicle):
         super().__init__(number_plate, colour, vehicle_type, mot_due_date,
                          tax_due_date)
         self.__cargo_capacity = cargo_capacity
+
+    @property
+    def properties(self) -> list:
+        """Get all van properties as a list.
+
+        Returns:
+            vehicle_properties (list): The list of the vehicles properties
+        """
+        vehicle_properties: list = super().properties
+        vehicle_properties.append(self.__cargo_capacity)
+        return vehicle_properties
 
     @property
     def cargo_capacity(self) -> int:
@@ -163,6 +197,19 @@ class LorryOrPickup(Vehicle):
                          tax_due_date)
         self.__cargo_capacity = cargo_capacity
         self.__cab_type = cab_type
+
+    @property
+    def properties(self) -> list:
+        """Get all car properties as a list.
+
+        Returns:
+            vehicle_properties (list): The list of the vehicles properties
+        """
+        vehicle_properties: list = super().properties
+        vehicle_properties.append(self.__num_of_seats)
+        vehicle_properties.append(self.__cargo_capacity)
+        vehicle_properties.append(self.__cab_type)
+        return vehicle_properties
 
     @property
     def cargo_capacity(self) -> int:

@@ -88,3 +88,32 @@ def select_based_on_type(vehicle_type: str, num_plate: str) -> list:
 
     conn.close()
     return output
+
+def insert_car(properties: list):
+    filepath: str = 'src/sql/insert_car.sql'
+
+
+def insert_van(properties: list):
+    filepath: str = 'src/sql/insert_van.sql'
+
+
+def insert_lorry(properties: list):
+    filepath: str = 'src/sql/insert_lorry.sql'
+
+
+def insert_vehicle_into_db(properties: list):
+    """Take parameters from a Vehicle properties and insert into db.
+
+    Args:
+        properties (list): The vehicle properties to be inserted
+    """
+    vehicle_type: str = properties[2]
+    properties = transform_properties(properties)
+    filepath = 'src/sql/insert_vehicle.sql'
+
+    if vehicle_type == 'car':
+        insert_car(properties)
+    elif vehicle_type == 'van':
+        insert_van(properties)
+    elif vehicle_type == 'lorry' or vehicle_type == 'pickup':
+        insert_lorry(properties)

@@ -1,7 +1,7 @@
 """Scripts that are used to generate different GUI windows."""
 from .vehicle_classes import Car, Van, LorryOrPickup
 from .run_sql import execute_sql_select, select_type_from_num_plate
-from .run_sql import select_based_on_type
+from .run_sql import select_based_on_type, insert_vehicle_into_db
 from .verify_inputs import verify_inputs
 import tkinter as tk
 
@@ -252,34 +252,34 @@ def generate_insert_widgets(frame: tk.Frame, vehicle_type: str):
     return element_list
 
 
-def set_insert_values(element_list: list[tk.Text], vehicle_type: str):
-    """Assign the values entered to a vehicle class.
+def insert_values(element_list: list[tk.Text], vehicle_type: str):
+    """Assign the values entered to a vehicle and insert into db.
 
     Verify entered data is all correct.
 
     Args:
         element_list (list[tk.Text]): The list of elements in the window
         vehicle_type (str): Selected type of vehicle
-
-    Returns:
-        vehicle (object): The vehicle object
     """
+    # Assign each text entry to a vehicle object
     vehicle: object = None
     number_plate: str = element_list[1].get('1.0', tk.END).strip()
     colour: str = element_list[2].get('1.0', tk.END).strip()
     tax_date: str = element_list[3].get('1.0', tk.END).strip()
     service_date: str = element_list[4].get('1.0', tk.END).strip()
-    # TODO write colour conversion to convert colour into id
+    # Vehicle specific assignment
     if vehicle_type == 'Car':
         num_of_seats = element_list[5].get('1.0', tk.END).strip()
         vehicle = Car(number_plate.upper(), colour, vehicle_type.lower(),
                       num_of_seats,
                       service_date, tax_date)
+
     elif vehicle_type == 'Van':
         cargo_capacity = element_list[5].get('1.0', tk.END).strip()
         vehicle = Van(number_plate.upper(), colour, vehicle_type.lower(),
                       cargo_capacity,
                       service_date, tax_date)
+
     elif vehicle_type == 'Lorry' or vehicle_type == 'Pickup':
         cargo_capacity = element_list[5].get('1.0', tk.END).strip()
         cab_type = element_list[6].get('1.0', tk.END).strip()
@@ -290,4 +290,4 @@ def set_insert_values(element_list: list[tk.Text], vehicle_type: str):
 
     verify_inputs(vehicle)
 
-    return vehicle
+    insert_vehicle_into_db(vehicle.properties)
