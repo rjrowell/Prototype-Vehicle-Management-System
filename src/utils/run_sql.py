@@ -1,6 +1,8 @@
 """A utility file for executing sql."""
 import sqlite3
 
+from .transfrom_properties import transform_properties
+
 
 def execute_sql(filename: str):
     """Read sql file then execute it.
@@ -91,6 +93,7 @@ def select_based_on_type(vehicle_type: str, num_plate: str) -> list:
 
 def insert_car(properties: list):
     filepath: str = 'src/sql/insert_car.sql'
+    print('here')
 
 
 def insert_van(properties: list):
@@ -110,7 +113,7 @@ def insert_vehicle_into_db(properties: list):
     vehicle_type: str = properties[2]
     properties = transform_properties(properties)
     filepath = 'src/sql/insert_vehicle.sql'
-
+    # TODO run vehicle sql then run each individual type sql
     if vehicle_type == 'car':
         insert_car(properties)
     elif vehicle_type == 'van':

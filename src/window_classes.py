@@ -332,9 +332,12 @@ class InsertVehicle(AbstractWindow):
 
     def _insert_text(self):
         try:
-            ws.set_insert_values(self._element_list, self._vehicle_type)
+            ws.insert_values(self._element_list, self._vehicle_type)
         except TypeError:
             label_text = 'One or more entries is incorrect please re-enter'
+            self._element_list[0].config(text=label_text)
+        except KeyError:
+            label_text = 'Ivalid colour entered'
             self._element_list[0].config(text=label_text)
 
     def build_window(self):
