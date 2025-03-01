@@ -4,14 +4,28 @@ import sqlite3
 from .transfrom_properties import transform_properties
 
 
+def read_sql_file(filepath: str) -> str:
+    """Read an sql file from a filepath into a str.
+
+    Args:
+        filepath (str): the filepath of the SQL file
+
+    Returns:
+        sql_script (str): the str contaning the SQL script
+    """
+    with open(filepath, 'r') as sql_file:
+        sql_script: str = sql_file.read()
+
+    return sql_script
+
+
 def execute_sql(filename: str):
     """Read sql file then execute it.
 
     Args:
         filename (str): path to sql file
     """
-    with open(filename, 'r') as sql_file:
-        sql_script = sql_file.read()
+    sql_script = read_sql_file(filename)
 
     conn = sqlite3.connect('vehicles.db')
     cursor = conn.cursor()
@@ -28,8 +42,7 @@ def execute_sql_select(filename: str) -> list:
     Returns:
         output (list): returns the result of the select
     """
-    with open(filename, 'r') as sql_file:
-        sql_script = sql_file.read()
+    sql_script = read_sql_file(filename)
 
     conn = sqlite3.connect('vehicles.db')
     cursor = conn.cursor()
@@ -50,8 +63,7 @@ def select_type_from_num_plate(num_plate: str) -> str:
         vehicle_type (str): The type of selected vehicle
     """
     filepath: str = 'src/sql/select_vehicle_type_from_numplate.sql'
-    with open(filepath, 'r') as sql_file:
-        sql_script: str = sql_file.read()
+    sql_script = read_sql_file(filepath)
 
     conn = sqlite3.connect('vehicles.db')
     cursor = conn.cursor()
@@ -80,8 +92,7 @@ def select_based_on_type(vehicle_type: str, num_plate: str) -> list:
     elif vehicle_type == 'lorry' or vehicle_type == 'pickup':
         filepath: str = 'src/sql/select_lorry.sql'
 
-    with open(filepath, 'r') as sql_file:
-        sql_script: str = sql_file.read()
+    sql_script = read_sql_file(filepath)
 
     conn = sqlite3.connect('vehicles.db')
     cursor = conn.cursor()
@@ -91,17 +102,59 @@ def select_based_on_type(vehicle_type: str, num_plate: str) -> list:
     conn.close()
     return output
 
+
 def insert_car(properties: list):
+    """Insert a new entry into the car table of the DB.
+
+    Args:
+        properties (list): The properties of the car to be inserted
+    """
     filepath: str = 'src/sql/insert_car.sql'
-    print('here')
+    sql_script = read_sql_file(filepath)
+
+    conn = sqlite3.connect('vehicles.db')
+    cursor = conn.cursor()
+
+    cursor.execute(sql_script, (properties[0], properties[5]))
+
+    conn.commit()
+    conn.close()
 
 
 def insert_van(properties: list):
+    """Insert a new entry into the van table of the DB.
+
+    Args:
+        properties (list): The properties of the van to be inserted
+    """
     filepath: str = 'src/sql/insert_van.sql'
+    sql_script = read_sql_file(filepath)
+
+    conn = sqlite3.connect('vehicles.db')
+    cursor = conn.cursor()
+
+    cursor.execute(sql_script, (properties[0], properties[5]))
+
+    conn.commit()
+    conn.close()
 
 
 def insert_lorry(properties: list):
+    """Insert a new entry into the lorry table of the DB.
+
+    Args:
+        properties (list): The properties of the lorry or pickup to be inserted
+    """
     filepath: str = 'src/sql/insert_lorry.sql'
+    sql_script = read_sql_file(filepath)
+
+    conn = sqlite3.connect('vehicles.db')
+    cursor = conn.cursor()
+
+    cursor.execute(sql_script, (properties[0], properties[5], properties[6]))
+
+    conn.commit()
+    conn.close()
 
 
 def insert_vehicle_into_db(properties: list):
@@ -112,7 +165,20 @@ def insert_vehicle_into_db(properties: list):
     """
     vehicle_type: str = properties[2]
     properties = transform_properties(properties)
-    filepath = 'src/sql/insert_vehicle.sql'
+
+    sql_script = read_sql_file('src/sql/insert_vehicle.sql')
+
+    conn = sqlite3.connect('vehicles.db')
+    cursor = conn.cursor()
+
+    print(sql_script)
+
+    cursor.execute(sql_script, (properties[0], properties[2], properties[1],
+                   properties[4], properties[3]))
+
+    conn.commit()
+    conn.close()
+
     # TODO run vehicle sql then run each individual type sql
     if vehicle_type == 'car':
         insert_car(properties)

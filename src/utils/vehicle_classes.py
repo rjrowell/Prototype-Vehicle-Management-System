@@ -206,7 +206,6 @@ class LorryOrPickup(Vehicle):
             vehicle_properties (list): The list of the vehicles properties
         """
         vehicle_properties: list = super().properties
-        vehicle_properties.append(self.__num_of_seats)
         vehicle_properties.append(self.__cargo_capacity)
         vehicle_properties.append(self.__cab_type)
         return vehicle_properties

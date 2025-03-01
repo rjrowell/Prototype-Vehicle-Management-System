@@ -4,7 +4,7 @@ valid_types = {
     'car': 1,
     'van': 2,
     'lorry': 3,
-    'pickup:': 4,
+    'pickup': 4,
 }
 
 valid_colours = {

@@ -1,9 +1,11 @@
 """Scripts that are used to generate different GUI windows."""
+
+import tkinter as tk
+
 from .vehicle_classes import Car, Van, LorryOrPickup
 from .run_sql import execute_sql_select, select_type_from_num_plate
 from .run_sql import select_based_on_type, insert_vehicle_into_db
 from .verify_inputs import verify_inputs
-import tkinter as tk
 
 
 def build_classes(filepath: str, window: str):
