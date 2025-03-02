@@ -2,10 +2,23 @@
 
 import tkinter as tk
 
-from .vehicle_classes import Car, Van, LorryOrPickup
-from .run_sql import execute_sql_select, select_type_from_num_plate
-from .run_sql import select_based_on_type, insert_vehicle_into_db
+from .run_sql import (
+    execute_sql_select,
+    insert_vehicle_into_db,
+    select_based_on_type,
+    select_type_from_num_plate,
+)
+from .vehicle_classes import Car, LorryOrPickup, Van
 from .verify_inputs import verify_inputs
+
+vehicle_mapping: dict = {
+        'car': Car,
+        'van': Van,
+        'lorry': LorryOrPickup,
+        'pickup': LorryOrPickup,
+    }
+
+check = ('lorry', 'pickup')
 
 
 def build_classes(filepath: str, window: str):
@@ -17,6 +30,7 @@ def build_classes(filepath: str, window: str):
 
     Returns:
         output(list): a list of new classes for the window
+
     """
     # We pass in the filepath, but on select occasions we pass in
     # information to be used directly, this try catch detects such scenarios
@@ -46,15 +60,17 @@ def get_text_to_display(text_object: tk.Text, vehicles_list: list):
 
     Returns:
         text_object(tkinter.Text): The modified text object
+
     """
     # Clears all text from the Text widget
     text_object.delete('1.0', 'end')
 
-    if not vehicles_list:
+    if vehicles_list is False:
         text_object.insert(tk.END, 'No vehicles found.\n')
     else:
-        for i in vehicles_list:
-            text_object.insert(tk.END, get_text_by_vehicle(i) + '\n')
+        for inc in vehicles_list:
+            display_text: str = get_text_by_vehicle(inc)
+            text_object.insert(tk.END, display_text)
 
     return text_object
 
@@ -67,19 +83,35 @@ def assign_all_vehicles_classes(sql_result: list) -> list:
 
     Returns:
         output(list): list of classes with values assigned
+
     """
     output: list = []
+
     for row in sql_result:
-        if row[1] == 'car':
-            new_car = Car(row[0], row[2], row[1], None, None, None)
-            output.append(new_car)
-        elif row[1] == 'van':
-            new_van = Van(row[0], row[2], row[1], None, None, None)
-            output.append(new_van)
-        elif row[1] == 'lorry' or row[1] == 'pickup':
-            new_lorry = LorryOrPickup(row[0], row[2], row[1], None, None, None,
-                                      None)
-            output.append(new_lorry)
+        vehicle_type = row[1]
+        if vehicle_type in vehicle_mapping:
+            vehicle_class = vehicle_mapping.get(vehicle_type)
+            if vehicle_type in check:
+                output.append(vehicle_class(
+                    row[0],
+                    row[2],
+                    vehicle_type,
+                    None,
+                    None,
+                    None,
+                    None,
+                    ),
+                    )
+            else:
+                output.append(vehicle_class(
+                    row[0],
+                    row[2],
+                    vehicle_type,
+                    None,
+                    None,
+                    None,
+                    ),
+                    )
     return output
 
 
@@ -93,6 +125,7 @@ def get_text_by_vehicle(vehicle: object) -> str:
 
     Returns:
         output(str): The generated text
+
     """
     output: str = vehicle.number_plate + ': ' + vehicle.colour + ' '
     output = output + vehicle.vehicle_type + ' '
@@ -118,7 +151,7 @@ def get_text_by_vehicle(vehicle: object) -> str:
     if vehicle.service_due_date is not None:
         output = output + ',service due: ' + vehicle.service_due_date + ' '
 
-    return output
+    return output + '\n'
 
 
 def assign_tax_due_classes(sql_result: list) -> list:
@@ -131,17 +164,18 @@ def assign_tax_due_classes(sql_result: list) -> list:
         output(list): list of classes with assigned values
     """
     output: list = []
+
     for row in sql_result:
-        if row[1] == 'car':
-            new_car = Car(row[0], row[2], row[1], None, None, row[3])
-            output.append(new_car)
-        elif row[1] == 'van':
-            new_van = Van(row[0], row[2], row[1], None, None, row[3])
-            output.append(new_van)
-        elif row[1] == 'lorry' or row[1] == 'pickup':
-            new_lorry = LorryOrPickup(row[0], row[2], row[1], None, None, None,
-                                      row[3])
-            output.append(new_lorry)
+        vehicle_type = row[1]
+        vehicle_args = [row[0], row[2], row[1], None, None]
+
+        if vehicle_type in check:
+            vehicle_args.append(None)
+            vehicle_args.append(row[3])
+        else:
+            vehicle_args.append(row[3])
+        output.append(vehicle_mapping[vehicle_type](*vehicle_args))
+
     return output
 
 
@@ -153,20 +187,23 @@ def assign_service_due_classes(sql_result: list) -> list:
 
     Returns:
         output(list): list of classes with assigned values
+
     """
     output: list = []
+
     for row in sql_result:
-        if row[1] == 'car':
-            new_car = Car(row[0], row[2], row[1], None, row[3], None)
-            output.append(new_car)
-        elif row[1] == 'van':
-            new_van = Van(row[0], row[2], row[1], None, row[3], None)
-            output.append(new_van)
-        elif row[1] == 'lorry' or row[1] == 'pickup':
-            new_lorry = LorryOrPickup(row[0], row[2], row[1], None, None,
-                                      row[3],
-                                      None)
-            output.append(new_lorry)
+        vehicle_type = row[1]
+        vehicle_args = [row[0], row[2], row[1], None]
+
+        if vehicle_type in check:
+            vehicle_args.append(None)
+            vehicle_args.append(row[3])
+            vehicle_args.append(None)
+        else:
+            vehicle_args.append(row[3])
+            vehicle_args.append(None)
+        output.append(vehicle_mapping[vehicle_type](*vehicle_args))
+
     return output
 
 
@@ -178,26 +215,25 @@ def assign_num_plate_classes(num_plate: str) -> list:
 
     Returns:
          output(list): list of classes with assigned values
+
     """
+    output: list = []
+
     vehicle_type = select_type_from_num_plate(num_plate)
     sql_result: list = select_based_on_type(vehicle_type, num_plate)
 
-    output: list = []
     for row in sql_result:
-        if vehicle_type == 'car':
-            new_car = Car(num_plate, row[0], vehicle_type, row[3], row[2],
-                          row[1])
-            output.append(new_car)
-        elif vehicle_type == 'van':
-            new_van = Van(num_plate, row[0], vehicle_type, row[3], row[2],
-                          row[1])
-            output.append(new_van)
-        elif vehicle_type == 'lorry' or vehicle_type == 'pickup':
-            new_lorry = LorryOrPickup(num_plate, row[0], vehicle_type, row[3],
-                                      row[4],
-                                      row[2],
-                                      row[1])
-            output.append(new_lorry)
+        vehicle_args = [num_plate, row[0], vehicle_type, row[3]]
+
+        if vehicle_type in check:
+            vehicle_args.append(row[4])
+            vehicle_args.append(row[2])
+            vehicle_args.append(row[1])
+        else:
+            vehicle_args.append(row[2])
+            vehicle_args.append(row[1])
+        output.append(vehicle_mapping[vehicle_type](*vehicle_args))
+
     return output
 
 
@@ -210,6 +246,7 @@ def generate_insert_widgets(frame: tk.Frame, vehicle_type: str):
 
     Returns:
         element_list (list): The list of generated widgets
+
     """
     element_list: list = []
 
@@ -262,6 +299,7 @@ def insert_values(element_list: list[tk.Text], vehicle_type: str):
     Args:
         element_list (list[tk.Text]): The list of elements in the window
         vehicle_type (str): Selected type of vehicle
+
     """
     # Assign each text entry to a vehicle object
     vehicle: object = None

@@ -38,6 +38,7 @@ def transform_properties(properties: list) -> list:
 
     Returns:
         properties (list): properties with type and colour transformed to IDs
+
     """
     properties[2] = transform_type(properties[2])
     properties[1] = transform_colour(properties[1])
@@ -52,6 +53,7 @@ def transform_type(vehicle_type: str):
 
     Returns:
         converted_type: the vehicle type converted into an id
+
     """
     return valid_types[vehicle_type]
 
@@ -64,5 +66,6 @@ def transform_colour(colour: str):
 
     Returns:
         converted_colour: the colour converted to an id
+
     """
     return valid_colours[colour.lower()]

@@ -12,6 +12,7 @@ def read_sql_file(filepath: str) -> str:
 
     Returns:
         sql_script (str): the str contaning the SQL script
+
     """
     with open(filepath, 'r') as sql_file:
         sql_script: str = sql_file.read()
@@ -24,6 +25,7 @@ def execute_sql(filename: str):
 
     Args:
         filename (str): path to sql file
+
     """
     sql_script = read_sql_file(filename)
 
@@ -41,6 +43,7 @@ def execute_sql_select(filename: str) -> list:
 
     Returns:
         output (list): returns the result of the select
+
     """
     sql_script = read_sql_file(filename)
 
@@ -61,6 +64,7 @@ def select_type_from_num_plate(num_plate: str) -> str:
 
     Returns:
         vehicle_type (str): The type of selected vehicle
+
     """
     filepath: str = 'src/sql/select_vehicle_type_from_numplate.sql'
     sql_script = read_sql_file(filepath)
@@ -84,6 +88,7 @@ def select_based_on_type(vehicle_type: str, num_plate: str) -> list:
 
     Returns:
         list: The output of the SQL select statement.
+
     """
     if vehicle_type == 'car':
         filepath: str = 'src/sql/select_car.sql'
@@ -108,6 +113,7 @@ def insert_car(properties: list):
 
     Args:
         properties (list): The properties of the car to be inserted
+
     """
     filepath: str = 'src/sql/insert_car.sql'
     sql_script = read_sql_file(filepath)
@@ -126,6 +132,7 @@ def insert_van(properties: list):
 
     Args:
         properties (list): The properties of the van to be inserted
+
     """
     filepath: str = 'src/sql/insert_van.sql'
     sql_script = read_sql_file(filepath)
@@ -144,6 +151,7 @@ def insert_lorry(properties: list):
 
     Args:
         properties (list): The properties of the lorry or pickup to be inserted
+
     """
     filepath: str = 'src/sql/insert_lorry.sql'
     sql_script = read_sql_file(filepath)
@@ -162,6 +170,7 @@ def insert_vehicle_into_db(properties: list):
 
     Args:
         properties (list): The vehicle properties to be inserted
+
     """
     vehicle_type: str = properties[2]
     properties = transform_properties(properties)
@@ -171,15 +180,20 @@ def insert_vehicle_into_db(properties: list):
     conn = sqlite3.connect('vehicles.db')
     cursor = conn.cursor()
 
-    print(sql_script)
-
-    cursor.execute(sql_script, (properties[0], properties[2], properties[1],
-                   properties[4], properties[3]))
+    cursor.execute(
+        sql_script,
+        (
+            properties[0],
+            properties[2],
+            properties[1],
+            properties[4],
+            properties[3],
+        ),
+    )
 
     conn.commit()
     conn.close()
 
-    # TODO run vehicle sql then run each individual type sql
     if vehicle_type == 'car':
         insert_car(properties)
     elif vehicle_type == 'van':

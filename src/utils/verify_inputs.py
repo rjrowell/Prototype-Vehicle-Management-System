@@ -3,8 +3,9 @@
 Throws type errors if they are incorrect.
 """
 import re
-from .vehicle_classes import Vehicle, Car, Van, LorryOrPickup
 from datetime import datetime
+
+from .vehicle_classes import Car, LorryOrPickup, Van, Vehicle
 
 
 def verify_inputs(vehicle: Vehicle):
@@ -12,6 +13,7 @@ def verify_inputs(vehicle: Vehicle):
 
     Args:
         vehicle (Vehicle): Vehicle object to check
+
     """
     verify_numplate(vehicle.number_plate)
     verify_date(vehicle.service_due_date)
@@ -37,6 +39,7 @@ def verify_numplate(num_plate: str):
 
     Raises:
         TypeError: if number plate is invalid
+
     """
     regex = r'^[A-Z]{2}[0-9]{2}[ ]?[A-Z]{3}$'
     if not bool(re.match(regex, num_plate)):
@@ -51,6 +54,7 @@ def verify_date(date: str):
 
     Raises:
         TypeError: if date is invalid
+
     """
     try:
         date: datetime = datetime.strptime(date, '%Y-%m-%d')
@@ -72,6 +76,7 @@ def verify_integer(input: int):
 
     Raises:
         TypeError: if integer is not an int
+
     """
     try:
         int(input)
@@ -88,6 +93,7 @@ def verify_cab_type(cab_type: str, vehicle_type: str):
 
     Raises:
         TypeError: if cab type is invalid
+
     """
     if vehicle_type == 'lorry':
         if not cab_type == 'sleeper' and not cab_type == 'day':

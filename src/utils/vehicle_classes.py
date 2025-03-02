@@ -10,7 +10,7 @@ class Vehicle:
     _service_due_date: str = None
     _tax_due_date: str = None
 
-    def __init__(self, number_plate: str, 
+    def __init__(self, number_plate: str,
                  colour: str, vehicle_type: str,
                  service_due_date: str, tax_due_date: str):
         """Initialise car class.
@@ -21,6 +21,7 @@ class Vehicle:
             vehicle_type (str): The type of vehicle being represented as string
             service_due_date (str): The cars service due date.
             tax_due_date (str): The cars tax due date.
+
         """
         self._number_plate = number_plate
         self._colour = colour
@@ -34,6 +35,7 @@ class Vehicle:
 
         Returns:
             vehicle_properties (list): The list of the vehicles properties
+
         """
         vehicle_properties: list = [self._number_plate, self._colour,
                                     self._vehicle_type, self._service_due_date,
@@ -46,6 +48,7 @@ class Vehicle:
 
         Returns:
             number plate.
+
         """
         return self._number_plate
 
@@ -55,6 +58,7 @@ class Vehicle:
 
         Returns:
             colour.
+
         """
         return self._colour
 
@@ -64,6 +68,7 @@ class Vehicle:
 
         Returns:
             vehicle type.
+
         """
         return self._vehicle_type
 
@@ -73,6 +78,7 @@ class Vehicle:
 
         Returns:
             MOT due date 
+
         """
         return self._service_due_date
 
@@ -82,6 +88,7 @@ class Vehicle:
 
         Returns:
             tax due date
+
         """
         return self._tax_due_date
 
@@ -91,7 +98,7 @@ class Car(Vehicle):
 
     __num_of_seats: int = None
 
-    def __init__(self, number_plate: str, colour: str, 
+    def __init__(self, number_plate: str, colour: str,
                  vehicle_type: str, num_of_seats: int,
                  mot_due_date: str, tax_due_date: str):
         """Initialise car class.
@@ -103,6 +110,7 @@ class Car(Vehicle):
             vehicle_type (str): The type of vehicle being represented as string
             mot_due_date (str): The cars mot due date.
             tax_due_date (str): The cars tax due date.
+
         """
         super().__init__(number_plate, colour, vehicle_type, mot_due_date,
                          tax_due_date)
@@ -114,6 +122,7 @@ class Car(Vehicle):
 
         Returns:
             vehicle_properties (list): The list of the vehicles properties
+
         """
         vehicle_properties: list = super().properties
         vehicle_properties.append(self.__num_of_seats)
@@ -125,6 +134,7 @@ class Car(Vehicle):
 
         Returns:
             current number of seats.
+
         """
         return self.__num_of_seats
 
@@ -134,7 +144,7 @@ class Van(Vehicle):
 
     __cargo_capacity: int = None
 
-    def __init__(self, number_plate: str, colour: str, 
+    def __init__(self, number_plate: str, colour: str,
                  vehicle_type: str, cargo_capacity: int,
                  mot_due_date: str, tax_due_date: str):
         """Initialise car class.
@@ -146,6 +156,7 @@ class Van(Vehicle):
             cargo_capacity (int): The capcity in litres of the van.
             mot_due_date (str): The cars mot due date.
             tax_due_date (str): The cars tax due date.
+
         """
         super().__init__(number_plate, colour, vehicle_type, mot_due_date,
                          tax_due_date)
@@ -157,6 +168,7 @@ class Van(Vehicle):
 
         Returns:
             vehicle_properties (list): The list of the vehicles properties
+
         """
         vehicle_properties: list = super().properties
         vehicle_properties.append(self.__cargo_capacity)
@@ -168,6 +180,7 @@ class Van(Vehicle):
 
         Returns:
             Vans cargo capacity
+
         """
         return self.__cargo_capacity
 
@@ -178,7 +191,7 @@ class LorryOrPickup(Vehicle):
     __cargo_capacity: int = None
     __cab_type: str = None
 
-    def __init__(self, number_plate: str, colour: str, 
+    def __init__(self, number_plate: str, colour: str,
                  vehicle_type: str, cargo_capacity: int,
                  cab_type: str,
                  mot_due_date: str, tax_due_date: str):
@@ -192,6 +205,7 @@ class LorryOrPickup(Vehicle):
             cab_type (str): The type of cab for the lorry or pickup
             mot_due_date (str): The cars mot due date.
             tax_due_date (str): The cars tax due date.
+
         """
         super().__init__(number_plate, colour, vehicle_type, mot_due_date,
                          tax_due_date)
@@ -204,6 +218,7 @@ class LorryOrPickup(Vehicle):
 
         Returns:
             vehicle_properties (list): The list of the vehicles properties
+
         """
         vehicle_properties: list = super().properties
         vehicle_properties.append(self.__cargo_capacity)
@@ -216,6 +231,7 @@ class LorryOrPickup(Vehicle):
 
         Returns:
             Lorry's cargo capacity
+
         """
         return self.__cargo_capacity
 
@@ -225,5 +241,6 @@ class LorryOrPickup(Vehicle):
 
         Returns:
             Lorry's cargo capacity
+
         """
         return self.__cab_type

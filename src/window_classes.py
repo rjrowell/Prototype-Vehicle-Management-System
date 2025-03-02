@@ -1,14 +1,15 @@
 """File of classes for bulding the GUI."""
 import tkinter as tk
 from abc import abstractmethod
+
 from utils import window_scripts as ws
 
 
-class AbstractWindow:
+class AbstractWindow(object):
     """An abstract class to provide a framework for other window classes."""
 
-    _master: object = None
-    _frame: object = None
+    _default_width: int = 25
+    _title_width: int = 35
     _title: object = None
     _text: tk.Text = None
 
@@ -17,6 +18,7 @@ class AbstractWindow:
 
         Args:
             master (Tk): the Tk object used to build the GUI
+
         """
         self._master = master
         self._frame = tk.Frame(self._master)
@@ -34,19 +36,18 @@ class AbstractWindow:
 
         Returns:
             app(object): The next window to be displayed
-        """
-        self.newWindow = tk.Toplevel(self._master)
 
-        if window_name == 'SearchByNumberPlate':
-            self.app = SearchByNumberPlate(self.newWindow)
-        elif window_name == 'ListAllvehicles':
-            self.app = ListAllvehicles(self.newWindow)
-        elif window_name == 'VehiclesWithTaxDue':
-            self.app = VehiclesWithTaxDue(self.newWindow)
-        elif window_name == 'VehiclesWithServiceDue':
-            self.app = VehiclesWithServiceDue(self.newWindow)
-        elif window_name == 'InsertVehicle':
-            self.app = InsertVehicle(self.newWindow)
+        """
+        class_mapping = {
+            'SearchByNumberPlate': SearchByNumberPlate,
+            'ListAllvehicles': ListAllvehicles,
+            'VehiclesWithTaxDue': VehiclesWithTaxDue,
+            'VehiclesWithServiceDue': VehiclesWithServiceDue,
+            'InsertVehicle': InsertVehicle,
+        }
+
+        self.newWindow = tk.Toplevel(self._master)
+        self.app = class_mapping[window_name](self.newWindow)
 
         return self.app
 
@@ -55,6 +56,7 @@ class AbstractWindow:
 
         Returns:
             text_out(str): The text from the windows text field
+
         """
         return self._text.get('1.0', tk.END).strip()
 
@@ -65,7 +67,7 @@ class AbstractWindow:
         Each class will have its own implementation this
         is an abstract method
         """
-        pass
+        raise NotImplementedError('This method should be implemented')
 
 
 class MainWindow(AbstractWindow):
@@ -76,31 +78,50 @@ class MainWindow(AbstractWindow):
 
         Args:
             master (Tk): the Tk object used to build the GUI
+
         """
         super().__init__(master)
-        self._title = tk.Label(self._frame, text='Main Menu', width=25)
-        self._button1 = tk.Button(self._frame, text='Search By Number Plate',
-                                  width=25,
-                                  command=self.num_plate_search_window)
-        self._button2 = tk.Button(self._frame, text='List All vehicles',
-                                  width=25,
-                                  command=self.all_vehicles_window)
-        self._button3 = tk.Button(self._frame,
-                                  text='Vehicles With Tax Due',
-                                  width=25,     
-                                  command=self.tax_due_window)
-        self._button4 = tk.Button(self._frame,
-                                  text='Vehicles With Service Due', 
-                                  width=25, 
-                                  command=self.service_due_window)
-        self._button5 = tk.Button(self._frame,
-                                  text='Update Vehicle',
-                                  width=25,
-                                  command=self.all_vehicles_window)
-        self._button6 = tk.Button(self._frame,
-                                  text='Insert New Vehicle',
-                                  width=25,
-                                  command=self.insert_new_vehicle_window)
+        self._title = tk.Label(
+            self._frame,
+            text='Main Menu',
+            width=self._default_width,
+            )
+        self._button1 = tk.Button(
+            self._frame,
+            text='Search By Number Plate',
+            width=self._default_width,
+            command=self.num_plate_search_window,
+            )
+        self._button2 = tk.Button(
+            self._frame,
+            text='List All vehicles',
+            width=self._default_width,
+            command=self.all_vehicles_window,
+            )
+        self._button3 = tk.Button(
+            self._frame,
+            text='Vehicles With Tax Due',
+            width=self._default_width,
+            command=self.tax_due_window,
+            )
+        self._button4 = tk.Button(
+            self._frame,
+            text='Vehicles With Service Due',
+            width=self._default_width,
+            command=self.service_due_window,
+            )
+        self._button5 = tk.Button(
+            self._frame,
+            text='Update Vehicle',
+            width=self._default_width,
+            command=self.all_vehicles_window,
+            )
+        self._button6 = tk.Button(
+            self._frame,
+            text='Insert New Vehicle',
+            width=self._default_width,
+            command=self.insert_new_vehicle_window,
+            )
 
     def all_vehicles_window(self):
         """Initialise new window when button is clicked."""
@@ -142,25 +163,33 @@ class MainWindow(AbstractWindow):
 class ListAllvehicles(AbstractWindow):
     """Class representing secondary window."""
 
-    _quit_button: object = None
-
     def __init__(self, master: tk.Tk):
         """Init class for this window.
 
         Args:
             master (Tk): the Tk object used to build the window
+
         """
         super().__init__(master)
-        self._title = tk.Label(self._frame, text='All Vehicles in the Fleet',
-                               width=25)
-        self._text = tk.Text(self._frame, width=25, height=5)
-        self._quit_button = tk.Button(self._frame, text='Exit', width=25,
-                                      command=self.close_windows)
+        self._title = tk.Label(
+            self._frame,
+            text='All Vehicles in the Fleet',
+            width=self._default_width,
+            )
+        self._text = tk.Text(self._frame, width=self._default_width, height=5)
+        self._quit_button = tk.Button(
+            self._frame,
+            text='Exit',
+            width=self._default_width,
+            command=self.close_windows,
+            )
 
     def build_window(self):
-        """Build this window from private variables."""
-        vehicles_list = ws.build_classes('src/sql/select_all_vehicles.sql',
-                                         'all_vehicles')
+        """Build list all window from private variables."""
+        vehicles_list = ws.build_classes(
+            'src/sql/select_all_vehicles.sql',
+            'all_vehicles',
+            )
         self._text = ws.get_text_to_display(self._text, vehicles_list)
         self._title.pack()
         self._text.pack()
@@ -171,26 +200,35 @@ class ListAllvehicles(AbstractWindow):
 class VehiclesWithTaxDue(AbstractWindow):
     """Class representing Vehicles With Tax Due window."""
 
-    _quit_button: object = None
+    _text_width = 45
 
     def __init__(self, master: tk.Tk):
         """Init class for this window.
 
         Args:
             master (Tk): the Tk object used to build the window
+
         """
         super().__init__(master)
-        self._title = tk.Label(self._frame, 
-                               text='Vehicles With Tax Due in the Next Month',
-                               width=35)
-        self._text = tk.Text(self._frame, width=45, height=5)
-        self._quit_button = tk.Button(self._frame, text='Exit', width=25, 
-                                      command=self.close_windows)
+        self._title = tk.Label(
+            self._frame,
+            text='Vehicles With Tax Due in the Next Month',
+            width=self._title_width,
+            )
+        self._text = tk.Text(self._frame, width=self._text_width, height=5)
+        self._quit_button = tk.Button(
+            self._frame,
+            text='Exit',
+            width=self._default_width,
+            command=self.close_windows,
+            )
 
     def build_window(self):
-        """Build this window from private variables."""
-        vehicles_list = ws.build_classes('src/sql/select_tax_due_vehicles.sql',
-                                         'tax_due')
+        """Build tax due window from private variables."""
+        vehicles_list = ws.build_classes(
+            'src/sql/select_tax_due_vehicles.sql',
+            'tax_due',
+            )
         self._text = ws.get_text_to_display(self._text, vehicles_list)
         self._title.pack()
         self._text.pack()
@@ -201,26 +239,36 @@ class VehiclesWithTaxDue(AbstractWindow):
 class VehiclesWithServiceDue(AbstractWindow):
     """Class representing Vehicles With Service Due window."""
 
-    _quit_button: object = None
+    _text_width = 55
 
     def __init__(self, master: tk.Tk):
         """Init class for this window.
 
         Args:
             master (Tk): the Tk object used to build the window
+
         """
         super().__init__(master)
         title_text = 'Vehicles with Services Due in the Next Month'
-        self._title = tk.Label(self._frame, text=title_text, width=35)
-        self._text = tk.Text(self._frame, width=55, height=5)
-        self._quit_button = tk.Button(self._frame, text='Exit', width=25, 
-                                      command=self.close_windows)
+        self._title = tk.Label(
+            self._frame,
+            text=title_text,
+            width=self._title_width,
+            )
+        self._text = tk.Text(self._frame, width=self._text_width, height=5)
+        self._quit_button = tk.Button(
+            self._frame,
+            text='Exit',
+            width=self._default_width,
+            command=self.close_windows,
+            )
 
     def build_window(self):
-        """Build this window from private variables."""
+        """Build service due window from private variables."""
         vehicles_list = ws.build_classes(
             'src/sql/select_service_due_vehicles.sql',
-            'service_due')
+            'service_due',
+            )
         self._text = ws.get_text_to_display(self._text, vehicles_list)
         self._title.pack()
         self._text.pack()
@@ -231,50 +279,68 @@ class VehiclesWithServiceDue(AbstractWindow):
 class SearchByNumberPlate(AbstractWindow):
     """Class representing Vehicles With Service Due window."""
 
-    _quit_button: object = None
-    _enter_button: object = None
-    _num_plate_to_search: str = None
+    _text_width = 55
 
     def __init__(self, master: tk.Tk):
         """Init class for this window.
 
         Args:
             master (Tk): the Tk object used to build the window
+
         """
         super().__init__(master)
         title_text = 'Please Enter a Vehicle Number Plate:'
-        self._title = tk.Label(self._frame, text=title_text, width=35)
-        self._text = tk.Text(self._frame, width=55, height=1)
-        self._enter_button = tk.Button(self._frame, text='Enter', width=25, 
-                                       command=self.submit_text)
-        self._quit_button = tk.Button(self._frame, text='Exit', width=25, 
-                                      command=self.close_windows)
+        self._title = tk.Label(
+            self._frame,
+            text=title_text,
+            width=self._title_width,
+            )
+        self._text = tk.Text(self._frame, width=self._text_width, height=1)
+        self._enter_button = tk.Button(
+            self._frame,
+            text='Enter',
+            width=self._default_width,
+            command=self.submit_text,
+            )
+        self._quit_button = tk.Button(
+            self._frame,
+            text='Exit',
+            width=self._default_width,
+            command=self.close_windows,
+            )
 
     def submit_text(self):
         """Run logic when enter button is pressed."""
         self._num_plate_to_search: str = self.process_text()
+        extened_text_width: int = 105
+        error = False
         try:
             vehicles_list = ws.build_classes(
                 self._num_plate_to_search,
-                'num_plate')
+                'num_plate',
+                )
+        except TypeError:
+            error = True
+            error_text = 'No Vehicle found, Please enter a Valid Number Plate'
+            self._title.config(text=error_text)
+            self._text.config(width=self._text_width)
 
-            self._text.config(width=105)
+            self._title.pack()
+            self._text.pack()
+
+        if not error:
+            self._text.config(width=extened_text_width)
             self._text = ws.get_text_to_display(self._text, vehicles_list)
 
             self._title.config(text='Number Plate Found:')
 
             self._title.pack()
             self._text.pack()
-        except TypeError:
-            error_text = 'No Vehicle found, Please enter a Valid Number Plate'
-            self._title.config(text=error_text)
-            self._text.config(width=55)
 
-            self._title.pack()
-            self._text.pack()
+        error = False
 
     def build_window(self):
-        """Build this window from private variables."""
+        """Build number plate search window from private variables."""
         self._title.pack()
         self._text.pack()
         self._enter_button.pack()
@@ -285,13 +351,12 @@ class SearchByNumberPlate(AbstractWindow):
 class InsertVehicle(AbstractWindow):
     """Class representing Insert New Vehicle window."""
 
-    _quit_button: object = None
-
     def __init__(self, master: tk.Tk):
         """Init class for this window.
 
         Args:
             master (Tk): the Tk object used to build the window
+
         """
         super().__init__(master)
         self.selected_value = tk.StringVar(self._frame)
@@ -299,14 +364,32 @@ class InsertVehicle(AbstractWindow):
         self.selected_value.set('Select type of Vehicle to insert')
 
         self._options = ['Car', 'Van', 'Lorry', 'Pickup']
-        self._option_menu = tk.OptionMenu(self._frame, self.selected_value,
-                                          *self._options)
-        self._enter_button = tk.Button(self._frame, text='Enter', width=25,
-                                       command=self.submit_type)
-        self._quit_button = tk.Button(self._frame, text='Exit', width=25,
-                                      command=self.close_windows)
+        self._option_menu = tk.OptionMenu(
+            self._frame,
+            self.selected_value,
+            *self._options,
+            )
+        self._enter_button = tk.Button(
+            self._frame,
+            text='Enter',
+            width=self._default_width,
+            command=self._submit_type,
+            )
+        self._quit_button = tk.Button(
+            self._frame,
+            text='Exit',
+            width=self._default_width,
+            command=self.close_windows,
+            )
 
-    def submit_type(self):
+    def build_window(self):
+        """Build insert vehicle window from private variables."""
+        self._option_menu.pack()
+        self._enter_button.pack()
+        self._quit_button.pack()
+        self._frame.pack()
+
+    def _submit_type(self):
         """Do actions after vehicle type is submitted.
 
         Generates next set of widgets
@@ -315,39 +398,38 @@ class InsertVehicle(AbstractWindow):
         self._vehicle_type = self.selected_value.get()
 
         # Check if a type has been selected
-        if self._vehicle_type not in accepted_types:
-            pass
-        else:
+        if self._vehicle_type in accepted_types:
             self._option_menu.destroy()
             self._enter_button.config(command=self._insert_text)
             self._enter_button.pack()
 
             # Generate elements for next window
             v_type = self._vehicle_type
-            self._element_list: list = ws.generate_insert_widgets(self._frame,
-                                                                  v_type)
+            self._element_list: list = ws.generate_insert_widgets(
+                self._frame,
+                v_type,
+                )
 
-            for i in self._element_list:
-                i.pack()
+            for inc in self._element_list:
+                inc.pack()
 
     def _insert_text(self):
+        error = False
         try:
             ws.insert_values(self._element_list, self._vehicle_type)
-            self.close_windows()
         except TypeError:
+            error = True
             label_text = 'One or more entries is incorrect please re-enter'
             self._element_list[0].config(text=label_text)
-        except KeyError as e:
-            print(e)
+        except KeyError:
+            error = True
             label_text = 'Ivalid colour or type entered'
             self._element_list[0].config(text=label_text)
 
-    def build_window(self):
-        """Build this window from private variables."""
-        self._option_menu.pack()
-        self._enter_button.pack()
-        self._quit_button.pack()
-        self._frame.pack()
+        if error is False:
+            self.close_windows()
+
+        error = False
 
 
 def main():
