@@ -237,7 +237,7 @@ def assign_num_plate_classes(num_plate: str) -> list:
     return output
 
 
-def generate_insert_widgets(frame: tk.Frame, vehicle_type: str):
+def generate_insert_widgets(frame: tk.Frame, vehicle_type: str) -> list:
     """Generate the widgets to be used in the insert vehicle window.
 
     Args:
@@ -331,3 +331,19 @@ def insert_values(element_list: list[tk.Text], vehicle_type: str):
     verify_inputs(vehicle)
 
     insert_vehicle_into_db(vehicle.properties)
+
+
+def get_update_widgets_from_plate(frame: tk.Frame, num_plate: str) -> list:
+    """Return a list of elements for the update car window.
+
+    Returned elements is based on the number plate entered
+
+    Args:
+        frame (tk.Frame): The window frame for the elements
+        num_plate(str): The plate to base the elements on
+    
+    Returns:
+        widgets (list): The widgets for the update vehicle window
+    """
+    vehicle_type: str = select_type_from_num_plate(num_plate)
+    return generate_insert_widgets(frame, vehicle_type)
