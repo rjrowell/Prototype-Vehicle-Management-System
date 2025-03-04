@@ -224,4 +224,4 @@ def update_vehicle(changed_values: dict, vehicle_type: str, number_plate: str):
             value_string += (f'{column} = "{value}", ')
 
     print(value_string)
-    #TODO: execute the update vehicle sql and set update car,van,lorry,pickup
+    # TODO: execute the update vehicle sql and set update car,van,lorry,pickup
