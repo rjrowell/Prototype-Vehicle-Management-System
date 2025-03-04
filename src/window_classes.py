@@ -440,6 +440,7 @@ class InsertVehicle(AbstractWindow):
 
 class UpdateVehicle(AbstractWindow):
     """Class representing Update Vehicle window."""
+
     _text_width = 55
 
     def __init__(self, master: tk.Tk):
@@ -460,7 +461,7 @@ class UpdateVehicle(AbstractWindow):
             self._frame,
             text='Enter',
             width=self._default_width,
-            command=self.submit_text,
+            command=self._submit_text,
             )
         self._quit_button = tk.Button(
             self._frame,
@@ -469,17 +470,6 @@ class UpdateVehicle(AbstractWindow):
             command=self.close_windows,
             )
 
-    def submit_text(self):
-        """Run the logic to get the vehicle type based on num plate entered."""
-        number_plate = self.process_text()
-        self._element_list: list = ws.get_update_widgets_from_plate(
-            self._frame,
-            number_plate,
-            )
-
-        for inc in self._element_list:
-            inc.pack()
-
     def build_window(self):
         """Build update vehicle window from private variables."""
         self._title.pack()
@@ -487,6 +477,37 @@ class UpdateVehicle(AbstractWindow):
         self._enter_button.pack()
         self._quit_button.pack()
         self._frame.pack()
+
+    def _submit_text(self):
+        """Run the logic to get the vehicle type based on num plate entered."""
+        self._number_plate = self.process_text()
+        error = False
+        try:
+            self._widgets: list = ws.get_update_widgets_from_plate(
+                self._frame,
+                self._number_plate,
+                )
+        except TypeError:
+            error = True
+            error_text = 'No Vehicle found, Please enter a Valid Number Plate'
+            self._title.config(text=error_text)
+            self._text.config(width=self._text_width)
+
+            self._title.pack()
+            self._text.pack()
+
+        if error is False:
+            self._widgets = self._widgets[:1] + self._widgets[2:]
+            for inc in self._widgets:
+                inc.pack()
+            self._enter_button.config(command=self._submit_info)
+            self._text.destroy()
+            self._title.destroy()
+
+        error = False
+
+    def _submit_info(self):
+        ws.update_changed_values(self._widgets, self._number_plate)
 
 
 def main():

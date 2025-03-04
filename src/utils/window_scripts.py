@@ -7,9 +7,19 @@ from .run_sql import (
     insert_vehicle_into_db,
     select_based_on_type,
     select_type_from_num_plate,
+    update_vehicle,
 )
+
 from .vehicle_classes import Car, LorryOrPickup, Van
-from .verify_inputs import verify_inputs
+
+from .verify_inputs import (
+    verify_inputs,
+    verify_cab_type,
+    verify_date,
+    verify_integer,
+)
+
+from .valid_inputs import valid_colours
 
 vehicle_mapping: dict = {
         'car': Car,
@@ -271,15 +281,16 @@ def generate_insert_widgets(frame: tk.Frame, vehicle_type: str) -> list:
     service_date.insert(tk.END, 'Service Date (YYYY-MM-DD)')
     element_list.append(service_date)
 
-    if vehicle_type == 'Car':
+    vehicle_type = vehicle_type.lower()
+    if vehicle_type == 'car':
         num_of_seats = tk.Text(frame, width=55, height=1)
         num_of_seats.insert(tk.END, 'Number of Seats')
         element_list.append(num_of_seats)
-    elif vehicle_type == 'Van':
+    elif vehicle_type == 'van':
         cargo_capacity = tk.Text(frame, width=55, height=1)
         cargo_capacity.insert(tk.END, 'Cargo Capacity')
         element_list.append(cargo_capacity)
-    elif vehicle_type == 'Lorry' or vehicle_type == 'Pickup':
+    elif vehicle_type == 'lorry' or vehicle_type == 'pickup':
         cargo_capacity = tk.Text(frame, width=55, height=1)
         cargo_capacity.insert(tk.END, 'Cargo Capacity')
         element_list.append(cargo_capacity)
@@ -341,9 +352,68 @@ def get_update_widgets_from_plate(frame: tk.Frame, num_plate: str) -> list:
     Args:
         frame (tk.Frame): The window frame for the elements
         num_plate(str): The plate to base the elements on
-    
+
     Returns:
         widgets (list): The widgets for the update vehicle window
     """
     vehicle_type: str = select_type_from_num_plate(num_plate)
     return generate_insert_widgets(frame, vehicle_type)
+
+
+def update_changed_values(
+    element_list: list[tk.Text],
+    num_plate: str,
+):
+    """Find what values of a car should be changed then update them.
+
+    Args:
+        element_list (list[tk.Text]): The list of text elements from window
+        num_plate (str): The number plate of the vehicle to be updated
+    """
+    changed_values: dict = {
+        'colour_id': False,
+        'tax_due_date': False,
+        'service_due_date': False,
+        'extra1': False,
+        'cab_type': False,
+    }
+    vehicle_type = select_type_from_num_plate(num_plate).lower()
+
+    colour = element_list[1].get('1.0', tk.END).strip()
+    if colour.lower() in valid_colours:
+        changed_values['colour_id'] = colour
+
+    tax_date = element_list[2].get('1.0', tk.END).strip()
+    try:
+        verify_date(tax_date)
+    except TypeError:
+        pass
+    else:
+        changed_values['tax_due_date'] = tax_date
+
+    service_date = element_list[3].get('1.0', tk.END).strip()
+    try:
+        verify_date(service_date)
+    except TypeError:
+        pass
+    else:
+        changed_values['service_due_date'] = service_date
+
+    extra1 = element_list[4].get('1.0', tk.END).strip()
+    try:
+        verify_integer(extra1)
+    except TypeError:
+        pass
+    else:
+        changed_values['extra1'] = extra1
+
+    if vehicle_type in ('lorry', 'pickup'):
+        extra2 = element_list[5].get('1.0', tk.END).strip()
+        try:
+            verify_cab_type(extra2.lower(), vehicle_type)
+        except TypeError:
+            pass
+        else:
+            changed_values['cab_type'] = extra2
+
+    update_vehicle(changed_values, vehicle_type)

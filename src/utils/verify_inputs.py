@@ -39,11 +39,16 @@ def verify_numplate(num_plate: str):
 
     Raises:
         TypeError: if number plate is invalid
+    
+    Returns:
+        True: if no error is thrown returns true
 
     """
     regex = r'^[A-Z]{2}[0-9]{2}[ ]?[A-Z]{3}$'
     if not bool(re.match(regex, num_plate)):
         raise TypeError
+
+    return True
 
 
 def verify_date(date: str):
@@ -55,6 +60,8 @@ def verify_date(date: str):
     Raises:
         TypeError: if date is invalid
 
+    Returns:
+        True: if no error is thrown returns true
     """
     try:
         date: datetime = datetime.strptime(date, '%Y-%m-%d')
@@ -67,6 +74,8 @@ def verify_date(date: str):
     except ValueError:
         raise TypeError
 
+    return True
+
 
 def verify_integer(input: int):
     """Verify a integer input is an integer.
@@ -77,11 +86,15 @@ def verify_integer(input: int):
     Raises:
         TypeError: if integer is not an int
 
+    Returns:
+        True: if no error is thrown returns true
     """
     try:
         int(input)
     except ValueError:
         raise TypeError
+
+    return True
 
 
 def verify_cab_type(cab_type: str, vehicle_type: str):
@@ -94,10 +107,14 @@ def verify_cab_type(cab_type: str, vehicle_type: str):
     Raises:
         TypeError: if cab type is invalid
 
+    Returns:
+        True: if no error is thrown returns true
     """
     if vehicle_type == 'lorry':
-        if not cab_type == 'sleeper' and not cab_type == 'day':
+        if cab_type != 'sleeper' and cab_type != 'day':
             raise TypeError
     elif vehicle_type == 'pickup':
-        if not cab_type == 'single' and not cab_type == 'double':
+        if cab_type != 'single' and cab_type != 'double':
             raise TypeError
+
+    return True

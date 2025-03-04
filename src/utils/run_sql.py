@@ -1,7 +1,7 @@
 """A utility file for executing sql."""
 import sqlite3
 
-from .transfrom_properties import transform_properties
+from .transfrom_properties import transform_properties, transform_colour
 
 
 def read_sql_file(filepath: str) -> str:
@@ -200,3 +200,28 @@ def insert_vehicle_into_db(properties: list):
         insert_van(properties)
     elif vehicle_type == 'lorry' or vehicle_type == 'pickup':
         insert_lorry(properties)
+
+
+def update_vehicle(changed_values: dict, vehicle_type: str, number_plate: str):
+    """Update the vehicle's details based on values in dictionary.
+
+    Args:
+        changed_values (dict): The dictionary with the values to upate in them
+        vehicle_type (str): The vehicle type of the vehicle to update
+        number_plate (str): The number plate of the vehicle be updated
+    """
+    value_string: str = ''
+    colour_string = changed_values['colour_id']
+    # If colour is not None, transform it to an integer
+    if colour_string:
+        changed_values['colour_id'] = transform_colour(colour_string)
+
+    for column, value in changed_values.items():
+        # If the value is not None, add it to the string
+        if column == 'extra1' or column == 'cab_type':
+            pass
+        elif value:
+            value_string += (f'{column} = "{value}", ')
+
+    print(value_string)
+    #TODO: execute the update vehicle sql and set update car,van,lorry,pickup
