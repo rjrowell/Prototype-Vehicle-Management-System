@@ -205,4 +205,4 @@ def test_insert_vehicle_into_db(mock_db_connection, reset_db):
 
     assert output[4][0] and output[4][2] in expected_values, error_text
     assert output[5][0] and output[5][2] in expected_values, error_text
-    assert output[6][0] and output[6][2] in expected_values, error_text + str(output)
+    assert output[6][0] and output[6][2] in expected_values, error_text
