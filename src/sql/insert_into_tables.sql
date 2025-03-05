@@ -4,10 +4,10 @@ INSERT INTO car VALUES ('HC56XPQ', 5);
 INSERT INTO vehicle VALUES ('HC62XAC', 2, 18, '2025-07-03', '2025-09-25');
 INSERT INTO van VALUES ('HC62XAC', 15100);
 
-INSERT INTO vehicle VALUES ('QS52BCG', 3, 3, '2025-03-01', '2025-03-02');
+INSERT INTO vehicle VALUES ('QS52BCG', 3, 3, '2025-04-01', '2025-04-02');
 INSERT INTO lorries_and_pickups VALUES ('QS52BCG', 35000, 'sleeper');
 
-INSERT INTO vehicle VALUES ('BG70LKM', 4, 7, '2025-04-23', '2025-03-01');
+INSERT INTO vehicle VALUES ('BG70LKM', 4, 7, '2025-04-23', '2025-04-01');
 INSERT INTO lorries_and_pickups VALUES ('BG70LKM', 1876, 'single');
 
 INSERT INTO vehicle_types (vehicle_type) VALUES ('car');
