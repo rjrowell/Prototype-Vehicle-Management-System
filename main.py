@@ -1,3 +1,4 @@
+"""Run the prototype program."""
 import tkinter as tk
 
 import src.database_setup as db_setup
