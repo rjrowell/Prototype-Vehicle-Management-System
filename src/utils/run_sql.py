@@ -202,6 +202,57 @@ def insert_vehicle_into_db(properties: list):
         insert_lorry(properties)
 
 
+def update_specific_type(
+    changed_values: dict,
+    vehicle_type: str,
+    number_plate: str,
+):
+    """Update a specific type of vehicle in the database.
+
+    Args:
+        changed_values (dict): The dictionary with the values to upate in them
+        vehicle_type (str): The vehicle type of the vehicle to update
+        number_plate (str): The number plate of the vehicle be updated
+    """
+    value_string: str = ''
+
+    if vehicle_type == 'car':
+        sql_script = read_sql_file('src/sql/update_car.sql')
+        extra = 'number_of_seats'
+    elif vehicle_type == 'van':
+        sql_script = read_sql_file('src/sql/update_van.sql')
+        extra = 'cargo_capacity'
+    else:
+        sql_script = read_sql_file('src/sql/update_lorry.sql')
+        extra = 'cargo_capacity'
+
+    # re-size dictionary
+    changed_values = {
+        extra: changed_values['extra1'],
+        'cab_type': changed_values['cab_type'],
+    }
+
+    for column, value in changed_values.items():
+        if value:
+            value_string += (f'{column} = "{value}", ')
+
+    value_string = value_string[:-2]  # remove trailing comma from end of str
+
+    sql_script = sql_script.replace('(value_string)', value_string)
+
+    if len(value_string) > 0:
+        conn = sqlite3.connect('vehicles.db')
+        cursor = conn.cursor()
+        cursor.execute(
+            sql_script,
+            (
+                number_plate,
+            ),
+        )
+        conn.commit()
+        conn.close()
+
+
 def update_vehicle(changed_values: dict, vehicle_type: str, number_plate: str):
     """Update the vehicle's details based on values in dictionary.
 
@@ -223,5 +274,22 @@ def update_vehicle(changed_values: dict, vehicle_type: str, number_plate: str):
         elif value:
             value_string += (f'{column} = "{value}", ')
 
-    print(value_string)
+    value_string = value_string[:-2]  # remove trailing comma from end of str
+
     # TODO: execute the update vehicle sql and set update car,van,lorry,pickup
+    sql_script = read_sql_file('src/sql/update_vehicle.sql')
+    sql_script = sql_script.replace('(value_string)', value_string)
+
+    if len(value_string) > 0:
+        conn = sqlite3.connect('vehicles.db')
+        cursor = conn.cursor()
+        cursor.execute(
+            sql_script,
+            (
+                number_plate,
+            ),
+        )
+        conn.commit()
+        conn.close()
+
+    update_specific_type(changed_values, vehicle_type, number_plate)

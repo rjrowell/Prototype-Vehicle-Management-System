@@ -1,5 +1,5 @@
 """Script that setups the prototype database."""
-from utils import execute_sql
+from .utils import execute_sql
 
 
 def main():

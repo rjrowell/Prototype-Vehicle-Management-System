@@ -369,6 +369,9 @@ def update_changed_values(
     Args:
         element_list (list[tk.Text]): The list of text elements from window
         num_plate (str): The number plate of the vehicle to be updated
+
+    Returns:
+        flag (bool): Return true if succesful false if it is not
     """
     changed_values: dict = {
         'colour_id': False,
@@ -405,7 +408,7 @@ def update_changed_values(
     except TypeError:
         pass
     else:
-        changed_values['extra1'] = extra1
+        changed_values['extra1'] = int(extra1)
 
     if vehicle_type in ('lorry', 'pickup'):
         extra2 = element_list[5].get('1.0', tk.END).strip()
@@ -416,4 +419,9 @@ def update_changed_values(
         else:
             changed_values['cab_type'] = extra2
 
-    update_vehicle(changed_values, vehicle_type)
+    # check if all values are still false
+    if all(value is False for value in changed_values.values()):
+        return False
+
+    update_vehicle(changed_values, vehicle_type, num_plate)
+    return True

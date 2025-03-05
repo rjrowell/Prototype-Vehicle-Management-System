@@ -2,7 +2,7 @@
 import tkinter as tk
 from abc import abstractmethod
 
-from utils import window_scripts as ws
+from .utils import window_scripts as ws
 
 
 class AbstractWindow(object):
@@ -507,16 +507,8 @@ class UpdateVehicle(AbstractWindow):
         error = False
 
     def _submit_info(self):
-        ws.update_changed_values(self._widgets, self._number_plate)
-
-
-def main():
-    """Initialise GUI."""
-    root = tk.Tk()
-    app = MainWindow(root)
-    app.build_window()
-    root.mainloop()
-
-
-if __name__ == '__main__':
-    main()
+        if ws.update_changed_values(self._widgets, self._number_plate):
+            self.close_windows()
+        else:
+            self._widgets[0].config(text='No Valid Options Set')
+            self._widgets[0].pack()
