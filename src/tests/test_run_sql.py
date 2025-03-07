@@ -131,7 +131,6 @@ def test_insert_car_helper(mock_db_connection, reset_db):
     assert output_car[1] == 5, 'Incorrect value inserted'
 
 
-
 def test_insert_van_helper(mock_db_connection, reset_db):
     """Test the helper function for insert van into db.
 
@@ -206,3 +205,56 @@ def test_insert_vehicle_into_db(mock_db_connection, reset_db):
     assert output[4][0] and output[4][2] in expected_values, error_text
     assert output[5][0] and output[5][2] in expected_values, error_text
     assert output[6][0] and output[6][2] in expected_values, error_text
+
+
+def test_update_vehicle(mock_db_connection, reset_db):
+    """Test the update vehicle function.
+
+    Args:
+        mock_db_connection: The mock connection
+        reset_db: resets the database
+    """
+    test_car_values: dict = {
+        'colour_id': 'green',
+        'tax_due_date': False,
+        'service_due_date': False,
+        'extra1': 99,
+        'cab_type': False,
+    }
+
+    test_lorry_values = {
+        'colour_id': 'blue',
+        'tax_due_date': False,
+        'service_due_date': False,
+        'extra1': 99,
+        'cab_type': 'day',
+    }
+
+    test_pickup_values = {
+        'colour_id': 'Silver',
+        'tax_due_date': False,
+        'service_due_date': False,
+        'extra1': 99,
+        'cab_type': 'single',
+    }
+
+    test_van_values: dict = {
+        'colour_id': 'brown',
+        'tax_due_date': '2025-04-03',
+        'service_due_date': False,
+        'extra1': 99,
+        'cab_type': False,
+    }
+
+    run_sql.update_vehicle(test_car_values, 'car', 'HC56XPQ')
+    run_sql.update_vehicle(test_van_values, 'van', 'HC62XAC')
+    run_sql.update_vehicle(test_lorry_values, 'lorry', 'QS52BCG')
+    run_sql.update_vehicle(test_pickup_values, 'pickup', 'BG70LKM')
+
+    test_output = run_sql.execute_sql_select('src/sql/select_all_vehicles.sql')
+    error_text = 'Details not correct for updated vehicle'
+
+    assert test_output[0][2] == 'green', error_text
+    assert test_output[1][2] == 'brown', error_text
+    assert test_output[2][2] == 'blue', error_text
+    assert test_output[3][2] == 'silver', error_text

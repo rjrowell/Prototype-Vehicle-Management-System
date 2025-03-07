@@ -22,7 +22,3 @@ def create_tables():
 def insert_into():
     """Execute insert_into_tables.sql."""
     execute_sql('src/sql/insert_into_tables.sql')
-
-
-if __name__ == '__main__':
-    main()
