@@ -1,7 +1,7 @@
 """Module testing verify inputs and it's helper functions."""
-from ..utils import verify_inputs
-from ..utils import vehicle_classes
 import pytest
+
+from ..utils import vehicle_classes, verify_inputs
 
 
 def test_verify_numplate():

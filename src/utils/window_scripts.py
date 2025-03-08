@@ -2,31 +2,23 @@
 
 import tkinter as tk
 
-from .run_sql import (
-    execute_sql_select,
-    insert_vehicle_into_db,
-    select_based_on_type,
-    select_type_from_num_plate,
-    update_vehicle,
-)
-
-from .vehicle_classes import Car, LorryOrPickup, Van
-
-from .verify_inputs import (
-    verify_inputs,
-    verify_cab_type,
-    verify_date,
-    verify_integer,
-)
-
+from .do_nothing import do_nothing
+from .run_sql import (execute_sql_select, insert_vehicle_into_db,
+                      select_based_on_type, select_type_from_num_plate,
+                      update_vehicle)
 from .valid_inputs import valid_colours
+from .vehicle_classes import Car, LorryOrPickup, Van
+from .verify_inputs import (verify_cab_type, verify_date, verify_inputs,
+                            verify_integer)
 
 vehicle_mapping: dict = {
-        'car': Car,
-        'van': Van,
-        'lorry': LorryOrPickup,
-        'pickup': LorryOrPickup,
+    'car': Car,
+    'van': Van,
+    'lorry': LorryOrPickup,
+    'pickup': LorryOrPickup,
     }
+
+text_object_start = '1.0'
 
 check = ('lorry', 'pickup')
 
@@ -73,7 +65,7 @@ def get_text_to_display(text_object: tk.Text, vehicles_list: list):
 
     """
     # Clears all text from the Text widget
-    text_object.delete('1.0', 'end')
+    text_object.delete(text_object_start, 'end')
 
     if vehicles_list is False:
         text_object.insert(tk.END, 'No vehicles found.\n')
@@ -137,31 +129,34 @@ def get_text_by_vehicle(vehicle: object) -> str:
         output(str): The generated text
 
     """
-    output: str = vehicle.number_plate + ': ' + vehicle.colour + ' '
-    output = output + vehicle.vehicle_type + ' '
+    vlp = ('van', 'lorry', 'pickup')
+    output = '{0}: {1}'.format(vehicle.number_plate, vehicle.colour)
+    output = '{0} {1}'.format(output, vehicle.vehicle_type)
 
-    if vehicle.vehicle_type == 'car':
-        if vehicle.num_of_seats is not None:
-            output = output + ', ' + str(vehicle.num_of_seats) + ' seater '
-    elif vehicle.vehicle_type == 'van':
-        if vehicle.cargo_capacity is not None:
-            output = output + ', ' + str(vehicle.cargo_capacity)
-            output = output + 'l cargo capacity '
-    elif vehicle.vehicle_type == 'lorry' or vehicle.vehicle_type == 'pickup':
-        if vehicle.cargo_capacity is not None:
-            output = output + ', ' + str(vehicle.cargo_capacity)
-            output = output + 'l cargo capacity '
+    # Add num of seats or cargo capacity based on vehicle type
+    if vehicle.vehicle_type == 'car' and vehicle.num_of_seats is not None:
+        output = '{0}, {1} seater '.format(output, vehicle.num_of_seats)
+    elif vehicle.vehicle_type in vlp and vehicle.cargo_capacity is not None:
+        output = '{0}, {1}l cargo capacity '.format(
+            output,
+            vehicle.cargo_capacity,
+            )
 
-        if vehicle.cab_type is not None:
-            output = output + ', ' + vehicle.cab_type + ' cab'
+    # Add cab type for applicable vehicles
+    if vehicle.vehicle_type in check and vehicle.cab_type is not None:
+        output = '{0}, {1} cab'.format(output, vehicle.cab_type)
 
+    # Add maintenance information
     if vehicle.tax_due_date is not None:
-        output = output + ',tax due: ' + vehicle.tax_due_date + ' '
+        output = '{0}, tax due: {1} '.format(output, vehicle.tax_due_date)
 
     if vehicle.service_due_date is not None:
-        output = output + ',service due: ' + vehicle.service_due_date + ' '
+        output = '{0}, service due: {1} '.format(
+            output,
+            vehicle.service_due_date,
+            )
 
-    return output + '\n'
+    return '{0}{1}'.format(output, '\n')
 
 
 def assign_tax_due_classes(sql_result: list) -> list:
@@ -247,6 +242,45 @@ def assign_num_plate_classes(num_plate: str) -> list:
     return output
 
 
+def generate_insert_widgets_from_type(
+    frame: tk.Frame,
+    vehicle_type: str,
+    element_list: list,
+) -> list:
+    """Generate widgets based on the type of vehicle.
+
+    Helper function to generate_insert_widgets
+
+    Args:
+        frame (tk.Frame): The frame used in the widgets
+        vehicle_type (str): The selected vehicle type
+        element_list (list): The list of elements to be appended to
+
+    Returns:
+        element_list (list): The list with vehicle specific widgets appended
+    """
+    default_width = 55
+
+    if vehicle_type == 'car':
+        num_of_seats = tk.Text(frame, width=default_width, height=1)
+        num_of_seats.insert(tk.END, 'Number of Seats')
+        element_list.append(num_of_seats)
+    elif vehicle_type == 'van':
+        cargo_capacity = tk.Text(frame, width=default_width, height=1)
+        cargo_capacity.insert(tk.END, 'Cargo Capacity')
+        element_list.append(cargo_capacity)
+    elif vehicle_type in check:
+        cargo_capacity = tk.Text(frame, width=default_width, height=1)
+        cargo_capacity.insert(tk.END, 'Cargo Capacity')
+        element_list.append(cargo_capacity)
+
+        cab_type = tk.Text(frame, width=default_width, height=1)
+        cab_type.insert(tk.END, 'Cab Type')
+        element_list.append(cab_type)
+
+    return element_list
+
+
 def generate_insert_widgets(frame: tk.Frame, vehicle_type: str) -> list:
     """Generate the widgets to be used in the insert vehicle window.
 
@@ -259,47 +293,35 @@ def generate_insert_widgets(frame: tk.Frame, vehicle_type: str) -> list:
 
     """
     element_list: list = []
-
-    title = tk.Label(frame,
-                     text='Write information into text boxes',
-                     width=35)
+    widths = [35, 55]
+    title = tk.Label(
+        frame,
+        text='Write information into text boxes',
+        width=widths[0],
+    )
     element_list.append(title)
 
-    num_plate = tk.Text(frame, width=55, height=1)
+    num_plate = tk.Text(frame, width=widths[1], height=1)
     num_plate.insert(tk.END, 'Number Plate')
     element_list.append(num_plate)
 
-    colour = tk.Text(frame, width=55, height=1)
+    colour = tk.Text(frame, width=widths[1], height=1)
     colour.insert(tk.END, 'Colour')
     element_list.append(colour)
 
-    tax_date = tk.Text(frame, width=55, height=1)
+    tax_date = tk.Text(frame, width=widths[1], height=1)
     tax_date.insert(tk.END, 'Tax Due Date (YYYY-MM-DD)')
     element_list.append(tax_date)
 
-    service_date = tk.Text(frame, width=55, height=1)
+    service_date = tk.Text(frame, width=widths[1], height=1)
     service_date.insert(tk.END, 'Service Date (YYYY-MM-DD)')
     element_list.append(service_date)
 
-    vehicle_type = vehicle_type.lower()
-    if vehicle_type == 'car':
-        num_of_seats = tk.Text(frame, width=55, height=1)
-        num_of_seats.insert(tk.END, 'Number of Seats')
-        element_list.append(num_of_seats)
-    elif vehicle_type == 'van':
-        cargo_capacity = tk.Text(frame, width=55, height=1)
-        cargo_capacity.insert(tk.END, 'Cargo Capacity')
-        element_list.append(cargo_capacity)
-    elif vehicle_type == 'lorry' or vehicle_type == 'pickup':
-        cargo_capacity = tk.Text(frame, width=55, height=1)
-        cargo_capacity.insert(tk.END, 'Cargo Capacity')
-        element_list.append(cargo_capacity)
-
-        cab_type = tk.Text(frame, width=55, height=1)
-        cab_type.insert(tk.END, 'Cab Type')
-        element_list.append(cab_type)
-
-    return element_list
+    return generate_insert_widgets_from_type(
+        frame,
+        vehicle_type.lower(),
+        element_list,
+        )
 
 
 def insert_values(element_list: list[tk.Text], vehicle_type: str):
@@ -314,30 +336,45 @@ def insert_values(element_list: list[tk.Text], vehicle_type: str):
     """
     # Assign each text entry to a vehicle object
     vehicle: object = None
-    number_plate: str = element_list[1].get('1.0', tk.END).strip()
-    colour: str = element_list[2].get('1.0', tk.END).strip()
-    tax_date: str = element_list[3].get('1.0', tk.END).strip()
-    service_date: str = element_list[4].get('1.0', tk.END).strip()
+    number_plate: str = element_list[1].get(text_object_start, tk.END).strip()
+    colour: str = element_list[2].get(text_object_start, tk.END).strip()
+    tax_date: str = element_list[3].get(text_object_start, tk.END).strip()
+    service_date: str = element_list[4].get(text_object_start, tk.END).strip()
     # Vehicle specific assignment
     if vehicle_type == 'Car':
-        num_of_seats = element_list[5].get('1.0', tk.END).strip()
-        vehicle = Car(number_plate.upper(), colour, vehicle_type.lower(),
-                      num_of_seats,
-                      service_date, tax_date)
+        num_of_seats = element_list[5].get(text_object_start, tk.END).strip()
+        vehicle = Car(
+            number_plate.upper(),
+            colour,
+            vehicle_type.lower(),
+            num_of_seats,
+            service_date,
+            tax_date,
+            )
 
     elif vehicle_type == 'Van':
-        cargo_capacity = element_list[5].get('1.0', tk.END).strip()
-        vehicle = Van(number_plate.upper(), colour, vehicle_type.lower(),
-                      cargo_capacity,
-                      service_date, tax_date)
+        cargo_capacity = element_list[5].get(text_object_start, tk.END).strip()
+        vehicle = Van(
+            number_plate.upper(),
+            colour,
+            vehicle_type.lower(),
+            cargo_capacity,
+            service_date,
+            tax_date,
+            )
 
-    elif vehicle_type == 'Lorry' or vehicle_type == 'Pickup':
-        cargo_capacity = element_list[5].get('1.0', tk.END).strip()
-        cab_type = element_list[6].get('1.0', tk.END).strip()
-        vehicle = LorryOrPickup(number_plate.upper(), colour,
-                                vehicle_type.lower(),
-                                cargo_capacity, cab_type.lower(),
-                                service_date, tax_date)
+    elif vehicle_type.lower() in check:
+        cargo_capacity = element_list[5].get(text_object_start, tk.END).strip()
+        cab_type = element_list[6].get(text_object_start, tk.END).strip()
+        vehicle = LorryOrPickup(
+            number_plate.upper(),
+            colour,
+            vehicle_type.lower(),
+            cargo_capacity,
+            cab_type.lower(),
+            service_date,
+            tax_date,
+            )
 
     verify_inputs(vehicle)
 
@@ -382,45 +419,45 @@ def update_changed_values(
     }
     vehicle_type = select_type_from_num_plate(num_plate).lower()
 
-    colour = element_list[1].get('1.0', tk.END).strip()
+    colour = element_list[1].get(text_object_start, tk.END).strip()
     if colour.lower() in valid_colours:
         changed_values['colour_id'] = colour
 
-    tax_date = element_list[2].get('1.0', tk.END).strip()
+    tax_date = element_list[2].get(text_object_start, tk.END).strip()
     try:
         verify_date(tax_date)
     except TypeError:
-        pass
+        do_nothing()
     else:
         changed_values['tax_due_date'] = tax_date
 
-    service_date = element_list[3].get('1.0', tk.END).strip()
+    service_date = element_list[3].get(text_object_start, tk.END).strip()
     try:
         verify_date(service_date)
     except TypeError:
-        pass
+        do_nothing()
     else:
         changed_values['service_due_date'] = service_date
 
-    extra1 = element_list[4].get('1.0', tk.END).strip()
+    extra1 = element_list[4].get(text_object_start, tk.END).strip()
     try:
         verify_integer(extra1)
     except TypeError:
-        pass
+        do_nothing()
     else:
         changed_values['extra1'] = int(extra1)
 
-    if vehicle_type in ('lorry', 'pickup'):
-        extra2 = element_list[5].get('1.0', tk.END).strip()
+    if vehicle_type in check:
+        extra2 = element_list[5].get(text_object_start, tk.END).strip()
         try:
             verify_cab_type(extra2.lower(), vehicle_type)
         except TypeError:
-            pass
+            do_nothing()
         else:
             changed_values['cab_type'] = extra2
 
     # check if all values are still false
-    if all(value is False for value in changed_values.values()):
+    if all(element is False for element in changed_values.values()):
         return False
 
     update_vehicle(changed_values, vehicle_type, num_plate)

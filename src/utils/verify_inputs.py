@@ -5,7 +5,10 @@ Throws type errors if they are incorrect.
 import re
 from datetime import datetime
 
-from .vehicle_classes import Car, LorryOrPickup, Van, Vehicle
+from .do_nothing import do_nothing
+from .vehicle_classes import Vehicle
+
+lp = ('lorry', 'pickup')
 
 
 def verify_inputs(vehicle: Vehicle):
@@ -20,13 +23,10 @@ def verify_inputs(vehicle: Vehicle):
     verify_date(vehicle.tax_due_date)
 
     if vehicle.vehicle_type == 'car':
-        vehicle: Car = vehicle
         verify_integer(vehicle.num_of_seats)
     elif vehicle.vehicle_type == 'van':
-        vehicle: Van = vehicle
         verify_integer(vehicle.cargo_capacity)
-    elif vehicle.vehicle_type == 'lorry' or vehicle.vehicle_type == 'pickup':
-        vehicle: LorryOrPickup = vehicle
+    elif vehicle.vehicle_type in lp:
         verify_integer(vehicle.cargo_capacity)
         verify_cab_type(vehicle.cab_type, vehicle.vehicle_type)
 
@@ -39,12 +39,12 @@ def verify_numplate(num_plate: str):
 
     Raises:
         TypeError: if number plate is invalid
-    
+
     Returns:
         True: if no error is thrown returns true
 
     """
-    regex = r'^[A-Z]{2}[0-9]{2}[ ]?[A-Z]{3}$'
+    regex = '^[A-Z]{2}[0-9]{2}[ ]?[A-Z]{3}$'
     if not bool(re.match(regex, num_plate)):
         raise TypeError
 
@@ -63,25 +63,25 @@ def verify_date(date: str):
     Returns:
         True: if no error is thrown returns true
     """
+    today = datetime.today().date()
     try:
         date: datetime = datetime.strptime(date, '%Y-%m-%d')
-        today = datetime.today().date()
-
-        # Ensure the entered date is in the future
-        if not date.date() > today:
-            raise TypeError
-
     except ValueError:
+        do_nothing()
+        raise TypeError
+
+    # Ensure the entered date is in the future
+    if date.date() <= today:
         raise TypeError
 
     return True
 
 
-def verify_integer(input: int):
+def verify_integer(number: int):
     """Verify a integer input is an integer.
 
     Args:
-        input (int): The integer to check
+        number (int): The integer to check
 
     Raises:
         TypeError: if integer is not an int
@@ -90,8 +90,9 @@ def verify_integer(input: int):
         True: if no error is thrown returns true
     """
     try:
-        int(input)
+        int(number)
     except ValueError:
+        do_nothing()
         raise TypeError
 
     return True
@@ -110,11 +111,13 @@ def verify_cab_type(cab_type: str, vehicle_type: str):
     Returns:
         True: if no error is thrown returns true
     """
+    lorry_cabs = ('sleeper', 'day')
+    pickup_cabs = ('single', 'double')
+
     if vehicle_type == 'lorry':
-        if cab_type != 'sleeper' and cab_type != 'day':
+        if cab_type not in lorry_cabs:
             raise TypeError
-    elif vehicle_type == 'pickup':
-        if cab_type != 'single' and cab_type != 'double':
-            raise TypeError
+    elif cab_type not in pickup_cabs:
+        raise TypeError
 
     return True

@@ -1,6 +1,7 @@
 """Test the run_sql util module."""
-import pytest
 import sqlite3
+
+import pytest
 
 from ..utils import run_sql
 

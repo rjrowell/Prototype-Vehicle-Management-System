@@ -1,2 +1,2 @@
 [flake8]
-exclude = src/tests
+exclude = src/tests, ./docs

@@ -2,7 +2,6 @@
 import tkinter as tk
 
 import src.database_setup as db_setup
-
 from src.window_classes import MainWindow
 
 

@@ -171,7 +171,7 @@ class ListAllvehicles(AbstractWindow):
     """Class representing secondary window."""
 
     def __init__(self, master: tk.Tk):
-        """Init class for this window.
+        """Init class for List all vehicles window.
 
         Args:
             master (Tk): the Tk object used to build the window
@@ -210,7 +210,7 @@ class VehiclesWithTaxDue(AbstractWindow):
     _text_width = 45
 
     def __init__(self, master: tk.Tk):
-        """Init class for this window.
+        """Init class for tax due window.
 
         Args:
             master (Tk): the Tk object used to build the window
@@ -249,7 +249,7 @@ class VehiclesWithServiceDue(AbstractWindow):
     _text_width = 55
 
     def __init__(self, master: tk.Tk):
-        """Init class for this window.
+        """Init class for service due window.
 
         Args:
             master (Tk): the Tk object used to build the window
@@ -289,7 +289,7 @@ class SearchByNumberPlate(AbstractWindow):
     _text_width = 55
 
     def __init__(self, master: tk.Tk):
-        """Init class for this window.
+        """Init class for search by number plate window.
 
         Args:
             master (Tk): the Tk object used to build the window
@@ -359,7 +359,7 @@ class InsertVehicle(AbstractWindow):
     """Class representing Insert New Vehicle window."""
 
     def __init__(self, master: tk.Tk):
-        """Init class for this window.
+        """Init class for insert vehicle window.
 
         Args:
             master (Tk): the Tk object used to build the window

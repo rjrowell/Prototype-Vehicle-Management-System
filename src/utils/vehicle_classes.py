@@ -1,18 +1,17 @@
 """Defines classes to be used in this project."""
 
 
-class Vehicle:
+class Vehicle(object):
     """vehicle class, defines methods and variables to be inherited."""
 
-    _vehicle_type: str = None
-    _number_plate: str = None
-    _colour: str = None
-    _service_due_date: str = None
-    _tax_due_date: str = None
-
-    def __init__(self, number_plate: str,
-                 colour: str, vehicle_type: str,
-                 service_due_date: str, tax_due_date: str):
+    def __init__(
+        self,
+        number_plate: str,
+        colour: str,
+        vehicle_type: str,
+        service_due_date: str,
+        tax_due_date: str,
+    ):
         """Initialise car class.
 
         Args:
@@ -37,10 +36,13 @@ class Vehicle:
             vehicle_properties (list): The list of the vehicles properties
 
         """
-        vehicle_properties: list = [self._number_plate, self._colour,
-                                    self._vehicle_type, self._service_due_date,
-                                    self._tax_due_date]
-        return vehicle_properties
+        return [
+            self._number_plate,
+            self._colour,
+            self._vehicle_type,
+            self._service_due_date,
+            self._tax_due_date,
+            ]
 
     @property
     def number_plate(self) -> str:
@@ -77,7 +79,7 @@ class Vehicle:
         """Get mot due date.
 
         Returns:
-            MOT due date 
+            MOT due date
 
         """
         return self._service_due_date
@@ -96,11 +98,15 @@ class Vehicle:
 class Car(Vehicle):
     """Car class that inherits from vehicle."""
 
-    __num_of_seats: int = None
-
-    def __init__(self, number_plate: str, colour: str,
-                 vehicle_type: str, num_of_seats: int,
-                 mot_due_date: str, tax_due_date: str):
+    def __init__(
+        self,
+        number_plate: str,
+        colour: str,
+        vehicle_type: str,
+        num_of_seats: int,
+        mot_due_date: str,
+        tax_due_date: str,
+    ):
         """Initialise car class.
 
         Args:
@@ -112,9 +118,14 @@ class Car(Vehicle):
             tax_due_date (str): The cars tax due date.
 
         """
-        super().__init__(number_plate, colour, vehicle_type, mot_due_date,
-                         tax_due_date)
-        self.__num_of_seats = num_of_seats
+        super().__init__(
+            number_plate,
+            colour,
+            vehicle_type,
+            mot_due_date,
+            tax_due_date,
+            )
+        self._num_of_seats = num_of_seats
 
     @property
     def properties(self) -> list:
@@ -125,7 +136,7 @@ class Car(Vehicle):
 
         """
         vehicle_properties: list = super().properties
-        vehicle_properties.append(self.__num_of_seats)
+        vehicle_properties.append(self._num_of_seats)
         return vehicle_properties
 
     @property
@@ -136,17 +147,21 @@ class Car(Vehicle):
             current number of seats.
 
         """
-        return self.__num_of_seats
+        return self._num_of_seats
 
 
 class Van(Vehicle):
     """Van class that inherits from vehicle."""
 
-    __cargo_capacity: int = None
-
-    def __init__(self, number_plate: str, colour: str,
-                 vehicle_type: str, cargo_capacity: int,
-                 mot_due_date: str, tax_due_date: str):
+    def __init__(
+        self,
+        number_plate: str,
+        colour: str,
+        vehicle_type: str,
+        cargo_capacity: int,
+        mot_due_date: str,
+        tax_due_date: str,
+    ):
         """Initialise car class.
 
         Args:
@@ -158,9 +173,14 @@ class Van(Vehicle):
             tax_due_date (str): The cars tax due date.
 
         """
-        super().__init__(number_plate, colour, vehicle_type, mot_due_date,
-                         tax_due_date)
-        self.__cargo_capacity = cargo_capacity
+        super().__init__(
+            number_plate,
+            colour,
+            vehicle_type,
+            mot_due_date,
+            tax_due_date,
+        )
+        self._cargo_capacity = cargo_capacity
 
     @property
     def properties(self) -> list:
@@ -171,7 +191,7 @@ class Van(Vehicle):
 
         """
         vehicle_properties: list = super().properties
-        vehicle_properties.append(self.__cargo_capacity)
+        vehicle_properties.append(self._cargo_capacity)
         return vehicle_properties
 
     @property
@@ -182,19 +202,22 @@ class Van(Vehicle):
             Vans cargo capacity
 
         """
-        return self.__cargo_capacity
+        return self._cargo_capacity
 
 
 class LorryOrPickup(Vehicle):
     """Lorry class that inherits from vehicle."""
 
-    __cargo_capacity: int = None
-    __cab_type: str = None
-
-    def __init__(self, number_plate: str, colour: str,
-                 vehicle_type: str, cargo_capacity: int,
-                 cab_type: str,
-                 mot_due_date: str, tax_due_date: str):
+    def __init__(
+        self,
+        number_plate: str,
+        colour: str,
+        vehicle_type: str,
+        cargo_capacity: int,
+        cab_type: str,
+        mot_due_date: str,
+        tax_due_date: str,
+    ):
         """Initialise lorry class.
 
         Args:
@@ -207,10 +230,15 @@ class LorryOrPickup(Vehicle):
             tax_due_date (str): The cars tax due date.
 
         """
-        super().__init__(number_plate, colour, vehicle_type, mot_due_date,
-                         tax_due_date)
-        self.__cargo_capacity = cargo_capacity
-        self.__cab_type = cab_type
+        super().__init__(
+            number_plate,
+            colour,
+            vehicle_type,
+            mot_due_date,
+            tax_due_date,
+            )
+        self._cargo_capacity = cargo_capacity
+        self._cab_type = cab_type
 
     @property
     def properties(self) -> list:
@@ -221,8 +249,8 @@ class LorryOrPickup(Vehicle):
 
         """
         vehicle_properties: list = super().properties
-        vehicle_properties.append(self.__cargo_capacity)
-        vehicle_properties.append(self.__cab_type)
+        vehicle_properties.append(self._cargo_capacity)
+        vehicle_properties.append(self._cab_type)
         return vehicle_properties
 
     @property
@@ -233,7 +261,7 @@ class LorryOrPickup(Vehicle):
             Lorry's cargo capacity
 
         """
-        return self.__cargo_capacity
+        return self._cargo_capacity
 
     @property
     def cab_type(self) -> int:
@@ -243,4 +271,4 @@ class LorryOrPickup(Vehicle):
             Lorry's cargo capacity
 
         """
-        return self.__cab_type
+        return self._cab_type

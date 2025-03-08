@@ -1,7 +1,23 @@
 """A utility file for executing sql."""
 import sqlite3
 
-from .transfrom_properties import transform_properties, transform_colour
+from .do_nothing import do_nothing
+from .transfrom_properties import transform_colour, transform_properties
+
+db_name = 'vehicles.db'
+
+lp = ('lorry', 'pickup')
+
+cab_type_string = 'cab_type'
+
+
+def get_conn():
+    """Get connection to the databse.
+
+    Returns:
+        connection: the database connection
+    """
+    return sqlite3.connect(db_name)
 
 
 def read_sql_file(filepath: str) -> str:
@@ -29,7 +45,7 @@ def execute_sql(filename: str):
     """
     sql_script = read_sql_file(filename)
 
-    conn = sqlite3.connect('vehicles.db')
+    conn = get_conn()
     cursor = conn.cursor()
     cursor.executescript(sql_script)
     conn.close()
@@ -47,7 +63,7 @@ def execute_sql_select(filename: str) -> list:
     """
     sql_script = read_sql_file(filename)
 
-    conn = sqlite3.connect('vehicles.db')
+    conn = get_conn()
     cursor = conn.cursor()
 
     output: list = cursor.execute(sql_script).fetchall()
@@ -69,7 +85,7 @@ def select_type_from_num_plate(num_plate: str) -> str:
     filepath: str = 'src/sql/select_vehicle_type_from_numplate.sql'
     sql_script = read_sql_file(filepath)
 
-    conn = sqlite3.connect('vehicles.db')
+    conn = get_conn()
     cursor = conn.cursor()
 
     # fetch the vehicle type of the vehicle with number plate
@@ -94,12 +110,12 @@ def select_based_on_type(vehicle_type: str, num_plate: str) -> list:
         filepath: str = 'src/sql/select_car.sql'
     elif vehicle_type == 'van':
         filepath: str = 'src/sql/select_van.sql'
-    elif vehicle_type == 'lorry' or vehicle_type == 'pickup':
+    elif vehicle_type in lp:
         filepath: str = 'src/sql/select_lorry.sql'
 
     sql_script = read_sql_file(filepath)
 
-    conn = sqlite3.connect('vehicles.db')
+    conn = get_conn()
     cursor = conn.cursor()
 
     output: list = cursor.execute(sql_script, (num_plate,)).fetchall()
@@ -118,7 +134,7 @@ def insert_car(properties: list):
     filepath: str = 'src/sql/insert_car.sql'
     sql_script = read_sql_file(filepath)
 
-    conn = sqlite3.connect('vehicles.db')
+    conn = get_conn()
     cursor = conn.cursor()
 
     cursor.execute(sql_script, (properties[0], properties[5]))
@@ -137,7 +153,7 @@ def insert_van(properties: list):
     filepath: str = 'src/sql/insert_van.sql'
     sql_script = read_sql_file(filepath)
 
-    conn = sqlite3.connect('vehicles.db')
+    conn = get_conn()
     cursor = conn.cursor()
 
     cursor.execute(sql_script, (properties[0], properties[5]))
@@ -156,10 +172,20 @@ def insert_lorry(properties: list):
     filepath: str = 'src/sql/insert_lorry.sql'
     sql_script = read_sql_file(filepath)
 
-    conn = sqlite3.connect('vehicles.db')
+    conn = get_conn()
     cursor = conn.cursor()
 
-    cursor.execute(sql_script, (properties[0], properties[5], properties[6]))
+    properties_dict = {
+        'num_plate': properties[0],
+        'cargo': properties[5],
+        cab_type_string: properties[6],
+    }
+
+    cursor.execute(sql_script, (
+        properties_dict['num_plate'],
+        properties_dict['cargo'],
+        properties_dict[cab_type_string],
+        ))
 
     conn.commit()
     conn.close()
@@ -177,7 +203,7 @@ def insert_vehicle_into_db(properties: list):
 
     sql_script = read_sql_file('src/sql/insert_vehicle.sql')
 
-    conn = sqlite3.connect('vehicles.db')
+    conn = get_conn()
     cursor = conn.cursor()
 
     cursor.execute(
@@ -198,7 +224,7 @@ def insert_vehicle_into_db(properties: list):
         insert_car(properties)
     elif vehicle_type == 'van':
         insert_van(properties)
-    elif vehicle_type == 'lorry' or vehicle_type == 'pickup':
+    elif vehicle_type in lp:
         insert_lorry(properties)
 
 
@@ -229,19 +255,20 @@ def update_specific_type(
     # re-size dictionary
     changed_values = {
         extra: changed_values['extra1'],
-        'cab_type': changed_values['cab_type'],
+        cab_type_string: changed_values[cab_type_string],
     }
 
-    for column, value in changed_values.items():
-        if value:
-            value_string += (f'{column} = "{value}", ')
+    for column, element in changed_values.items():
+        if element:
+            value_string = '{0}{1}'.format(value_string, column)
+            value_string = '{0} = "{1}", '.format(value_string, element)
 
     value_string = value_string[:-2]  # remove trailing comma from end of str
 
     sql_script = sql_script.replace('(value_string)', value_string)
 
-    if len(value_string) > 0:
-        conn = sqlite3.connect('vehicles.db')
+    if value_string:
+        conn = get_conn()
         cursor = conn.cursor()
         cursor.execute(
             sql_script,
@@ -263,16 +290,18 @@ def update_vehicle(changed_values: dict, vehicle_type: str, number_plate: str):
     """
     value_string: str = ''
     colour_string = changed_values['colour_id']
+    check_column = ('extra1', cab_type_string)
     # If colour is not None, transform it to an integer
     if colour_string:
         changed_values['colour_id'] = transform_colour(colour_string)
 
-    for column, value in changed_values.items():
+    for column, element in changed_values.items():
         # If the value is not None, add it to the string
-        if column == 'extra1' or column == 'cab_type':
-            pass
-        elif value:
-            value_string += (f'{column} = "{value}", ')
+        if column in check_column:
+            do_nothing()
+        elif element:
+            value_string = '{0}{1}'.format(value_string, column)
+            value_string = '{0} = "{1}", '.format(value_string, element)
 
     value_string = value_string[:-2]  # remove trailing comma from end of str
 
@@ -280,8 +309,8 @@ def update_vehicle(changed_values: dict, vehicle_type: str, number_plate: str):
     sql_script = read_sql_file('src/sql/update_vehicle.sql')
     sql_script = sql_script.replace('(value_string)', value_string)
 
-    if len(value_string) > 0:
-        conn = sqlite3.connect('vehicles.db')
+    if value_string:
+        conn = get_conn()
         cursor = conn.cursor()
         cursor.execute(
             sql_script,

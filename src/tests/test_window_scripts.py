@@ -1,15 +1,12 @@
 """Tests the window_scripts module."""
+import sqlite3
 import tkinter as tk
 
 import pytest
 
-import sqlite3
-
-from ..utils import (
-    window_scripts as ws,
-    run_sql,
-    vehicle_classes as vc,
-    )
+from ..utils import run_sql
+from ..utils import vehicle_classes as vc
+from ..utils import window_scripts as ws
 
 
 # Fixture to mock sqlite3.connect
@@ -97,4 +94,4 @@ def test_get_text_to_display():
     test_output2 = test_output2.get('1.0', tk.END).strip()
 
     assert test_output1 == 'No vehicles found.'
-    assert test_output2 == 'HC56XPQ: red car , 5 seater'
+    assert test_output2 == 'HC56XPQ: red car, 5 seater'
