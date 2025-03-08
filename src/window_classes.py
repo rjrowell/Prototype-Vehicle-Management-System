@@ -2,6 +2,7 @@
 import tkinter as tk
 from abc import abstractmethod
 
+from .utils import build_classes as bc
 from .utils import window_scripts as ws
 
 
@@ -193,7 +194,7 @@ class ListAllvehicles(AbstractWindow):
 
     def build_window(self):
         """Build list all window from private variables."""
-        vehicles_list = ws.build_classes(
+        vehicles_list = bc.build_classes(
             'src/sql/select_all_vehicles.sql',
             'all_vehicles',
         )
@@ -232,7 +233,7 @@ class VehiclesWithTaxDue(AbstractWindow):
 
     def build_window(self):
         """Build tax due window from private variables."""
-        vehicles_list = ws.build_classes(
+        vehicles_list = bc.build_classes(
             'src/sql/select_tax_due_vehicles.sql',
             'tax_due',
         )
@@ -272,7 +273,7 @@ class VehiclesWithServiceDue(AbstractWindow):
 
     def build_window(self):
         """Build service due window from private variables."""
-        vehicles_list = ws.build_classes(
+        vehicles_list = bc.build_classes(
             'src/sql/select_service_due_vehicles.sql',
             'service_due',
         )
@@ -322,7 +323,7 @@ class SearchByNumberPlate(AbstractWindow):
         extened_text_width: int = 105
         error = False
         try:
-            vehicles_list = ws.build_classes(
+            vehicles_list = bc.build_classes(
                 self._num_plate_to_search,
                 'num_plate',
             )
@@ -512,3 +513,6 @@ class UpdateVehicle(AbstractWindow):
         else:
             self._widgets[0].config(text='No Valid Options Set')
             self._widgets[0].pack()
+
+    # TODO: delete window -> search numberplate to delete -> enter ->
+    # if valid then delete
