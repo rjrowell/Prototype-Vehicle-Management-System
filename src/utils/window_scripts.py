@@ -16,7 +16,7 @@ vehicle_mapping: dict = {
     'van': Van,
     'lorry': LorryOrPickup,
     'pickup': LorryOrPickup,
-    }
+}
 
 text_object_start = '1.0'
 
@@ -102,8 +102,8 @@ def assign_all_vehicles_classes(sql_result: list) -> list:
                     None,
                     None,
                     None,
-                    ),
-                    )
+                ),
+                )
             else:
                 output.append(vehicle_class(
                     row[0],
@@ -112,8 +112,8 @@ def assign_all_vehicles_classes(sql_result: list) -> list:
                     None,
                     None,
                     None,
-                    ),
-                    )
+                ),
+                )
     return output
 
 
@@ -140,7 +140,7 @@ def get_text_by_vehicle(vehicle: object) -> str:
         output = '{0}, {1}l cargo capacity '.format(
             output,
             vehicle.cargo_capacity,
-            )
+        )
 
     # Add cab type for applicable vehicles
     if vehicle.vehicle_type in check and vehicle.cab_type is not None:
@@ -154,7 +154,7 @@ def get_text_by_vehicle(vehicle: object) -> str:
         output = '{0}, service due: {1} '.format(
             output,
             vehicle.service_due_date,
-            )
+        )
 
     return '{0}{1}'.format(output, '\n')
 
@@ -321,7 +321,7 @@ def generate_insert_widgets(frame: tk.Frame, vehicle_type: str) -> list:
         frame,
         vehicle_type.lower(),
         element_list,
-        )
+    )
 
 
 def insert_values(element_list: list[tk.Text], vehicle_type: str):
@@ -350,7 +350,7 @@ def insert_values(element_list: list[tk.Text], vehicle_type: str):
             num_of_seats,
             service_date,
             tax_date,
-            )
+        )
 
     elif vehicle_type == 'Van':
         cargo_capacity = element_list[5].get(text_object_start, tk.END).strip()
@@ -361,7 +361,7 @@ def insert_values(element_list: list[tk.Text], vehicle_type: str):
             cargo_capacity,
             service_date,
             tax_date,
-            )
+        )
 
     elif vehicle_type.lower() in check:
         cargo_capacity = element_list[5].get(text_object_start, tk.END).strip()
@@ -374,7 +374,7 @@ def insert_values(element_list: list[tk.Text], vehicle_type: str):
             cab_type.lower(),
             service_date,
             tax_date,
-            )
+        )
 
     verify_inputs(vehicle)
 

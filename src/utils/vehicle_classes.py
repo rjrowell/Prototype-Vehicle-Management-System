@@ -42,7 +42,7 @@ class Vehicle(object):
             self._vehicle_type,
             self._service_due_date,
             self._tax_due_date,
-            ]
+        ]
 
     @property
     def number_plate(self) -> str:
@@ -124,7 +124,7 @@ class Car(Vehicle):
             vehicle_type,
             mot_due_date,
             tax_due_date,
-            )
+        )
         self._num_of_seats = num_of_seats
 
     @property
@@ -236,7 +236,7 @@ class LorryOrPickup(Vehicle):
             vehicle_type,
             mot_due_date,
             tax_due_date,
-            )
+        )
         self._cargo_capacity = cargo_capacity
         self._cab_type = cab_type
 

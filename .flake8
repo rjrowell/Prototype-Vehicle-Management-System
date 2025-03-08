@@ -1,2 +1,5 @@
 [flake8]
+#ignore local folder imports, exclude tests and docs
+ignore = WPS300 
 exclude = src/tests, ./docs
+

@@ -185,7 +185,7 @@ def insert_lorry(properties: list):
         properties_dict['num_plate'],
         properties_dict['cargo'],
         properties_dict[cab_type_string],
-        ))
+    ))
 
     conn.commit()
     conn.close()
