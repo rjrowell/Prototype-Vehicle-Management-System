@@ -47,6 +47,7 @@ class AbstractWindow(object):
             'VehiclesWithServiceDue': VehiclesWithServiceDue,
             'InsertVehicle': InsertVehicle,
             'UpdateVehicle': UpdateVehicle,
+            'RemoveVehicle': RemoveVehicle,
         }
 
         self.newWindow = tk.Toplevel(self._master)
@@ -76,14 +77,14 @@ class AbstractWindow(object):
 class MainWindow(AbstractWindow):
     """Class representing the main window."""
 
-    def __init__(self, master: tk.Tk):
+    def __init__(self, root: tk.Tk):
         """Init class for main window.
 
         Args:
-            master (Tk): the Tk object used to build the GUI
+            root (Tk): the Tk object used to build the GUI
 
         """
-        super().__init__(master)
+        super().__init__(root)
         self._title = tk.Label(
             self._frame,
             text='Main Menu',
@@ -125,6 +126,21 @@ class MainWindow(AbstractWindow):
             width=self._default_width,
             command=self.insert_new_vehicle_window,
         )
+        self._button7 = tk.Button(
+            self._frame,
+            text='Remove Vehicle',
+            width=self._default_width,
+            command=self.remove_vehicle_window,
+        )
+
+    def build_next_window(self, window_name: str):
+        """Initialise new window when button is clicked.
+
+        Args:
+            window_name (str): The name of the next window.
+        """
+        self.app = self.set_next_window(window_name)
+        self.app.build_window()
 
     def all_vehicles_window(self):
         """Initialise new window when button is clicked."""
@@ -156,6 +172,11 @@ class MainWindow(AbstractWindow):
         self.app = self.set_next_window('UpdateVehicle')
         self.app.build_window()
 
+    def remove_vehicle_window(self):
+        """Initialise a remove vehicle window."""
+        self.app = self.set_next_window('RemoveVehicle')
+        self.app.build_window()
+
     def build_window(self):
         """Build main menu window from private variables."""
         self._title.pack()
@@ -165,6 +186,7 @@ class MainWindow(AbstractWindow):
         self._button4.pack()
         self._button5.pack()
         self._button6.pack()
+        self._button7.pack()
         self._frame.pack()
 
 
@@ -482,30 +504,25 @@ class UpdateVehicle(AbstractWindow):
     def _submit_text(self):
         """Run the logic to get the vehicle type based on num plate entered."""
         self._number_plate = self.process_text()
-        error = False
         try:
             self._widgets: list = ws.get_update_widgets_from_plate(
                 self._frame,
                 self._number_plate,
             )
         except TypeError:
-            error = True
             error_text = 'No Vehicle found, Please enter a Valid Number Plate'
             self._title.config(text=error_text)
             self._text.config(width=self._text_width)
 
             self._title.pack()
             self._text.pack()
-
-        if error is False:
+        else:
             self._widgets = self._widgets[:1] + self._widgets[2:]
             for inc in self._widgets:
                 inc.pack()
             self._enter_button.config(command=self._submit_info)
             self._text.destroy()
             self._title.destroy()
-
-        error = False
 
     def _submit_info(self):
         if ws.update_changed_values(self._widgets, self._number_plate):
@@ -516,3 +533,55 @@ class UpdateVehicle(AbstractWindow):
 
     # TODO: delete window -> search numberplate to delete -> enter ->
     # if valid then delete
+
+
+class RemoveVehicle(AbstractWindow):
+    """Window for removing a vehicle from db."""
+
+    _text_width = 55
+
+    def __init__(self, master: tk.Tk):
+        """Init class for the vehicle removal window.
+
+        Args:
+            master (Tk): the Tk object used to build the window
+        """
+        super().__init__(master)
+        title_text = 'Please Enter Number Plate of Vehicle to Remove:'
+        self._title = tk.Label(
+            self._frame,
+            text=title_text,
+            width=self._title_width,
+        )
+        self._text = tk.Text(self._frame, width=self._text_width, height=1)
+        self._enter_button = tk.Button(
+            self._frame,
+            text='Enter',
+            width=self._default_width,
+            command=self._submit_text,
+        )
+        self._quit_button = tk.Button(
+            self._frame,
+            text=self._exit_string,
+            width=self._default_width,
+            command=self.close_windows,
+        )
+
+    def build_window(self):
+        """Build update vehicle window from private variables."""
+        self._title.pack()
+        self._text.pack()
+        self._enter_button.pack()
+        self._quit_button.pack()
+        self._frame.pack()
+
+    def _submit_text(self):
+        """Remove the vehicle type with the num plate entered."""
+        self._number_plate = self.process_text()
+        try:
+            ws.remove_vehicle_from_db(self._number_plate)
+        except TypeError:
+            self._title.config(text='Invalid Number Plate Entered')
+            self._title.pack()
+        else:
+            self.close_windows()

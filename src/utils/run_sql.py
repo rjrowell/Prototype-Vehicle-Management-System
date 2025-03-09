@@ -322,3 +322,43 @@ def update_vehicle(changed_values: dict, vehicle_type: str, number_plate: str):
         conn.close()
 
     update_specific_type(changed_values, vehicle_type, number_plate)
+
+
+def delete_from_db(num_plate: str, vehicle_type: str):
+    """Run the delete vehicle script to remove a vehicle from a db.
+
+    Args:
+        num_plate (str): The number plate of the vehicle to remove
+        vehicle_type (str): The type of the vehicle being removed
+    """
+    vehicle_table_name_map = {
+        'car': 'car',
+        'van': 'van',
+        'lorry': 'lorries_and_pickups',
+        'pickup': 'lorries_and_pickups',
+    }
+    table_name = vehicle_table_name_map[vehicle_type.lower()]
+
+    sql_script = read_sql_file('src/sql/drop_vehicle.sql')
+
+    conn = get_conn()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        sql_script,
+        (
+            num_plate,
+        ),
+    )
+
+    sql_script = read_sql_file('src/sql/delete_type.sql')
+    sql_script = sql_script.replace('(table_name)', table_name)
+    cursor.execute(
+        sql_script,
+        (
+            num_plate,
+        ),
+    )
+
+    conn.commit()
+    conn.close()

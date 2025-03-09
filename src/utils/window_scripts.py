@@ -4,7 +4,7 @@ import tkinter as tk
 
 from .do_nothing import do_nothing
 from .run_sql import (insert_vehicle_into_db, select_type_from_num_plate,
-                      update_vehicle)
+                      update_vehicle, delete_from_db)
 from .valid_inputs import valid_colours
 from .vehicle_classes import Car, LorryOrPickup, Van
 from .verify_inputs import (verify_cab_type, verify_date, verify_inputs,
@@ -308,3 +308,13 @@ def update_changed_values(
 
     update_vehicle(changed_values, vehicle_type, num_plate)
     return True
+
+
+def remove_vehicle_from_db(num_plate: str):
+    """Remove the vehicle from the database.
+
+    Args:
+        num_plate(str): The number plate of the vehicle to remove.
+    """
+    vehicle_type = select_type_from_num_plate(num_plate)
+    delete_from_db(num_plate, vehicle_type)
