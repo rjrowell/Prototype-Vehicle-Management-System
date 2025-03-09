@@ -14,6 +14,7 @@ class AbstractWindow(object):
     _title_width: int = 35
     _title: object = None
     _text: tk.Text = None
+    app = None
 
     def __init__(self, master: tk.Tk):
         """Init default method for GUI windows.
@@ -132,15 +133,6 @@ class MainWindow(AbstractWindow):
             width=self._default_width,
             command=self.remove_vehicle_window,
         )
-
-    def build_next_window(self, window_name: str):
-        """Initialise new window when button is clicked.
-
-        Args:
-            window_name (str): The name of the next window.
-        """
-        self.app = self.set_next_window(window_name)
-        self.app.build_window()
 
     def all_vehicles_window(self):
         """Initialise new window when button is clicked."""
@@ -340,25 +332,26 @@ class SearchByNumberPlate(AbstractWindow):
         )
 
     def submit_text(self):
-        """Run logic when enter button is pressed."""
+        """Run logic when enter button is pressed.
+
+        Returns:
+            true: if method finishes correctly
+        """
         self._num_plate_to_search: str = self.process_text()
         extened_text_width: int = 105
-        error = False
         try:
             vehicles_list = bc.build_classes(
                 self._num_plate_to_search,
                 'num_plate',
             )
         except TypeError:
-            error = True
             error_text = 'No Vehicle found, Please enter a Valid Number Plate'
             self._title.config(text=error_text)
             self._text.config(width=self._text_width)
 
             self._title.pack()
             self._text.pack()
-
-        if not error:
+        else:
             self._text.config(width=extened_text_width)
             self._text = ws.get_text_to_display(self._text, vehicles_list)
 
@@ -366,8 +359,6 @@ class SearchByNumberPlate(AbstractWindow):
 
             self._title.pack()
             self._text.pack()
-
-        error = False
 
     def build_window(self):
         """Build number plate search window from private variables."""

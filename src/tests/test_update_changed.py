@@ -7,13 +7,15 @@ import pytest
 from ..utils import run_sql
 from ..utils.window_scripts import update_changed_values
 
-text1 = tk.Text()
-text2 = tk.Text()
-text3 = tk.Text()
+colour_text = tk.Text()
+number_text = tk.Text()
+cab_type_text = tk.Text()
+date_text = tk.Text()
 
-text1.insert(tk.END, 'brown')
-text2.insert(tk.END, '99')
-text3.insert(tk.END, 'day')
+colour_text.insert(tk.END, 'brown')
+number_text.insert(tk.END, '99')
+cab_type_text.insert(tk.END, 'day')
+date_text.insert(tk.END, '2026-05-05')
 
 
 # Fixture to mock sqlite3.connect
@@ -54,27 +56,27 @@ def test_update_changed_values(mock_db_connection, reset_db):
     """
     car_elements = [
         None,
-        text1,
-        text1,
-        text1,
-        text2,
+        colour_text,
+        date_text,
+        date_text,
+        number_text,
     ]
 
     lorry_elements = [
         None,
-        text1,
-        text1,
-        text1,
-        text1,
-        text3,
+        colour_text,
+        date_text,
+        date_text,
+        number_text,
+        cab_type_text,
     ]
 
     empty_elements = [
-        text3,
-        text3,
-        text3,
-        text3,
-        text3,
+        cab_type_text,
+        cab_type_text,
+        cab_type_text,
+        cab_type_text,
+        cab_type_text,
     ]
 
     update_changed_values(car_elements, 'HC56XPQ')

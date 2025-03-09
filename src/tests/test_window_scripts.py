@@ -45,10 +45,30 @@ def test_get_text_to_display():
     """Test the get text to display function."""
     test_text1 = tk.Text(height=1, width=10)
     test_text2 = tk.Text(height=1, width=10)
+    test_text3 = tk.Text(height=1, width=10)
 
     test_vehicles_list1 = False
 
-    test_vehicles_list2 = [vc.Car('HC56XPQ', 'red', 'car', 5, None, None)]
+    test_vehicles_list2 = [vc.Car(
+        'HC56XPQ',
+        'red',
+        'car',
+        5,
+        '2026-05-02',
+        '2026-05-02',
+    ),
+    ]
+
+    test_vehicles_list3 = [vc.LorryOrPickup(
+        'BG70LKM',
+        'red',
+        'pickup',
+        999,
+        'day',
+        '2026-05-02',
+        '2025-05-02',
+    ),
+    ]
 
     test_output1: tk.Text = ws.get_text_to_display(
         test_text1,
@@ -60,11 +80,24 @@ def test_get_text_to_display():
         test_vehicles_list2,
     )
 
+    test_output3: tk.Text = ws.get_text_to_display(
+        test_text3,
+        test_vehicles_list3,
+    )
+
     test_output1 = test_output1.get('1.0', tk.END).strip()
     test_output2 = test_output2.get('1.0', tk.END).strip()
+    test_output3 = test_output3.get('1.0', tk.END).strip()
+
+    expected_car_text = 'HC56XPQ: red car, 5 seater , tax due: 2026-05-02 , '
+    expected_car_text += 'service due: 2026-05-02'
+
+    expected_pickup_text = 'BG70LKM: red pickup, 999l cargo capacity , day cab,'
+    expected_pickup_text += ' tax due: 2025-05-02 , service due: 2026-05-02'
 
     assert test_output1 == 'No vehicles found.'
-    assert test_output2 == 'HC56XPQ: red car, 5 seater'
+    assert test_output2 == expected_car_text
+    assert test_output3 == expected_pickup_text
 
 
 def test_generate_insert_widgets():
