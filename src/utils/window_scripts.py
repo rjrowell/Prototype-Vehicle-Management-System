@@ -3,8 +3,8 @@
 import tkinter as tk
 
 from .do_nothing import do_nothing
-from .run_sql import (insert_vehicle_into_db, select_type_from_num_plate,
-                      update_vehicle, delete_from_db)
+from .run_sql import (delete_from_db, insert_vehicle_into_db,
+                      select_type_from_num_plate, update_vehicle)
 from .valid_inputs import valid_colours
 from .vehicle_classes import Car, LorryOrPickup, Van
 from .verify_inputs import (verify_cab_type, verify_date, verify_inputs,

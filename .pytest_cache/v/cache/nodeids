@@ -1,4 +1,5 @@
 [
+  "src/tests/test_build_classes.py::test_build_classes",
   "src/tests/test_database_setup.py::test_database_setup",
   "src/tests/test_run_sql.py::test_execute_sql",
   "src/tests/test_run_sql.py::test_execute_sql_select",
@@ -11,11 +12,16 @@
   "src/tests/test_run_sql.py::test_select_type_from_num_plate",
   "src/tests/test_run_sql.py::test_update_vehicle",
   "src/tests/test_transform_properties.py::test_transform_properties",
+  "src/tests/test_update_changed.py::test_update_changed_values",
   "src/tests/test_verify_inputs.py::test_verify_cab_type",
   "src/tests/test_verify_inputs.py::test_verify_date",
   "src/tests/test_verify_inputs.py::test_verify_inputs",
   "src/tests/test_verify_inputs.py::test_verify_integer",
   "src/tests/test_verify_inputs.py::test_verify_numplate",
   "src/tests/test_window_scripts.py::test_build_classes",
-  "src/tests/test_window_scripts.py::test_get_text_to_display"
+  "src/tests/test_window_scripts.py::test_generate_insert_widgets",
+  "src/tests/test_window_scripts.py::test_get_text_to_display",
+  "src/tests/test_window_scripts.py::test_get_update_widgets",
+  "src/tests/test_window_scripts.py::test_insert_values",
+  "src/tests/test_window_scripts.py::test_remove_vehicle_from_db"
 ]
