@@ -1,4 +1,4 @@
-"""Tests the list all vehicles window class."""
+"""Tests the vehicles with tax due window class."""
 import pytest
 import tkinter as tk
 

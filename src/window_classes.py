@@ -10,11 +10,11 @@ class AbstractWindow(object):
     """An abstract class to provide a framework for other window classes."""
 
     _exit_string = 'Exit'
+    _enter_string = 'Enter'
     _default_width: int = 25
     _title_width: int = 35
     _title: object = None
     _text: tk.Text = None
-    app = None
 
     def __init__(self, master: tk.Tk):
         """Init default method for GUI windows.
@@ -320,7 +320,7 @@ class SearchByNumberPlate(AbstractWindow):
         self._text = tk.Text(self._frame, width=self._text_width, height=1)
         self._enter_button = tk.Button(
             self._frame,
-            text='Enter',
+            text=self._enter_string,
             width=self._default_width,
             command=self.submit_text,
         )
@@ -332,11 +332,7 @@ class SearchByNumberPlate(AbstractWindow):
         )
 
     def submit_text(self):
-        """Run logic when enter button is pressed.
-
-        Returns:
-            true: if method finishes correctly
-        """
+        """Run logic when enter button is pressed."""
         self._num_plate_to_search: str = self.process_text()
         extened_text_width: int = 105
         try:
@@ -392,7 +388,7 @@ class InsertVehicle(AbstractWindow):
         )
         self._enter_button = tk.Button(
             self._frame,
-            text='Enter',
+            text=self._enter_string,
             width=self._default_width,
             command=self._submit_type,
         )
@@ -414,6 +410,9 @@ class InsertVehicle(AbstractWindow):
         """Do actions after vehicle type is submitted.
 
         Generates next set of widgets
+
+        Returns:
+            bool: Returns true or false depending on if it completed
         """
         accepted_types = ['Car', 'Van', 'Lorry', 'Pickup']
         self._vehicle_type = self.selected_value.get()
@@ -433,23 +432,20 @@ class InsertVehicle(AbstractWindow):
             for inc in self._element_list:
                 inc.pack()
 
+            return True
+        return False
+
     def _insert_text(self):
-        error = False
         try:
             ws.insert_values(self._element_list, self._vehicle_type)
         except TypeError:
-            error = True
             label_text = 'One or more entries is incorrect please re-enter'
             self._element_list[0].config(text=label_text)
         except KeyError:
-            error = True
-            label_text = 'Ivalid colour or type entered'
+            label_text = 'Ivalid colour entered'
             self._element_list[0].config(text=label_text)
-
-        if error is False:
+        else:
             self.close_windows()
-
-        error = False
 
 
 class UpdateVehicle(AbstractWindow):
@@ -473,7 +469,7 @@ class UpdateVehicle(AbstractWindow):
         self._text = tk.Text(self._frame, width=self._text_width, height=1)
         self._enter_button = tk.Button(
             self._frame,
-            text='Enter',
+            text=self._enter_string,
             width=self._default_width,
             command=self._submit_text,
         )
@@ -504,7 +500,6 @@ class UpdateVehicle(AbstractWindow):
             error_text = 'No Vehicle found, Please enter a Valid Number Plate'
             self._title.config(text=error_text)
             self._text.config(width=self._text_width)
-
             self._title.pack()
             self._text.pack()
         else:
@@ -521,9 +516,6 @@ class UpdateVehicle(AbstractWindow):
         else:
             self._widgets[0].config(text='No Valid Options Set')
             self._widgets[0].pack()
-
-    # TODO: delete window -> search numberplate to delete -> enter ->
-    # if valid then delete
 
 
 class RemoveVehicle(AbstractWindow):
@@ -547,7 +539,7 @@ class RemoveVehicle(AbstractWindow):
         self._text = tk.Text(self._frame, width=self._text_width, height=1)
         self._enter_button = tk.Button(
             self._frame,
-            text='Enter',
+            text=self._enter_string,
             width=self._default_width,
             command=self._submit_text,
         )
