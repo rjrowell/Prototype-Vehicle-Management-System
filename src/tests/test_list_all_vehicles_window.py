@@ -1,5 +1,4 @@
 """Tests the list all vehicles window class."""
-import pytest
 import tkinter as tk
 
 from ..window_classes import ListAllvehicles
