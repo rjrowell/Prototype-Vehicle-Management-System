@@ -1,4 +1,4 @@
-"""A utility file for executing sql."""
+"""A utility file containing functios for executing sql on the database."""
 import sqlite3
 
 from .do_nothing import do_nothing

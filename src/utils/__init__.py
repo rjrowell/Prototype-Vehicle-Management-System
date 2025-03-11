@@ -1,1 +1,1 @@
-"""Package to define utilities."""
+"""This package contains utilities used across the app."""

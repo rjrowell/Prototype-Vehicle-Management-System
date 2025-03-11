@@ -4,12 +4,18 @@
    contain the root `toctree` directive.
 
 Yuma Vehicle Management System documentation
-============================================
+=============================================
+This is the documentation for the Yuma council vehicle mangagement app.
 
+The below diagram helpfully shows the design of the entire system, and how data
+flows through it:
+
+.. image:: system_diagram.png 
+
+Navigate the contents below to view documentation of the source code.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
-.. automodule:: src.window_classes
-   :members:
+   src

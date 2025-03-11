@@ -1,90 +1,162 @@
 
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>src.window_classes &mdash; Yuma Vehicle Management System 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
 
-  
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>src.window_classes &#8212; Yuma Vehicle Management System 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
+    <script src="../../_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-</head>
+  </head><body data-dark_mode_code_blocks="true">
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+<div id="top_nav">
+    
 
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            Yuma Vehicle Management System
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../index.html" title="Go to homepage">Yuma Vehicle Management System 1.0 documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../src.html">src package</a></li>
+</ul>
+
         </div>
       </div>
-    </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Yuma Vehicle Management System</a>
-      </nav>
 
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">src.window_classes</li>
-      <li class="wy-breadcrumbs-aside">
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
   <h1>Source code for src.window_classes</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;File of classes for bulding the GUI.&quot;&quot;&quot;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">abstractmethod</span>
+<span></span><span class="sd">&quot;&quot;&quot;File of classes representing the windows of the TK GUI.</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">window_scripts</span> <span class="k">as</span> <span class="n">ws</span>
+<span class="sd">The windows have been programmed in an object oriented way,</span>
+<span class="sd">each window of the GUI inherits from the abstract window class.</span>
+
+<span class="sd">This is an abstract class which provides a framework and base settings</span>
+<span class="sd">for each other GUI window.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span>
+
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">build_classes</span> <span class="k">as</span> <span class="n">bc</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">window_scripts</span> <span class="k">as</span> <span class="n">ws</span>
 
 
-<div class="viewcode-block" id="AbstractWindow">
-<a class="viewcode-back" href="../../index.html#src.window_classes.AbstractWindow">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">AbstractWindow</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="AbstractWindow"><a class="viewcode-back" href="../../src.html#src.window_classes.AbstractWindow">[docs]</a><span class="k">class</span> <span class="nc">AbstractWindow</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An abstract class to provide a framework for other window classes.&quot;&quot;&quot;</span>
 
     <span class="n">_exit_string</span> <span class="o">=</span> <span class="s1">&#39;Exit&#39;</span>
+    <span class="n">_enter_string</span> <span class="o">=</span> <span class="s1">&#39;Enter&#39;</span>
     <span class="n">_default_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">25</span>
     <span class="n">_title_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">35</span>
-    <span class="n">_title</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_title</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_text</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Init default method for GUI windows.</span>
 
 <span class="sd">        Args:</span>
@@ -95,16 +167,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_master</span><span class="p">)</span>
         <span class="n">master</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Yuma Council Vehicle Manager&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="AbstractWindow.close_windows">
-<a class="viewcode-back" href="../../index.html#src.window_classes.AbstractWindow.close_windows">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">close_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AbstractWindow.close_windows"><a class="viewcode-back" href="../../src.html#src.window_classes.AbstractWindow.close_windows">[docs]</a>    <span class="k">def</span> <span class="nf">close_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Destroys a window.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_master</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="AbstractWindow.set_next_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.AbstractWindow.set_next_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_next_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="AbstractWindow.set_next_window"><a class="viewcode-back" href="../../src.html#src.window_classes.AbstractWindow.set_next_window">[docs]</a>    <span class="k">def</span> <span class="nf">set_next_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the next window to be displayed.</span>
 
 <span class="sd">        Args:</span>
@@ -121,6 +188,7 @@
             <span class="s1">&#39;VehiclesWithServiceDue&#39;</span><span class="p">:</span> <span class="n">VehiclesWithServiceDue</span><span class="p">,</span>
             <span class="s1">&#39;InsertVehicle&#39;</span><span class="p">:</span> <span class="n">InsertVehicle</span><span class="p">,</span>
             <span class="s1">&#39;UpdateVehicle&#39;</span><span class="p">:</span> <span class="n">UpdateVehicle</span><span class="p">,</span>
+            <span class="s1">&#39;RemoveVehicle&#39;</span><span class="p">:</span> <span class="n">RemoveVehicle</span><span class="p">,</span>
         <span class="p">}</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">newWindow</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_master</span><span class="p">)</span>
@@ -128,10 +196,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span></div>
 
-
-<div class="viewcode-block" id="AbstractWindow.process_text">
-<a class="viewcode-back" href="../../index.html#src.window_classes.AbstractWindow.process_text">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">process_text</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="AbstractWindow.process_text"><a class="viewcode-back" href="../../src.html#src.window_classes.AbstractWindow.process_text">[docs]</a>    <span class="k">def</span> <span class="nf">process_text</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get text from a text field.</span>
 
 <span class="sd">        Returns:</span>
@@ -140,127 +205,111 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">,</span> <span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="AbstractWindow.build_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.AbstractWindow.build_window">[docs]</a>
-    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AbstractWindow.build_window"><a class="viewcode-back" href="../../src.html#src.window_classes.AbstractWindow.build_window">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build a window based on classes variable.</span>
 
 <span class="sd">        Each class will have its own implementation this</span>
 <span class="sd">        is an abstract method</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;This method should be implemented&#39;</span><span class="p">)</span></div>
-</div>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;This method should be implemented&#39;</span><span class="p">)</span></div></div>
 
 
-
-<div class="viewcode-block" id="MainWindow">
-<a class="viewcode-back" href="../../index.html#src.window_classes.MainWindow">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">MainWindow</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
+<div class="viewcode-block" id="MainWindow"><a class="viewcode-back" href="../../src.html#src.window_classes.MainWindow">[docs]</a><span class="k">class</span> <span class="nc">MainWindow</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class representing the main window.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for main window.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            master (Tk): the Tk object used to build the GUI</span>
+<span class="sd">            root (Tk): the Tk object used to build the GUI</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">master</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_title</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Main Menu&#39;</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_button1</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Search By Number Plate&#39;</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_plate_search_window</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_button2</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="s1">&#39;List All vehicles&#39;</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">all_vehicles_window</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_button3</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Vehicles With Tax Due&#39;</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tax_due_window</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_button4</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Vehicles With Service Due&#39;</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">service_due_window</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_button5</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Update Vehicle&#39;</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">update_vehicle_window</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_button6</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Insert New Vehicle&#39;</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">insert_new_vehicle_window</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_button7</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Remove Vehicle&#39;</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">remove_vehicle_window</span><span class="p">,</span>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="MainWindow.all_vehicles_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.MainWindow.all_vehicles_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">all_vehicles_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MainWindow.all_vehicles_window"><a class="viewcode-back" href="../../src.html#src.window_classes.MainWindow.all_vehicles_window">[docs]</a>    <span class="k">def</span> <span class="nf">all_vehicles_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialise new window when button is clicked.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_next_window</span><span class="p">(</span><span class="s1">&#39;ListAllvehicles&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">build_window</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="MainWindow.tax_due_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.MainWindow.tax_due_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">tax_due_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MainWindow.tax_due_window"><a class="viewcode-back" href="../../src.html#src.window_classes.MainWindow.tax_due_window">[docs]</a>    <span class="k">def</span> <span class="nf">tax_due_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialise new window when button is clicked.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_next_window</span><span class="p">(</span><span class="s1">&#39;VehiclesWithTaxDue&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">build_window</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="MainWindow.service_due_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.MainWindow.service_due_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">service_due_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MainWindow.service_due_window"><a class="viewcode-back" href="../../src.html#src.window_classes.MainWindow.service_due_window">[docs]</a>    <span class="k">def</span> <span class="nf">service_due_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialise new window when button is clicked.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_next_window</span><span class="p">(</span><span class="s1">&#39;VehiclesWithServiceDue&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">build_window</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="MainWindow.num_plate_search_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.MainWindow.num_plate_search_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">num_plate_search_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MainWindow.num_plate_search_window"><a class="viewcode-back" href="../../src.html#src.window_classes.MainWindow.num_plate_search_window">[docs]</a>    <span class="k">def</span> <span class="nf">num_plate_search_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialise a search by num plate window.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_next_window</span><span class="p">(</span><span class="s1">&#39;SearchByNumberPlate&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">build_window</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="MainWindow.insert_new_vehicle_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.MainWindow.insert_new_vehicle_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">insert_new_vehicle_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MainWindow.insert_new_vehicle_window"><a class="viewcode-back" href="../../src.html#src.window_classes.MainWindow.insert_new_vehicle_window">[docs]</a>    <span class="k">def</span> <span class="nf">insert_new_vehicle_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialise a search by insert vehicle window.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_next_window</span><span class="p">(</span><span class="s1">&#39;InsertVehicle&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">build_window</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="MainWindow.update_vehicle_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.MainWindow.update_vehicle_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_vehicle_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MainWindow.update_vehicle_window"><a class="viewcode-back" href="../../src.html#src.window_classes.MainWindow.update_vehicle_window">[docs]</a>    <span class="k">def</span> <span class="nf">update_vehicle_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialise an update vehicle window.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_next_window</span><span class="p">(</span><span class="s1">&#39;UpdateVehicle&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">build_window</span><span class="p">()</span></div>
 
+<div class="viewcode-block" id="MainWindow.remove_vehicle_window"><a class="viewcode-back" href="../../src.html#src.window_classes.MainWindow.remove_vehicle_window">[docs]</a>    <span class="k">def</span> <span class="nf">remove_vehicle_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialise a remove vehicle window.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_next_window</span><span class="p">(</span><span class="s1">&#39;RemoveVehicle&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">build_window</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="MainWindow.build_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.MainWindow.build_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MainWindow.build_window"><a class="viewcode-back" href="../../src.html#src.window_classes.MainWindow.build_window">[docs]</a>    <span class="k">def</span> <span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build main menu window from private variables.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_button1</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
@@ -269,18 +318,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_button4</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_button5</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_button6</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div>
-</div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_button7</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div></div>
 
 
-
-<div class="viewcode-block" id="ListAllvehicles">
-<a class="viewcode-back" href="../../index.html#src.window_classes.ListAllvehicles">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">ListAllvehicles</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
+<div class="viewcode-block" id="ListAllvehicles"><a class="viewcode-back" href="../../src.html#src.window_classes.ListAllvehicles">[docs]</a><span class="k">class</span> <span class="nc">ListAllvehicles</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class representing secondary window.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for this window.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for List all vehicles window.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            master (Tk): the Tk object used to build the window</span>
@@ -291,41 +337,35 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="s1">&#39;All Vehicles in the Fleet&#39;</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_exit_string</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">close_windows</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="ListAllvehicles.build_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.ListAllvehicles.build_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ListAllvehicles.build_window"><a class="viewcode-back" href="../../src.html#src.window_classes.ListAllvehicles.build_window">[docs]</a>    <span class="k">def</span> <span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build list all window from private variables.&quot;&quot;&quot;</span>
-        <span class="n">vehicles_list</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">build_classes</span><span class="p">(</span>
+        <span class="n">vehicles_list</span> <span class="o">=</span> <span class="n">bc</span><span class="o">.</span><span class="n">build_classes</span><span class="p">(</span>
             <span class="s1">&#39;src/sql/select_all_vehicles.sql&#39;</span><span class="p">,</span>
             <span class="s1">&#39;all_vehicles&#39;</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">get_text_to_display</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">,</span> <span class="n">vehicles_list</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div>
-</div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div></div>
 
 
-
-<div class="viewcode-block" id="VehiclesWithTaxDue">
-<a class="viewcode-back" href="../../index.html#src.window_classes.VehiclesWithTaxDue">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">VehiclesWithTaxDue</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
+<div class="viewcode-block" id="VehiclesWithTaxDue"><a class="viewcode-back" href="../../src.html#src.window_classes.VehiclesWithTaxDue">[docs]</a><span class="k">class</span> <span class="nc">VehiclesWithTaxDue</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class representing Vehicles With Tax Due window.&quot;&quot;&quot;</span>
 
     <span class="n">_text_width</span> <span class="o">=</span> <span class="mi">45</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for this window.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for tax due window.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            master (Tk): the Tk object used to build the window</span>
@@ -336,41 +376,35 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Vehicles With Tax Due in the Next Month&#39;</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_title_width</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_text_width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_exit_string</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">close_windows</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="VehiclesWithTaxDue.build_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.VehiclesWithTaxDue.build_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VehiclesWithTaxDue.build_window"><a class="viewcode-back" href="../../src.html#src.window_classes.VehiclesWithTaxDue.build_window">[docs]</a>    <span class="k">def</span> <span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build tax due window from private variables.&quot;&quot;&quot;</span>
-        <span class="n">vehicles_list</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">build_classes</span><span class="p">(</span>
+        <span class="n">vehicles_list</span> <span class="o">=</span> <span class="n">bc</span><span class="o">.</span><span class="n">build_classes</span><span class="p">(</span>
             <span class="s1">&#39;src/sql/select_tax_due_vehicles.sql&#39;</span><span class="p">,</span>
             <span class="s1">&#39;tax_due&#39;</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">get_text_to_display</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">,</span> <span class="n">vehicles_list</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div>
-</div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div></div>
 
 
-
-<div class="viewcode-block" id="VehiclesWithServiceDue">
-<a class="viewcode-back" href="../../index.html#src.window_classes.VehiclesWithServiceDue">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">VehiclesWithServiceDue</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
+<div class="viewcode-block" id="VehiclesWithServiceDue"><a class="viewcode-back" href="../../src.html#src.window_classes.VehiclesWithServiceDue">[docs]</a><span class="k">class</span> <span class="nc">VehiclesWithServiceDue</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class representing Vehicles With Service Due window.&quot;&quot;&quot;</span>
 
     <span class="n">_text_width</span> <span class="o">=</span> <span class="mi">55</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for this window.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for service due window.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            master (Tk): the Tk object used to build the window</span>
@@ -382,41 +416,35 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="n">title_text</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_title_width</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_text_width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_exit_string</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">close_windows</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="VehiclesWithServiceDue.build_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.VehiclesWithServiceDue.build_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VehiclesWithServiceDue.build_window"><a class="viewcode-back" href="../../src.html#src.window_classes.VehiclesWithServiceDue.build_window">[docs]</a>    <span class="k">def</span> <span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build service due window from private variables.&quot;&quot;&quot;</span>
-        <span class="n">vehicles_list</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">build_classes</span><span class="p">(</span>
+        <span class="n">vehicles_list</span> <span class="o">=</span> <span class="n">bc</span><span class="o">.</span><span class="n">build_classes</span><span class="p">(</span>
             <span class="s1">&#39;src/sql/select_service_due_vehicles.sql&#39;</span><span class="p">,</span>
             <span class="s1">&#39;service_due&#39;</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">get_text_to_display</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">,</span> <span class="n">vehicles_list</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div>
-</div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div></div>
 
 
-
-<div class="viewcode-block" id="SearchByNumberPlate">
-<a class="viewcode-back" href="../../index.html#src.window_classes.SearchByNumberPlate">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">SearchByNumberPlate</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
+<div class="viewcode-block" id="SearchByNumberPlate"><a class="viewcode-back" href="../../src.html#src.window_classes.SearchByNumberPlate">[docs]</a><span class="k">class</span> <span class="nc">SearchByNumberPlate</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class representing Vehicles With Service Due window.&quot;&quot;&quot;</span>
 
     <span class="n">_text_width</span> <span class="o">=</span> <span class="mi">55</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for this window.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for search by number plate window.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            master (Tk): the Tk object used to build the window</span>
@@ -428,74 +456,60 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="n">title_text</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_title_width</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_text_width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_enter_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
-            <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Enter&#39;</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_enter_string</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">submit_text</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_exit_string</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">close_windows</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="SearchByNumberPlate.submit_text">
-<a class="viewcode-back" href="../../index.html#src.window_classes.SearchByNumberPlate.submit_text">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">submit_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SearchByNumberPlate.submit_text"><a class="viewcode-back" href="../../src.html#src.window_classes.SearchByNumberPlate.submit_text">[docs]</a>    <span class="k">def</span> <span class="nf">submit_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run logic when enter button is pressed.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_num_plate_to_search</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_text</span><span class="p">()</span>
         <span class="n">extened_text_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">105</span>
-        <span class="n">error</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">vehicles_list</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">build_classes</span><span class="p">(</span>
+            <span class="n">vehicles_list</span> <span class="o">=</span> <span class="n">bc</span><span class="o">.</span><span class="n">build_classes</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_num_plate_to_search</span><span class="p">,</span>
                 <span class="s1">&#39;num_plate&#39;</span><span class="p">,</span>
-                <span class="p">)</span>
+            <span class="p">)</span>
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-            <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="n">error_text</span> <span class="o">=</span> <span class="s1">&#39;No Vehicle found, Please enter a Valid Number Plate&#39;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">error_text</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_text_width</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">error</span><span class="p">:</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">extened_text_width</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">get_text_to_display</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">,</span> <span class="n">vehicles_list</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Number Plate Found:&#39;</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div>
 
-        <span class="n">error</span> <span class="o">=</span> <span class="kc">False</span></div>
-
-
-<div class="viewcode-block" id="SearchByNumberPlate.build_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.SearchByNumberPlate.build_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SearchByNumberPlate.build_window"><a class="viewcode-back" href="../../src.html#src.window_classes.SearchByNumberPlate.build_window">[docs]</a>    <span class="k">def</span> <span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build number plate search window from private variables.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_enter_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div>
-</div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div></div>
 
 
-
-<div class="viewcode-block" id="InsertVehicle">
-<a class="viewcode-back" href="../../index.html#src.window_classes.InsertVehicle">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">InsertVehicle</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
+<div class="viewcode-block" id="InsertVehicle"><a class="viewcode-back" href="../../src.html#src.window_classes.InsertVehicle">[docs]</a><span class="k">class</span> <span class="nc">InsertVehicle</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class representing Insert New Vehicle window.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for this window.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for insert vehicle window.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            master (Tk): the Tk object used to build the window</span>
@@ -511,34 +525,34 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">selected_value</span><span class="p">,</span>
             <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_enter_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
-            <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Enter&#39;</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_enter_string</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_submit_type</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_exit_string</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">close_windows</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="InsertVehicle.build_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.InsertVehicle.build_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="InsertVehicle.build_window"><a class="viewcode-back" href="../../src.html#src.window_classes.InsertVehicle.build_window">[docs]</a>    <span class="k">def</span> <span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build insert vehicle window from private variables.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_option_menu</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_enter_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div>
 
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_submit_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_submit_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Do actions after vehicle type is submitted.</span>
 
 <span class="sd">        Generates next set of widgets</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Returns true or false depending on if it completed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">accepted_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Car&#39;</span><span class="p">,</span> <span class="s1">&#39;Van&#39;</span><span class="p">,</span> <span class="s1">&#39;Lorry&#39;</span><span class="p">,</span> <span class="s1">&#39;Pickup&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_vehicle_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_value</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
@@ -553,39 +567,33 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_element_list</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">generate_insert_widgets</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_vehicle_type</span><span class="p">,</span>
-                <span class="p">)</span>
+            <span class="p">)</span>
 
             <span class="k">for</span> <span class="n">inc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_element_list</span><span class="p">:</span>
                 <span class="n">inc</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_insert_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">error</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_insert_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">ws</span><span class="o">.</span><span class="n">insert_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_element_list</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vehicle_type</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-            <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="n">label_text</span> <span class="o">=</span> <span class="s1">&#39;One or more entries is incorrect please re-enter&#39;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_element_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">label_text</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="n">label_text</span> <span class="o">=</span> <span class="s1">&#39;Ivalid colour or type entered&#39;</span>
+            <span class="n">label_text</span> <span class="o">=</span> <span class="s1">&#39;Ivalid colour entered&#39;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_element_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">label_text</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">error</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">close_windows</span><span class="p">()</span>
-
-        <span class="n">error</span> <span class="o">=</span> <span class="kc">False</span></div>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close_windows</span><span class="p">()</span></div>
 
 
-
-<div class="viewcode-block" id="UpdateVehicle">
-<a class="viewcode-back" href="../../index.html#src.window_classes.UpdateVehicle">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">UpdateVehicle</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
+<div class="viewcode-block" id="UpdateVehicle"><a class="viewcode-back" href="../../src.html#src.window_classes.UpdateVehicle">[docs]</a><span class="k">class</span> <span class="nc">UpdateVehicle</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class representing Update Vehicle window.&quot;&quot;&quot;</span>
 
     <span class="n">_text_width</span> <span class="o">=</span> <span class="mi">55</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for this window.</span>
 
 <span class="sd">        Args:</span>
@@ -597,24 +605,22 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="n">title_text</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_title_width</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_text_width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_enter_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
-            <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Enter&#39;</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_enter_string</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_submit_text</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_exit_string</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
             <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">close_windows</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="UpdateVehicle.build_window">
-<a class="viewcode-back" href="../../index.html#src.window_classes.UpdateVehicle.build_window">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="UpdateVehicle.build_window"><a class="viewcode-back" href="../../src.html#src.window_classes.UpdateVehicle.build_window">[docs]</a>    <span class="k">def</span> <span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build update vehicle window from private variables.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
@@ -622,26 +628,21 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div>
 
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_submit_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_submit_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the logic to get the vehicle type based on num plate entered.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_number_plate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_text</span><span class="p">()</span>
-        <span class="n">error</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">get_update_widgets_from_plate</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_number_plate</span><span class="p">,</span>
-                <span class="p">)</span>
+            <span class="p">)</span>
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-            <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="n">error_text</span> <span class="o">=</span> <span class="s1">&#39;No Vehicle found, Please enter a Valid Number Plate&#39;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">error_text</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_text_width</span><span class="p">)</span>
-
             <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-
-        <span class="k">if</span> <span class="n">error</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
             <span class="k">for</span> <span class="n">inc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">:</span>
                 <span class="n">inc</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
@@ -649,42 +650,92 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
 
-        <span class="n">error</span> <span class="o">=</span> <span class="kc">False</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_submit_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_submit_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ws</span><span class="o">.</span><span class="n">update_changed_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_number_plate</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">close_windows</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;No Valid Options Set&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_widgets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div>
 
+
+<div class="viewcode-block" id="RemoveVehicle"><a class="viewcode-back" href="../../src.html#src.window_classes.RemoveVehicle">[docs]</a><span class="k">class</span> <span class="nc">RemoveVehicle</span><span class="p">(</span><span class="n">AbstractWindow</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Window for removing a vehicle from db.&quot;&quot;&quot;</span>
+
+    <span class="n">_text_width</span> <span class="o">=</span> <span class="mi">55</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init class for the vehicle removal window.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            master (Tk): the Tk object used to build the window</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">master</span><span class="p">)</span>
+        <span class="n">title_text</span> <span class="o">=</span> <span class="s1">&#39;Please Enter Number Plate of Vehicle to Remove:&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_title</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="n">title_text</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_title_width</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_text_width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enter_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_enter_string</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_submit_text</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_exit_string</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_width</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">close_windows</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="RemoveVehicle.build_window"><a class="viewcode-back" href="../../src.html#src.window_classes.RemoveVehicle.build_window">[docs]</a>    <span class="k">def</span> <span class="nf">build_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build update vehicle window from private variables.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enter_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_quit_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_submit_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove the vehicle type with the num plate entered.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_number_plate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_text</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ws</span><span class="o">.</span><span class="n">remove_vehicle_from_db</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_number_plate</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Invalid Number Plate Entered&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close_windows</span><span class="p">()</span></div>
 </pre></div>
 
-           </div>
+            <div class="clearer"></div>
           </div>
-          <footer>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2025, 730096317.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
         </div>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+    
 
-</body>
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+            </div>
+
+            <div class="right">
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, 730096317.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
 </html>

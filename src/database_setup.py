@@ -1,4 +1,4 @@
-"""Script that setups the prototype database."""
+"""Script that reset the prototype database."""
 from .utils import run_sql
 
 

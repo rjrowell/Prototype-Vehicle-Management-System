@@ -1,4 +1,9 @@
-"""Scripts that are used to generate different GUI windows."""
+"""Scripts that are called by the GUI windows.
+
+The idea is that these functions 'connect' the front-end to the backend.
+They handle logic for when an operation is requested by the user, and then call
+run_sql to get and modify data from the db.
+"""
 
 import tkinter as tk
 

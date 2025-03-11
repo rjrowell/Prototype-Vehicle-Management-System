@@ -1,0 +1,1090 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>src.utils package &#8212; Yuma Vehicle Management System 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic_mod.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/petite-vue.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="src.tests.resources package" href="src.tests.resources.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="index.html" title="Go to homepage">Yuma Vehicle Management System 1.0 documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="src.tests.html">src.tests package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">src.utils package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="src-utils-package">
+<h1>src.utils package<a class="headerlink" href="#src-utils-package" title="Permalink to this heading">¶</a></h1>
+<section id="module-src.utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.utils" title="Permalink to this heading">¶</a></h2>
+<p>This package contains utilities used across the app.</p>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="src-utils-vehicle-classes-module">
+<h2>src.utils.vehicle_classes module<a class="headerlink" href="#src-utils-vehicle-classes-module" title="Permalink to this heading">¶</a></h2>
+<p>This diagram outlines the design of the vehicle classes
+describing the inheritance between them:</p>
+<img alt="_images/vehicle_classes_diagram.png" src="_images/vehicle_classes_diagram.png" />
+<span class="target" id="module-src.utils.vehicle_classes"></span><p>Defines classes that represent the vehicles in the system.</p>
+<p>There are four ‘specialised’ vehicles: Car, Van, Lorry, Pickup,
+these are represented in an object oriented way by the three
+classes in this module.</p>
+<p>All ‘specialised’ vehicles inherit from the base class Vehicle,
+which provides common methods and properties for each vehicle.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Car">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.utils.vehicle_classes.</span></span><span class="sig-name descname"><span class="pre">Car</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colour</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_of_seats</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mot_due_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tax_due_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/vehicle_classes.html#Car"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.vehicle_classes.Car" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.utils.vehicle_classes.Vehicle" title="src.utils.vehicle_classes.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a></p>
+<p>Car class that inherits from vehicle.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Car.num_of_seats">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_of_seats</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#src.utils.vehicle_classes.Car.num_of_seats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current number of seats.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>current number of seats.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Car.properties">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#src.utils.vehicle_classes.Car.properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all car properties as a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of the vehicles properties</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>vehicle_properties (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.LorryOrPickup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.utils.vehicle_classes.</span></span><span class="sig-name descname"><span class="pre">LorryOrPickup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colour</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cargo_capacity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cab_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mot_due_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tax_due_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/vehicle_classes.html#LorryOrPickup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.vehicle_classes.LorryOrPickup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.utils.vehicle_classes.Vehicle" title="src.utils.vehicle_classes.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a></p>
+<p>Class that represents both lorries and pickups.</p>
+<p>Inherits from vehicle.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.LorryOrPickup.cab_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cab_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#src.utils.vehicle_classes.LorryOrPickup.cab_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get cab type of lorry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Lorry’s cab type</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.LorryOrPickup.cargo_capacity">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cargo_capacity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#src.utils.vehicle_classes.LorryOrPickup.cargo_capacity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get cargo capacity of lorry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Lorry’s cargo capacity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.LorryOrPickup.properties">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#src.utils.vehicle_classes.LorryOrPickup.properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all car properties as a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of the vehicles properties</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>vehicle_properties (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Van">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.utils.vehicle_classes.</span></span><span class="sig-name descname"><span class="pre">Van</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colour</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cargo_capacity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mot_due_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tax_due_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/vehicle_classes.html#Van"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.vehicle_classes.Van" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.utils.vehicle_classes.Vehicle" title="src.utils.vehicle_classes.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a></p>
+<p>Van class that inherits from vehicle.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Van.cargo_capacity">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cargo_capacity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#src.utils.vehicle_classes.Van.cargo_capacity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get cargo capacity of van.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Vans cargo capacity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Van.properties">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#src.utils.vehicle_classes.Van.properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all van properties as a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of the vehicles properties</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>vehicle_properties (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Vehicle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.utils.vehicle_classes.</span></span><span class="sig-name descname"><span class="pre">Vehicle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colour</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_due_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tax_due_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/vehicle_classes.html#Vehicle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.vehicle_classes.Vehicle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>vehicle class, defines methods and variables to be inherited.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Vehicle.colour">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">colour</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#src.utils.vehicle_classes.Vehicle.colour" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current colour.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>colour.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Vehicle.number_plate">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">number_plate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#src.utils.vehicle_classes.Vehicle.number_plate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current plate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>number plate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Vehicle.properties">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#src.utils.vehicle_classes.Vehicle.properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all vehicle properties as a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of the vehicles properties</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>vehicle_properties (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Vehicle.service_due_date">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">service_due_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#src.utils.vehicle_classes.Vehicle.service_due_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get mot due date.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>MOT due date</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Vehicle.tax_due_date">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tax_due_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#src.utils.vehicle_classes.Vehicle.tax_due_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get tax due date.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tax due date</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="src.utils.vehicle_classes.Vehicle.vehicle_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vehicle_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#src.utils.vehicle_classes.Vehicle.vehicle_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current vehicle type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>vehicle type.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.utils.build_classes">
+<span id="src-utils-build-classes-module"></span><h2>src.utils.build_classes module<a class="headerlink" href="#module-src.utils.build_classes" title="Permalink to this heading">¶</a></h2>
+<p>Code to build the vehicle classes used by some GUI windows.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.build_classes.assign_all_vehicles_classes">
+<span class="sig-prename descclassname"><span class="pre">src.utils.build_classes.</span></span><span class="sig-name descname"><span class="pre">assign_all_vehicles_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sql_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/src/utils/build_classes.html#assign_all_vehicles_classes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.build_classes.assign_all_vehicles_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign the classes for the ‘list all vehicles window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sql_result</strong> (<em>list</em>) – The result of an sql select query</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of classes with values assigned</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>output(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.build_classes.assign_num_plate_classes">
+<span class="sig-prename descclassname"><span class="pre">src.utils.build_classes.</span></span><span class="sig-name descname"><span class="pre">assign_num_plate_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/src/utils/build_classes.html#assign_num_plate_classes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.build_classes.assign_num_plate_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign values to classes for ‘vehicles by number plate’ window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_plate</strong> (<em>str</em>) – the number plate of the vehicle</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of classes with assigned values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>output(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.build_classes.assign_service_due_classes">
+<span class="sig-prename descclassname"><span class="pre">src.utils.build_classes.</span></span><span class="sig-name descname"><span class="pre">assign_service_due_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sql_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/src/utils/build_classes.html#assign_service_due_classes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.build_classes.assign_service_due_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign values to classes for ‘vehicles by service due’ window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sql_result</strong> (<em>list</em>) – The result of an SQL select query</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of classes with assigned values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>output(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.build_classes.assign_tax_due_classes">
+<span class="sig-prename descclassname"><span class="pre">src.utils.build_classes.</span></span><span class="sig-name descname"><span class="pre">assign_tax_due_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sql_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/src/utils/build_classes.html#assign_tax_due_classes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.build_classes.assign_tax_due_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign values to classes for ‘vehicles by tax due’ window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sql_result</strong> (<em>list</em>) – The result of an SQL select query</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of classes with assigned values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>output(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.build_classes.build_classes">
+<span class="sig-prename descclassname"><span class="pre">src.utils.build_classes.</span></span><span class="sig-name descname"><span class="pre">build_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/build_classes.html#build_classes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.build_classes.build_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the classes for some GUI windows.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – the path to sql file</p></li>
+<li><p><strong>window</strong> (<em>str</em>) – name of the window</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of new classes for the window</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>output(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src.utils.do_nothing">
+<span id="src-utils-do-nothing-module"></span><h2>src.utils.do_nothing module<a class="headerlink" href="#module-src.utils.do_nothing" title="Permalink to this heading">¶</a></h2>
+<p>This function does nothing in a flake 8 compliant way.</p>
+<p>Since ‘pass’ keyword and similar trigger flake 8 call this
+to do nothing - ‘good’ coding practice apparently</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.do_nothing.do_nothing">
+<span class="sig-prename descclassname"><span class="pre">src.utils.do_nothing.</span></span><span class="sig-name descname"><span class="pre">do_nothing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/do_nothing.html#do_nothing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.do_nothing.do_nothing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Always</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src.utils.run_sql">
+<span id="src-utils-run-sql-module"></span><h2>src.utils.run_sql module<a class="headerlink" href="#module-src.utils.run_sql" title="Permalink to this heading">¶</a></h2>
+<p>A utility file containing functios for executing sql on the database.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.delete_from_db">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">delete_from_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/run_sql.html#delete_from_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.delete_from_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the delete vehicle script to remove a vehicle from a db.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_plate</strong> (<em>str</em>) – The number plate of the vehicle to remove</p></li>
+<li><p><strong>vehicle_type</strong> (<em>str</em>) – The type of the vehicle being removed</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.execute_sql">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">execute_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/run_sql.html#execute_sql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.execute_sql" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read sql file then execute it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – path to sql file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.execute_sql_select">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">execute_sql_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/src/utils/run_sql.html#execute_sql_select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.execute_sql_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run an SQL select statement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – path to sql file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>returns the result of the select</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>output (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.get_conn">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">get_conn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/run_sql.html#get_conn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.get_conn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get connection to the databse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the database connection</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>connection</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.insert_car">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">insert_car</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/run_sql.html#insert_car"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.insert_car" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a new entry into the car table of the DB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>properties</strong> (<em>list</em>) – The properties of the car to be inserted</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.insert_lorry">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">insert_lorry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/run_sql.html#insert_lorry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.insert_lorry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a new entry into the lorry table of the DB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>properties</strong> (<em>list</em>) – The properties of the lorry or pickup to be inserted</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.insert_van">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">insert_van</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/run_sql.html#insert_van"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.insert_van" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a new entry into the van table of the DB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>properties</strong> (<em>list</em>) – The properties of the van to be inserted</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.insert_vehicle_into_db">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">insert_vehicle_into_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/run_sql.html#insert_vehicle_into_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.insert_vehicle_into_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take parameters from a Vehicle properties and insert into db.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>properties</strong> (<em>list</em>) – The vehicle properties to be inserted</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.read_sql_file">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">read_sql_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/utils/run_sql.html#read_sql_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.read_sql_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read an sql file from a filepath into a str.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – the filepath of the SQL file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the str contaning the SQL script</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sql_script (str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.select_based_on_type">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">select_based_on_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/src/utils/run_sql.html#select_based_on_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.select_based_on_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select from database a specific vehicle based on its type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vehicle_type</strong> (<em>str</em>) – The type of vehicle we are selecting.</p></li>
+<li><p><strong>num_plate</strong> (<em>str</em>) – The number plate of the vehicle we are selecting.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The output of the SQL select statement.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.select_type_from_num_plate">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">select_type_from_num_plate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/utils/run_sql.html#select_type_from_num_plate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.select_type_from_num_plate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select from the database a vehicle with a number plate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_plate</strong> (<em>str</em>) – The number plate to attempt to retrieve from DB</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The type of selected vehicle</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>vehicle_type (str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.update_specific_type">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">update_specific_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">changed_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/run_sql.html#update_specific_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.update_specific_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a specific type of vehicle in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>changed_values</strong> (<em>dict</em>) – The dictionary with the values to upate in them</p></li>
+<li><p><strong>vehicle_type</strong> (<em>str</em>) – The vehicle type of the vehicle to update</p></li>
+<li><p><strong>number_plate</strong> (<em>str</em>) – The number plate of the vehicle be updated</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.run_sql.update_vehicle">
+<span class="sig-prename descclassname"><span class="pre">src.utils.run_sql.</span></span><span class="sig-name descname"><span class="pre">update_vehicle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">changed_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/run_sql.html#update_vehicle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.run_sql.update_vehicle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the vehicle’s details based on values in dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>changed_values</strong> (<em>dict</em>) – The dictionary with the values to upate in them</p></li>
+<li><p><strong>vehicle_type</strong> (<em>str</em>) – The vehicle type of the vehicle to update</p></li>
+<li><p><strong>number_plate</strong> (<em>str</em>) – The number plate of the vehicle be updated</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src.utils.transfrom_properties">
+<span id="src-utils-transfrom-properties-module"></span><h2>src.utils.transfrom_properties module<a class="headerlink" href="#module-src.utils.transfrom_properties" title="Permalink to this heading">¶</a></h2>
+<p>Script to transform properties to be db friendly.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.transfrom_properties.transform_colour">
+<span class="sig-prename descclassname"><span class="pre">src.utils.transfrom_properties.</span></span><span class="sig-name descname"><span class="pre">transform_colour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colour</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/transfrom_properties.html#transform_colour"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.transfrom_properties.transform_colour" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform colour from string to id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>colour</strong> (<em>str</em>) – the colour to be converted</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the colour converted to an id</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>converted_colour</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.transfrom_properties.transform_properties">
+<span class="sig-prename descclassname"><span class="pre">src.utils.transfrom_properties.</span></span><span class="sig-name descname"><span class="pre">transform_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/src/utils/transfrom_properties.html#transform_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.transfrom_properties.transform_properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform the properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>properties</strong> (<em>list</em>) – the properties to be transformed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>properties with type and colour transformed to IDs</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>properties (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.transfrom_properties.transform_type">
+<span class="sig-prename descclassname"><span class="pre">src.utils.transfrom_properties.</span></span><span class="sig-name descname"><span class="pre">transform_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/transfrom_properties.html#transform_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.transfrom_properties.transform_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform type from string to type id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vehicle_type</strong> – the type string to be transformed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the vehicle type converted into an id</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>converted_type</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src.utils.valid_inputs">
+<span id="src-utils-valid-inputs-module"></span><h2>src.utils.valid_inputs module<a class="headerlink" href="#module-src.utils.valid_inputs" title="Permalink to this heading">¶</a></h2>
+<p>File that stores dictionaries of valid types to be used in code.</p>
+</section>
+<section id="module-src.utils.verify_inputs">
+<span id="src-utils-verify-inputs-module"></span><h2>src.utils.verify_inputs module<a class="headerlink" href="#module-src.utils.verify_inputs" title="Permalink to this heading">¶</a></h2>
+<p>This module verifies inputs entered.</p>
+<p>Throws type errors if they are incorrect.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.verify_inputs.verify_cab_type">
+<span class="sig-prename descclassname"><span class="pre">src.utils.verify_inputs.</span></span><span class="sig-name descname"><span class="pre">verify_cab_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cab_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/verify_inputs.html#verify_cab_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.verify_inputs.verify_cab_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify a cab type is correct for vehicle type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cab_type</strong> (<em>str</em>) – The cab type to check</p></li>
+<li><p><strong>vehicle_type</strong> (<em>str</em>) – The vehicle type to check against</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if cab type is invalid</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>if no error is thrown returns true</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.verify_inputs.verify_date">
+<span class="sig-prename descclassname"><span class="pre">src.utils.verify_inputs.</span></span><span class="sig-name descname"><span class="pre">verify_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/verify_inputs.html#verify_date"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.verify_inputs.verify_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify a date is correct format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>date</strong> (<em>str</em>) – The date to check</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if date is invalid</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>if no error is thrown returns true</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.verify_inputs.verify_inputs">
+<span class="sig-prename descclassname"><span class="pre">src.utils.verify_inputs.</span></span><span class="sig-name descname"><span class="pre">verify_inputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vehicle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.utils.vehicle_classes.Vehicle" title="src.utils.vehicle_classes.Vehicle"><span class="pre">Vehicle</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/verify_inputs.html#verify_inputs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.verify_inputs.verify_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify inputs from Vehicle object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vehicle</strong> (<a class="reference internal" href="#src.utils.vehicle_classes.Vehicle" title="src.utils.vehicle_classes.Vehicle"><em>Vehicle</em></a>) – Vehicle object to check</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.verify_inputs.verify_integer">
+<span class="sig-prename descclassname"><span class="pre">src.utils.verify_inputs.</span></span><span class="sig-name descname"><span class="pre">verify_integer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/verify_inputs.html#verify_integer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.verify_inputs.verify_integer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify a integer input is an integer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>number</strong> (<em>int</em>) – The integer to check</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if integer is not an int</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>if no error is thrown returns true</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.verify_inputs.verify_numplate">
+<span class="sig-prename descclassname"><span class="pre">src.utils.verify_inputs.</span></span><span class="sig-name descname"><span class="pre">verify_numplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/verify_inputs.html#verify_numplate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.verify_inputs.verify_numplate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify a numberplate is correct format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_plate</strong> (<em>str</em>) – The number plate to check</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if number plate is invalid</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>if no error is thrown returns true</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src.utils.window_scripts">
+<span id="src-utils-window-scripts-module"></span><h2>src.utils.window_scripts module<a class="headerlink" href="#module-src.utils.window_scripts" title="Permalink to this heading">¶</a></h2>
+<p>Scripts that are called by the GUI windows.</p>
+<p>The idea is that these functions ‘connect’ the front-end to the backend.
+They handle logic for when an operation is requested by the user, and then call
+run_sql to get and modify data from the db.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.window_scripts.generate_insert_widgets">
+<span class="sig-prename descclassname"><span class="pre">src.utils.window_scripts.</span></span><span class="sig-name descname"><span class="pre">generate_insert_widgets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/src/utils/window_scripts.html#generate_insert_widgets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.window_scripts.generate_insert_widgets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the widgets to be used in the insert vehicle window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame</strong> (<em>tk.Frame</em>) – The frame used in the widgets</p></li>
+<li><p><strong>vehicle_type</strong> (<em>str</em>) – The selected vehicle type</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The list of generated widgets</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>element_list (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.window_scripts.generate_insert_widgets_from_type">
+<span class="sig-prename descclassname"><span class="pre">src.utils.window_scripts.</span></span><span class="sig-name descname"><span class="pre">generate_insert_widgets_from_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/src/utils/window_scripts.html#generate_insert_widgets_from_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.window_scripts.generate_insert_widgets_from_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate widgets based on the type of vehicle.</p>
+<p>Helper function to generate_insert_widgets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame</strong> (<em>tk.Frame</em>) – The frame used in the widgets</p></li>
+<li><p><strong>vehicle_type</strong> (<em>str</em>) – The selected vehicle type</p></li>
+<li><p><strong>element_list</strong> (<em>list</em>) – The list of elements to be appended to</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The list with vehicle specific widgets appended</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>element_list (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.window_scripts.get_text_by_vehicle">
+<span class="sig-prename descclassname"><span class="pre">src.utils.window_scripts.</span></span><span class="sig-name descname"><span class="pre">get_text_by_vehicle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vehicle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/utils/window_scripts.html#get_text_by_vehicle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.window_scripts.get_text_by_vehicle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a vehicle, programmaticly generate its display text.</p>
+<p>Based on it’s type and what variable it has assigned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vehicle</strong> (<em>object</em>) – The vehicle class to generate text from</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The generated text</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>output(str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.window_scripts.get_text_to_display">
+<span class="sig-prename descclassname"><span class="pre">src.utils.window_scripts.</span></span><span class="sig-name descname"><span class="pre">get_text_to_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicles_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/window_scripts.html#get_text_to_display"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.window_scripts.get_text_to_display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert rows of veichle information into TK.Text object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text_object</strong> (<em>tkinter.Text</em>) – The original text object</p></li>
+<li><p><strong>vehicles_list</strong> (<em>list</em>) – list of veichles to be inserted into text</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The modified text object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>text_object(tkinter.Text)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.window_scripts.get_update_widgets_from_plate">
+<span class="sig-prename descclassname"><span class="pre">src.utils.window_scripts.</span></span><span class="sig-name descname"><span class="pre">get_update_widgets_from_plate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/src/utils/window_scripts.html#get_update_widgets_from_plate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.window_scripts.get_update_widgets_from_plate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of elements for the update car window.</p>
+<p>Returned elements is based on the number plate entered</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame</strong> (<em>tk.Frame</em>) – The window frame for the elements</p></li>
+<li><p><strong>num_plate</strong> (<em>str</em>) – The plate to base the elements on</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The widgets for the update vehicle window</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>widgets (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.window_scripts.insert_values">
+<span class="sig-prename descclassname"><span class="pre">src.utils.window_scripts.</span></span><span class="sig-name descname"><span class="pre">insert_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tkinter.Text</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vehicle_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/window_scripts.html#insert_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.window_scripts.insert_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign the values entered to a vehicle and insert into db.</p>
+<p>Verify entered data is all correct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element_list</strong> (<em>list</em><em>[</em><em>tk.Text</em><em>]</em>) – The list of elements in the window</p></li>
+<li><p><strong>vehicle_type</strong> (<em>str</em>) – Selected type of vehicle</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.window_scripts.remove_vehicle_from_db">
+<span class="sig-prename descclassname"><span class="pre">src.utils.window_scripts.</span></span><span class="sig-name descname"><span class="pre">remove_vehicle_from_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/window_scripts.html#remove_vehicle_from_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.window_scripts.remove_vehicle_from_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the vehicle from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_plate</strong> (<em>str</em>) – The number plate of the vehicle to remove.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.utils.window_scripts.update_changed_values">
+<span class="sig-prename descclassname"><span class="pre">src.utils.window_scripts.</span></span><span class="sig-name descname"><span class="pre">update_changed_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tkinter.Text</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_plate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils/window_scripts.html#update_changed_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.window_scripts.update_changed_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find what values of a car should be changed then update them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element_list</strong> (<em>list</em><em>[</em><em>tk.Text</em><em>]</em>) – The list of text elements from window</p></li>
+<li><p><strong>num_plate</strong> (<em>str</em>) – The number plate of the vehicle to be updated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return true if succesful false if it is not</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>flag (bool)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">src.utils package</a><ul>
+<li><a class="reference internal" href="#module-src.utils">Module contents</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#src-utils-vehicle-classes-module">src.utils.vehicle_classes module</a><ul>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Car"><code class="docutils literal notranslate"><span class="pre">Car</span></code></a><ul>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Car.num_of_seats"><code class="docutils literal notranslate"><span class="pre">Car.num_of_seats</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Car.properties"><code class="docutils literal notranslate"><span class="pre">Car.properties</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.LorryOrPickup"><code class="docutils literal notranslate"><span class="pre">LorryOrPickup</span></code></a><ul>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.LorryOrPickup.cab_type"><code class="docutils literal notranslate"><span class="pre">LorryOrPickup.cab_type</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.LorryOrPickup.cargo_capacity"><code class="docutils literal notranslate"><span class="pre">LorryOrPickup.cargo_capacity</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.LorryOrPickup.properties"><code class="docutils literal notranslate"><span class="pre">LorryOrPickup.properties</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Van"><code class="docutils literal notranslate"><span class="pre">Van</span></code></a><ul>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Van.cargo_capacity"><code class="docutils literal notranslate"><span class="pre">Van.cargo_capacity</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Van.properties"><code class="docutils literal notranslate"><span class="pre">Van.properties</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Vehicle"><code class="docutils literal notranslate"><span class="pre">Vehicle</span></code></a><ul>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Vehicle.colour"><code class="docutils literal notranslate"><span class="pre">Vehicle.colour</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Vehicle.number_plate"><code class="docutils literal notranslate"><span class="pre">Vehicle.number_plate</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Vehicle.properties"><code class="docutils literal notranslate"><span class="pre">Vehicle.properties</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Vehicle.service_due_date"><code class="docutils literal notranslate"><span class="pre">Vehicle.service_due_date</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Vehicle.tax_due_date"><code class="docutils literal notranslate"><span class="pre">Vehicle.tax_due_date</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.vehicle_classes.Vehicle.vehicle_type"><code class="docutils literal notranslate"><span class="pre">Vehicle.vehicle_type</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-src.utils.build_classes">src.utils.build_classes module</a><ul>
+<li><a class="reference internal" href="#src.utils.build_classes.assign_all_vehicles_classes"><code class="docutils literal notranslate"><span class="pre">assign_all_vehicles_classes()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.build_classes.assign_num_plate_classes"><code class="docutils literal notranslate"><span class="pre">assign_num_plate_classes()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.build_classes.assign_service_due_classes"><code class="docutils literal notranslate"><span class="pre">assign_service_due_classes()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.build_classes.assign_tax_due_classes"><code class="docutils literal notranslate"><span class="pre">assign_tax_due_classes()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.build_classes.build_classes"><code class="docutils literal notranslate"><span class="pre">build_classes()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-src.utils.do_nothing">src.utils.do_nothing module</a><ul>
+<li><a class="reference internal" href="#src.utils.do_nothing.do_nothing"><code class="docutils literal notranslate"><span class="pre">do_nothing()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-src.utils.run_sql">src.utils.run_sql module</a><ul>
+<li><a class="reference internal" href="#src.utils.run_sql.delete_from_db"><code class="docutils literal notranslate"><span class="pre">delete_from_db()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.run_sql.execute_sql"><code class="docutils literal notranslate"><span class="pre">execute_sql()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.run_sql.execute_sql_select"><code class="docutils literal notranslate"><span class="pre">execute_sql_select()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.run_sql.get_conn"><code class="docutils literal notranslate"><span class="pre">get_conn()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.run_sql.insert_car"><code class="docutils literal notranslate"><span class="pre">insert_car()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.run_sql.insert_lorry"><code class="docutils literal notranslate"><span class="pre">insert_lorry()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.run_sql.insert_van"><code class="docutils literal notranslate"><span class="pre">insert_van()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.run_sql.insert_vehicle_into_db"><code class="docutils literal notranslate"><span class="pre">insert_vehicle_into_db()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.run_sql.read_sql_file"><code class="docutils literal notranslate"><span class="pre">read_sql_file()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.run_sql.select_based_on_type"><code class="docutils literal notranslate"><span class="pre">select_based_on_type()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.run_sql.select_type_from_num_plate"><code class="docutils literal notranslate"><span class="pre">select_type_from_num_plate()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.run_sql.update_specific_type"><code class="docutils literal notranslate"><span class="pre">update_specific_type()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.run_sql.update_vehicle"><code class="docutils literal notranslate"><span class="pre">update_vehicle()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-src.utils.transfrom_properties">src.utils.transfrom_properties module</a><ul>
+<li><a class="reference internal" href="#src.utils.transfrom_properties.transform_colour"><code class="docutils literal notranslate"><span class="pre">transform_colour()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.transfrom_properties.transform_properties"><code class="docutils literal notranslate"><span class="pre">transform_properties()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.transfrom_properties.transform_type"><code class="docutils literal notranslate"><span class="pre">transform_type()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-src.utils.valid_inputs">src.utils.valid_inputs module</a></li>
+<li><a class="reference internal" href="#module-src.utils.verify_inputs">src.utils.verify_inputs module</a><ul>
+<li><a class="reference internal" href="#src.utils.verify_inputs.verify_cab_type"><code class="docutils literal notranslate"><span class="pre">verify_cab_type()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.verify_inputs.verify_date"><code class="docutils literal notranslate"><span class="pre">verify_date()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.verify_inputs.verify_inputs"><code class="docutils literal notranslate"><span class="pre">verify_inputs()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.verify_inputs.verify_integer"><code class="docutils literal notranslate"><span class="pre">verify_integer()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.verify_inputs.verify_numplate"><code class="docutils literal notranslate"><span class="pre">verify_numplate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-src.utils.window_scripts">src.utils.window_scripts module</a><ul>
+<li><a class="reference internal" href="#src.utils.window_scripts.generate_insert_widgets"><code class="docutils literal notranslate"><span class="pre">generate_insert_widgets()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.window_scripts.generate_insert_widgets_from_type"><code class="docutils literal notranslate"><span class="pre">generate_insert_widgets_from_type()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.window_scripts.get_text_by_vehicle"><code class="docutils literal notranslate"><span class="pre">get_text_by_vehicle()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.window_scripts.get_text_to_display"><code class="docutils literal notranslate"><span class="pre">get_text_to_display()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.window_scripts.get_update_widgets_from_plate"><code class="docutils literal notranslate"><span class="pre">get_update_widgets_from_plate()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.window_scripts.insert_values"><code class="docutils literal notranslate"><span class="pre">insert_values()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.window_scripts.remove_vehicle_from_db"><code class="docutils literal notranslate"><span class="pre">remove_vehicle_from_db()</span></code></a></li>
+<li><a class="reference internal" href="#src.utils.window_scripts.update_changed_values"><code class="docutils literal notranslate"><span class="pre">update_changed_values()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="src.tests.resources.html">
+                    <span class="icon">&lt;</span><span>src.tests.resources package</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, 730096317.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

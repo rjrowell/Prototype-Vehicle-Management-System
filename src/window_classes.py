@@ -1,5 +1,13 @@
-"""File of classes for bulding the GUI."""
+"""File of classes representing the windows of the TK GUI.
+
+The windows have been programmed in an object oriented way,
+each window of the GUI inherits from the abstract window class.
+
+This is an abstract class which provides a framework and base settings
+for each other GUI window.
+"""
 import tkinter as tk
+from sqlite3 import IntegrityError
 from abc import abstractmethod
 
 from .utils import build_classes as bc
@@ -13,7 +21,7 @@ class AbstractWindow(object):
     _enter_string = 'Enter'
     _default_width: int = 25
     _title_width: int = 35
-    _title: object = None
+    _title: tk.Label = None
     _text: tk.Text = None
 
     def __init__(self, master: tk.Tk):
@@ -443,6 +451,9 @@ class InsertVehicle(AbstractWindow):
             self._element_list[0].config(text=label_text)
         except KeyError:
             label_text = 'Ivalid colour entered'
+            self._element_list[0].config(text=label_text)
+        except IntegrityError:
+            label_text = 'Vehicle with entered number plate already exists'
             self._element_list[0].config(text=label_text)
         else:
             self.close_windows()

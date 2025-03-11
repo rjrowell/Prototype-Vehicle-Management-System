@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.tests.test_run_sql &mdash; Yuma Vehicle Management System 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Yuma Vehicle Management System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Yuma Vehicle Management System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.tests.test_run_sql</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.tests.test_run_sql</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Test the run_sql util module.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">run_sql</span>
+
+
+<span class="c1"># Fixture to mock sqlite3.connect</span>
+<div class="viewcode-block" id="mock_db_connection"><a class="viewcode-back" href="../../../src.tests.html#src.tests.test_run_sql.mock_db_connection">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">mock_db_connection</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fixture to mock sqlite3.connect to use the test database.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        monkeypatch: pytest feature to allow mocking of connect</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">original_connect</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span>
+
+    <span class="k">def</span> <span class="nf">mock_connect</span><span class="p">(</span><span class="n">db_name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">original_connect</span><span class="p">(</span><span class="s1">&#39;src/tests/resources/test_vehicles.db&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Replace sqlite3.connect with our mock function</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">sqlite3</span><span class="p">,</span> <span class="s1">&#39;connect&#39;</span><span class="p">,</span> <span class="n">mock_connect</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="reset_db"><a class="viewcode-back" href="../../../src.tests.html#src.tests.test_run_sql.reset_db">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">reset_db</span><span class="p">(</span><span class="n">mock_db_connection</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reset the database before each test.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mock_db_connection: The mock connection</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="s1">&#39;src/sql/drop_tables.sql&#39;</span><span class="p">)</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="s1">&#39;src/sql/create_tables.sql&#39;</span><span class="p">)</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="s1">&#39;src/sql/insert_into_tables.sql&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="test_read_sql_file"><a class="viewcode-back" href="../../../src.tests.html#src.tests.test_run_sql.test_read_sql_file">[docs]</a><span class="k">def</span> <span class="nf">test_read_sql_file</span><span class="p">(</span><span class="n">mock_db_connection</span><span class="p">,</span> <span class="n">reset_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test the read_sql_file function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mock_db_connection: The mock connection</span>
+<span class="sd">        reset_db: resets the database</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="s1">&#39;INSERT INTO van(number_plate, cargo_capacity)&#39;</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="n">expected</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;VALUES (?, ?);&#39;</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">run_sql</span><span class="o">.</span><span class="n">read_sql_file</span><span class="p">(</span><span class="s1">&#39;src/sql/insert_van.sql&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">test</span> <span class="o">==</span> <span class="n">expected</span><span class="p">,</span> <span class="s1">&#39;The SQL script was not read correctly&#39;</span></div>
+
+
+<div class="viewcode-block" id="test_execute_sql"><a class="viewcode-back" href="../../../src.tests.html#src.tests.test_run_sql.test_execute_sql">[docs]</a><span class="k">def</span> <span class="nf">test_execute_sql</span><span class="p">(</span><span class="n">mock_db_connection</span><span class="p">,</span> <span class="n">reset_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test the execute_sql function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mock_db_connection: The mock connection</span>
+<span class="sd">        reset_db: resets the database</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sql_file</span> <span class="o">=</span> <span class="s1">&#39;src/tests/resources/test_run_sql/test_insert.sql&#39;</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="n">sql_file</span><span class="p">)</span>
+
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;vehicles.db&#39;</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="n">sql_file</span> <span class="o">=</span> <span class="s1">&#39;src/tests/resources/test_run_sql/test_select_car.sql&#39;</span>
+    <span class="n">sql_file</span> <span class="o">=</span> <span class="n">run_sql</span><span class="o">.</span><span class="n">read_sql_file</span><span class="p">(</span><span class="n">sql_file</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql_file</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;TE57ING&#39;</span><span class="p">,))</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;TE57ING&#39;</span><span class="p">,</span> <span class="s1">&#39;SQL file not executed correctly&#39;</span></div>
+
+
+<div class="viewcode-block" id="test_execute_sql_select"><a class="viewcode-back" href="../../../src.tests.html#src.tests.test_run_sql.test_execute_sql_select">[docs]</a><span class="k">def</span> <span class="nf">test_execute_sql_select</span><span class="p">(</span><span class="n">mock_db_connection</span><span class="p">,</span> <span class="n">reset_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test the execute_sql_select function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mock_db_connection: The mock connection</span>
+<span class="sd">        reset_db: resets the database</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">run_sql</span><span class="o">.</span><span class="n">execute_sql_select</span><span class="p">(</span><span class="s1">&#39;src/sql/select_all_vehicles.sql&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;HC56XPQ&#39;</span><span class="p">,</span> <span class="s1">&#39;SQL select not executed correctly&#39;</span></div>
+
+
+<div class="viewcode-block" id="test_select_type_from_num_plate"><a class="viewcode-back" href="../../../src.tests.html#src.tests.test_run_sql.test_select_type_from_num_plate">[docs]</a><span class="k">def</span> <span class="nf">test_select_type_from_num_plate</span><span class="p">(</span><span class="n">mock_db_connection</span><span class="p">,</span> <span class="n">reset_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test the select type from num plate function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mock_db_connection: The mock connection</span>
+<span class="sd">        reset_db: resets the database</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">test_type</span> <span class="o">=</span> <span class="n">run_sql</span><span class="o">.</span><span class="n">select_type_from_num_plate</span><span class="p">(</span><span class="s1">&#39;HC56XPQ&#39;</span><span class="p">)</span>
+    <span class="n">expected_type</span> <span class="o">=</span> <span class="s1">&#39;car&#39;</span>
+
+    <span class="k">assert</span> <span class="n">test_type</span> <span class="o">==</span> <span class="n">expected_type</span><span class="p">,</span> <span class="s1">&#39;Incorrect type returned&#39;</span></div>
+
+
+<div class="viewcode-block" id="test_select_based_on_type"><a class="viewcode-back" href="../../../src.tests.html#src.tests.test_run_sql.test_select_based_on_type">[docs]</a><span class="k">def</span> <span class="nf">test_select_based_on_type</span><span class="p">(</span><span class="n">mock_db_connection</span><span class="p">,</span> <span class="n">reset_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test the select based on type function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mock_db_connection: The mock connection</span>
+<span class="sd">        reset_db: resets the database</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">car</span> <span class="o">=</span> <span class="n">run_sql</span><span class="o">.</span><span class="n">select_based_on_type</span><span class="p">(</span><span class="s1">&#39;car&#39;</span><span class="p">,</span> <span class="s1">&#39;HC56XPQ&#39;</span><span class="p">)</span>
+    <span class="n">van</span> <span class="o">=</span> <span class="n">run_sql</span><span class="o">.</span><span class="n">select_based_on_type</span><span class="p">(</span><span class="s1">&#39;van&#39;</span><span class="p">,</span> <span class="s1">&#39;HC62XAC&#39;</span><span class="p">)</span>
+    <span class="n">lorry</span> <span class="o">=</span> <span class="n">run_sql</span><span class="o">.</span><span class="n">select_based_on_type</span><span class="p">(</span><span class="s1">&#39;lorry&#39;</span><span class="p">,</span> <span class="s1">&#39;QS52BCG&#39;</span><span class="p">)</span>
+
+    <span class="n">error_text</span> <span class="o">=</span> <span class="s1">&#39;Incorrect sql output returned&#39;</span>
+    <span class="k">assert</span> <span class="n">car</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">error_text</span>
+    <span class="k">assert</span> <span class="n">van</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">error_text</span>
+    <span class="k">assert</span> <span class="n">lorry</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">error_text</span></div>
+
+
+<div class="viewcode-block" id="test_insert_car_helper"><a class="viewcode-back" href="../../../src.tests.html#src.tests.test_run_sql.test_insert_car_helper">[docs]</a><span class="k">def</span> <span class="nf">test_insert_car_helper</span><span class="p">(</span><span class="n">mock_db_connection</span><span class="p">,</span> <span class="n">reset_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test the helper function for insert car into db.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mock_db_connection: The mock connection</span>
+<span class="sd">        reset_db: resets the database</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">test_car_properties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TE57ING&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">insert_car</span><span class="p">(</span><span class="n">test_car_properties</span><span class="p">)</span>
+
+    <span class="n">sql_file_car</span> <span class="o">=</span> <span class="s1">&#39;src/tests/resources/test_run_sql/test_select_car.sql&#39;</span>
+    <span class="n">sql_file_car</span> <span class="o">=</span> <span class="n">run_sql</span><span class="o">.</span><span class="n">read_sql_file</span><span class="p">(</span><span class="n">sql_file_car</span><span class="p">)</span>
+
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;vehicles.db&#39;</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="n">output_car</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql_file_car</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;TE57ING&#39;</span><span class="p">,))</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">output_car</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Incorrect value inserted&#39;</span></div>
+
+
+<div class="viewcode-block" id="test_insert_van_helper"><a class="viewcode-back" href="../../../src.tests.html#src.tests.test_run_sql.test_insert_van_helper">[docs]</a><span class="k">def</span> <span class="nf">test_insert_van_helper</span><span class="p">(</span><span class="n">mock_db_connection</span><span class="p">,</span> <span class="n">reset_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test the helper function for insert van into db.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mock_db_connection: The mock connection</span>
+<span class="sd">        reset_db: resets the database</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">test_van_properties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TE57ING&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">insert_van</span><span class="p">(</span><span class="n">test_van_properties</span><span class="p">)</span>
+
+    <span class="n">sql_file_van</span> <span class="o">=</span> <span class="s1">&#39;src/tests/resources/test_run_sql/test_select_van.sql&#39;</span>
+    <span class="n">sql_file_van</span> <span class="o">=</span> <span class="n">run_sql</span><span class="o">.</span><span class="n">read_sql_file</span><span class="p">(</span><span class="n">sql_file_van</span><span class="p">)</span>
+
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;vehicles.db&#39;</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="n">output_van</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql_file_van</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;TE57ING&#39;</span><span class="p">,))</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">output_van</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;Incorrect value inserted&#39;</span></div>
+
+
+<div class="viewcode-block" id="test_insert_lorry_helper"><a class="viewcode-back" href="../../../src.tests.html#src.tests.test_run_sql.test_insert_lorry_helper">[docs]</a><span class="k">def</span> <span class="nf">test_insert_lorry_helper</span><span class="p">(</span><span class="n">mock_db_connection</span><span class="p">,</span> <span class="n">reset_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test the helper function for insert lorry into db.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mock_db_connection: The mock connection</span>
+<span class="sd">        reset_db: resets the database</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">test_lorry_properties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TE57ING&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">]</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">insert_lorry</span><span class="p">(</span><span class="n">test_lorry_properties</span><span class="p">)</span>
+
+    <span class="n">sql_file_lorry</span> <span class="o">=</span> <span class="s1">&#39;src/tests/resources/test_run_sql/test_select_lorry.sql&#39;</span>
+    <span class="n">sql_file_lorry</span> <span class="o">=</span> <span class="n">run_sql</span><span class="o">.</span><span class="n">read_sql_file</span><span class="p">(</span><span class="n">sql_file_lorry</span><span class="p">)</span>
+
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;vehicles.db&#39;</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="n">output_lorry</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql_file_lorry</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;TE57ING&#39;</span><span class="p">,))</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">output_lorry</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">20000</span><span class="p">,</span> <span class="s1">&#39;Incorrect value inserted&#39;</span></div>
+
+
+<div class="viewcode-block" id="test_insert_vehicle_into_db"><a class="viewcode-back" href="../../../src.tests.html#src.tests.test_run_sql.test_insert_vehicle_into_db">[docs]</a><span class="k">def</span> <span class="nf">test_insert_vehicle_into_db</span><span class="p">(</span><span class="n">mock_db_connection</span><span class="p">,</span> <span class="n">reset_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test the helper function for insert lorry into db.</span>
+
+<span class="sd">    Also testing the integration with helper functions:</span>
+<span class="sd">    insert_car, insert_van, insert_lorry</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mock_db_connection: The mock connection</span>
+<span class="sd">        reset_db: resets the database</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">test_properties_car</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TE57ING&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;car&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-09-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-09-04&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+    <span class="n">test_properties_van</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TE57INK&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;van&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-09-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-09-04&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+    <span class="n">test_properties_pickup</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;TE57INL&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;pickup&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;2025-09-03&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;2025-09-04&#39;</span><span class="p">,</span>
+        <span class="mi">1000</span><span class="p">,</span>
+        <span class="s1">&#39;single&#39;</span><span class="p">,</span>
+        <span class="p">]</span>
+
+    <span class="n">expected_values</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;TE57ING&#39;</span><span class="p">,</span> <span class="s1">&#39;TE57INK&#39;</span><span class="p">,</span> <span class="s1">&#39;TE57INL&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">insert_vehicle_into_db</span><span class="p">(</span><span class="n">test_properties_car</span><span class="p">)</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">insert_vehicle_into_db</span><span class="p">(</span><span class="n">test_properties_van</span><span class="p">)</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">insert_vehicle_into_db</span><span class="p">(</span><span class="n">test_properties_pickup</span><span class="p">)</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="n">run_sql</span><span class="o">.</span><span class="n">execute_sql_select</span><span class="p">(</span><span class="s1">&#39;src/sql/select_all_vehicles.sql&#39;</span><span class="p">)</span>
+    <span class="n">error_text</span> <span class="o">=</span> <span class="s1">&#39;insert incorrect&#39;</span>
+
+    <span class="k">assert</span> <span class="n">output</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">output</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="ow">in</span> <span class="n">expected_values</span><span class="p">,</span> <span class="n">error_text</span>
+    <span class="k">assert</span> <span class="n">output</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">output</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="ow">in</span> <span class="n">expected_values</span><span class="p">,</span> <span class="n">error_text</span>
+    <span class="k">assert</span> <span class="n">output</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">output</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="ow">in</span> <span class="n">expected_values</span><span class="p">,</span> <span class="n">error_text</span></div>
+
+
+<div class="viewcode-block" id="test_update_vehicle"><a class="viewcode-back" href="../../../src.tests.html#src.tests.test_run_sql.test_update_vehicle">[docs]</a><span class="k">def</span> <span class="nf">test_update_vehicle</span><span class="p">(</span><span class="n">mock_db_connection</span><span class="p">,</span> <span class="n">reset_db</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test the update vehicle function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mock_db_connection: The mock connection</span>
+<span class="sd">        reset_db: resets the database</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">test_car_values</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;colour_id&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;tax_due_date&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;service_due_date&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;extra1&#39;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+        <span class="s1">&#39;cab_type&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">test_lorry_values</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;colour_id&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;tax_due_date&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;service_due_date&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;extra1&#39;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+        <span class="s1">&#39;cab_type&#39;</span><span class="p">:</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">test_pickup_values</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;colour_id&#39;</span><span class="p">:</span> <span class="s1">&#39;Silver&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;tax_due_date&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;service_due_date&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;extra1&#39;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+        <span class="s1">&#39;cab_type&#39;</span><span class="p">:</span> <span class="s1">&#39;single&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">test_van_values</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;colour_id&#39;</span><span class="p">:</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;tax_due_date&#39;</span><span class="p">:</span> <span class="s1">&#39;2025-04-03&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;service_due_date&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;extra1&#39;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+        <span class="s1">&#39;cab_type&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">update_vehicle</span><span class="p">(</span><span class="n">test_car_values</span><span class="p">,</span> <span class="s1">&#39;car&#39;</span><span class="p">,</span> <span class="s1">&#39;HC56XPQ&#39;</span><span class="p">)</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">update_vehicle</span><span class="p">(</span><span class="n">test_van_values</span><span class="p">,</span> <span class="s1">&#39;van&#39;</span><span class="p">,</span> <span class="s1">&#39;HC62XAC&#39;</span><span class="p">)</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">update_vehicle</span><span class="p">(</span><span class="n">test_lorry_values</span><span class="p">,</span> <span class="s1">&#39;lorry&#39;</span><span class="p">,</span> <span class="s1">&#39;QS52BCG&#39;</span><span class="p">)</span>
+    <span class="n">run_sql</span><span class="o">.</span><span class="n">update_vehicle</span><span class="p">(</span><span class="n">test_pickup_values</span><span class="p">,</span> <span class="s1">&#39;pickup&#39;</span><span class="p">,</span> <span class="s1">&#39;BG70LKM&#39;</span><span class="p">)</span>
+
+    <span class="n">test_output</span> <span class="o">=</span> <span class="n">run_sql</span><span class="o">.</span><span class="n">execute_sql_select</span><span class="p">(</span><span class="s1">&#39;src/sql/select_all_vehicles.sql&#39;</span><span class="p">)</span>
+    <span class="n">error_text</span> <span class="o">=</span> <span class="s1">&#39;Details not correct for updated vehicle&#39;</span>
+
+    <span class="k">assert</span> <span class="n">test_output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">error_text</span>
+    <span class="k">assert</span> <span class="n">test_output</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="n">error_text</span>
+    <span class="k">assert</span> <span class="n">test_output</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">error_text</span>
+    <span class="k">assert</span> <span class="n">test_output</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;silver&#39;</span><span class="p">,</span> <span class="n">error_text</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 730096317.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

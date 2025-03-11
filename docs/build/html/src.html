@@ -1,0 +1,515 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>src package &#8212; Yuma Vehicle Management System 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic_mod.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/petite-vue.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src.tests package" href="src.tests.html" />
+    <link rel="prev" title="Yuma Vehicle Management System documentation" href="index.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="index.html" title="Go to homepage">Yuma Vehicle Management System 1.0 documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">src package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.tests.html">src.tests package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.utils.html">src.utils package</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="src-package">
+<h1>src package<a class="headerlink" href="#src-package" title="Permalink to this heading">¶</a></h1>
+<section id="module-src">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src" title="Permalink to this heading">¶</a></h2>
+<p>This package contains all the source code for the app.</p>
+<p>It is split into tests and utils subpackages containing
+the unit tests and utilities for the app respectively.</p>
+</section>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.tests.html">src.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.utils.html">src.utils package</a></li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="src-window-classes-module">
+<h2>src.window_classes module<a class="headerlink" href="#src-window-classes-module" title="Permalink to this heading">¶</a></h2>
+<p>This diagram outlines the design of the window classes
+describing the inheritance and composition of them:</p>
+<img alt="_images/window_classes_diagram.png" src="_images/window_classes_diagram.png" />
+<span class="target" id="module-src.window_classes"></span><p>File of classes representing the windows of the TK GUI.</p>
+<p>The windows have been programmed in an object oriented way,
+each window of the GUI inherits from the abstract window class.</p>
+<p>This is an abstract class which provides a framework and base settings
+for each other GUI window.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.window_classes.AbstractWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.window_classes.</span></span><span class="sig-name descname"><span class="pre">AbstractWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#AbstractWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.AbstractWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An abstract class to provide a framework for other window classes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.AbstractWindow.build_window">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#AbstractWindow.build_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.AbstractWindow.build_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a window based on classes variable.</p>
+<p>Each class will have its own implementation this
+is an abstract method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.AbstractWindow.close_windows">
+<span class="sig-name descname"><span class="pre">close_windows</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#AbstractWindow.close_windows"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.AbstractWindow.close_windows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroys a window.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.AbstractWindow.process_text">
+<span class="sig-name descname"><span class="pre">process_text</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/window_classes.html#AbstractWindow.process_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.AbstractWindow.process_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get text from a text field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The text from the windows text field</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>text_out(str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.AbstractWindow.set_next_window">
+<span class="sig-name descname"><span class="pre">set_next_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#AbstractWindow.set_next_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.AbstractWindow.set_next_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the next window to be displayed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>window_name</strong> (<em>str</em>) – The name of the window to be set</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The next window to be displayed</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>app(object)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.window_classes.InsertVehicle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.window_classes.</span></span><span class="sig-name descname"><span class="pre">InsertVehicle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#InsertVehicle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.InsertVehicle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.window_classes.AbstractWindow" title="src.window_classes.AbstractWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractWindow</span></code></a></p>
+<p>Class representing Insert New Vehicle window.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.InsertVehicle.build_window">
+<span class="sig-name descname"><span class="pre">build_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#InsertVehicle.build_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.InsertVehicle.build_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build insert vehicle window from private variables.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.window_classes.ListAllvehicles">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.window_classes.</span></span><span class="sig-name descname"><span class="pre">ListAllvehicles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#ListAllvehicles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.ListAllvehicles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.window_classes.AbstractWindow" title="src.window_classes.AbstractWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractWindow</span></code></a></p>
+<p>Class representing secondary window.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.ListAllvehicles.build_window">
+<span class="sig-name descname"><span class="pre">build_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#ListAllvehicles.build_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.ListAllvehicles.build_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build list all window from private variables.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.window_classes.MainWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.window_classes.</span></span><span class="sig-name descname"><span class="pre">MainWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#MainWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.MainWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.window_classes.AbstractWindow" title="src.window_classes.AbstractWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractWindow</span></code></a></p>
+<p>Class representing the main window.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.MainWindow.all_vehicles_window">
+<span class="sig-name descname"><span class="pre">all_vehicles_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#MainWindow.all_vehicles_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.MainWindow.all_vehicles_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new window when button is clicked.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.MainWindow.build_window">
+<span class="sig-name descname"><span class="pre">build_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#MainWindow.build_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.MainWindow.build_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build main menu window from private variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.MainWindow.insert_new_vehicle_window">
+<span class="sig-name descname"><span class="pre">insert_new_vehicle_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#MainWindow.insert_new_vehicle_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.MainWindow.insert_new_vehicle_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise a search by insert vehicle window.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.MainWindow.num_plate_search_window">
+<span class="sig-name descname"><span class="pre">num_plate_search_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#MainWindow.num_plate_search_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.MainWindow.num_plate_search_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise a search by num plate window.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.MainWindow.remove_vehicle_window">
+<span class="sig-name descname"><span class="pre">remove_vehicle_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#MainWindow.remove_vehicle_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.MainWindow.remove_vehicle_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise a remove vehicle window.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.MainWindow.service_due_window">
+<span class="sig-name descname"><span class="pre">service_due_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#MainWindow.service_due_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.MainWindow.service_due_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new window when button is clicked.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.MainWindow.tax_due_window">
+<span class="sig-name descname"><span class="pre">tax_due_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#MainWindow.tax_due_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.MainWindow.tax_due_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise new window when button is clicked.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.MainWindow.update_vehicle_window">
+<span class="sig-name descname"><span class="pre">update_vehicle_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#MainWindow.update_vehicle_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.MainWindow.update_vehicle_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise an update vehicle window.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.window_classes.RemoveVehicle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.window_classes.</span></span><span class="sig-name descname"><span class="pre">RemoveVehicle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#RemoveVehicle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.RemoveVehicle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.window_classes.AbstractWindow" title="src.window_classes.AbstractWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractWindow</span></code></a></p>
+<p>Window for removing a vehicle from db.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.RemoveVehicle.build_window">
+<span class="sig-name descname"><span class="pre">build_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#RemoveVehicle.build_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.RemoveVehicle.build_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build update vehicle window from private variables.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.window_classes.SearchByNumberPlate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.window_classes.</span></span><span class="sig-name descname"><span class="pre">SearchByNumberPlate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#SearchByNumberPlate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.SearchByNumberPlate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.window_classes.AbstractWindow" title="src.window_classes.AbstractWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractWindow</span></code></a></p>
+<p>Class representing Vehicles With Service Due window.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.SearchByNumberPlate.build_window">
+<span class="sig-name descname"><span class="pre">build_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#SearchByNumberPlate.build_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.SearchByNumberPlate.build_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build number plate search window from private variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.SearchByNumberPlate.submit_text">
+<span class="sig-name descname"><span class="pre">submit_text</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#SearchByNumberPlate.submit_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.SearchByNumberPlate.submit_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run logic when enter button is pressed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.window_classes.UpdateVehicle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.window_classes.</span></span><span class="sig-name descname"><span class="pre">UpdateVehicle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#UpdateVehicle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.UpdateVehicle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.window_classes.AbstractWindow" title="src.window_classes.AbstractWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractWindow</span></code></a></p>
+<p>Class representing Update Vehicle window.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.UpdateVehicle.build_window">
+<span class="sig-name descname"><span class="pre">build_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#UpdateVehicle.build_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.UpdateVehicle.build_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build update vehicle window from private variables.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.window_classes.VehiclesWithServiceDue">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.window_classes.</span></span><span class="sig-name descname"><span class="pre">VehiclesWithServiceDue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#VehiclesWithServiceDue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.VehiclesWithServiceDue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.window_classes.AbstractWindow" title="src.window_classes.AbstractWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractWindow</span></code></a></p>
+<p>Class representing Vehicles With Service Due window.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.VehiclesWithServiceDue.build_window">
+<span class="sig-name descname"><span class="pre">build_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#VehiclesWithServiceDue.build_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.VehiclesWithServiceDue.build_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build service due window from private variables.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.window_classes.VehiclesWithTaxDue">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.window_classes.</span></span><span class="sig-name descname"><span class="pre">VehiclesWithTaxDue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#VehiclesWithTaxDue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.VehiclesWithTaxDue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.window_classes.AbstractWindow" title="src.window_classes.AbstractWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractWindow</span></code></a></p>
+<p>Class representing Vehicles With Tax Due window.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.window_classes.VehiclesWithTaxDue.build_window">
+<span class="sig-name descname"><span class="pre">build_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/window_classes.html#VehiclesWithTaxDue.build_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.window_classes.VehiclesWithTaxDue.build_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build tax due window from private variables.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.database_setup">
+<span id="src-database-setup-module"></span><h2>src.database_setup module<a class="headerlink" href="#module-src.database_setup" title="Permalink to this heading">¶</a></h2>
+<p>Script that reset the prototype database.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.database_setup.create_tables">
+<span class="sig-prename descclassname"><span class="pre">src.database_setup.</span></span><span class="sig-name descname"><span class="pre">create_tables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/database_setup.html#create_tables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.database_setup.create_tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute create_tables.sql.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.database_setup.drop_tables">
+<span class="sig-prename descclassname"><span class="pre">src.database_setup.</span></span><span class="sig-name descname"><span class="pre">drop_tables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/database_setup.html#drop_tables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.database_setup.drop_tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute drop_tables.sql.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.database_setup.insert_into">
+<span class="sig-prename descclassname"><span class="pre">src.database_setup.</span></span><span class="sig-name descname"><span class="pre">insert_into</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/database_setup.html#insert_into"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.database_setup.insert_into" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute insert_into_tables.sql.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.database_setup.main">
+<span class="sig-prename descclassname"><span class="pre">src.database_setup.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/database_setup.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.database_setup.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop tables then creates the new prototype db.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">src package</a><ul>
+<li><a class="reference internal" href="#module-src">Module contents</a></li>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#src-window-classes-module">src.window_classes module</a><ul>
+<li><a class="reference internal" href="#src.window_classes.AbstractWindow"><code class="docutils literal notranslate"><span class="pre">AbstractWindow</span></code></a><ul>
+<li><a class="reference internal" href="#src.window_classes.AbstractWindow.build_window"><code class="docutils literal notranslate"><span class="pre">AbstractWindow.build_window()</span></code></a></li>
+<li><a class="reference internal" href="#src.window_classes.AbstractWindow.close_windows"><code class="docutils literal notranslate"><span class="pre">AbstractWindow.close_windows()</span></code></a></li>
+<li><a class="reference internal" href="#src.window_classes.AbstractWindow.process_text"><code class="docutils literal notranslate"><span class="pre">AbstractWindow.process_text()</span></code></a></li>
+<li><a class="reference internal" href="#src.window_classes.AbstractWindow.set_next_window"><code class="docutils literal notranslate"><span class="pre">AbstractWindow.set_next_window()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src.window_classes.InsertVehicle"><code class="docutils literal notranslate"><span class="pre">InsertVehicle</span></code></a><ul>
+<li><a class="reference internal" href="#src.window_classes.InsertVehicle.build_window"><code class="docutils literal notranslate"><span class="pre">InsertVehicle.build_window()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src.window_classes.ListAllvehicles"><code class="docutils literal notranslate"><span class="pre">ListAllvehicles</span></code></a><ul>
+<li><a class="reference internal" href="#src.window_classes.ListAllvehicles.build_window"><code class="docutils literal notranslate"><span class="pre">ListAllvehicles.build_window()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src.window_classes.MainWindow"><code class="docutils literal notranslate"><span class="pre">MainWindow</span></code></a><ul>
+<li><a class="reference internal" href="#src.window_classes.MainWindow.all_vehicles_window"><code class="docutils literal notranslate"><span class="pre">MainWindow.all_vehicles_window()</span></code></a></li>
+<li><a class="reference internal" href="#src.window_classes.MainWindow.build_window"><code class="docutils literal notranslate"><span class="pre">MainWindow.build_window()</span></code></a></li>
+<li><a class="reference internal" href="#src.window_classes.MainWindow.insert_new_vehicle_window"><code class="docutils literal notranslate"><span class="pre">MainWindow.insert_new_vehicle_window()</span></code></a></li>
+<li><a class="reference internal" href="#src.window_classes.MainWindow.num_plate_search_window"><code class="docutils literal notranslate"><span class="pre">MainWindow.num_plate_search_window()</span></code></a></li>
+<li><a class="reference internal" href="#src.window_classes.MainWindow.remove_vehicle_window"><code class="docutils literal notranslate"><span class="pre">MainWindow.remove_vehicle_window()</span></code></a></li>
+<li><a class="reference internal" href="#src.window_classes.MainWindow.service_due_window"><code class="docutils literal notranslate"><span class="pre">MainWindow.service_due_window()</span></code></a></li>
+<li><a class="reference internal" href="#src.window_classes.MainWindow.tax_due_window"><code class="docutils literal notranslate"><span class="pre">MainWindow.tax_due_window()</span></code></a></li>
+<li><a class="reference internal" href="#src.window_classes.MainWindow.update_vehicle_window"><code class="docutils literal notranslate"><span class="pre">MainWindow.update_vehicle_window()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src.window_classes.RemoveVehicle"><code class="docutils literal notranslate"><span class="pre">RemoveVehicle</span></code></a><ul>
+<li><a class="reference internal" href="#src.window_classes.RemoveVehicle.build_window"><code class="docutils literal notranslate"><span class="pre">RemoveVehicle.build_window()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src.window_classes.SearchByNumberPlate"><code class="docutils literal notranslate"><span class="pre">SearchByNumberPlate</span></code></a><ul>
+<li><a class="reference internal" href="#src.window_classes.SearchByNumberPlate.build_window"><code class="docutils literal notranslate"><span class="pre">SearchByNumberPlate.build_window()</span></code></a></li>
+<li><a class="reference internal" href="#src.window_classes.SearchByNumberPlate.submit_text"><code class="docutils literal notranslate"><span class="pre">SearchByNumberPlate.submit_text()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src.window_classes.UpdateVehicle"><code class="docutils literal notranslate"><span class="pre">UpdateVehicle</span></code></a><ul>
+<li><a class="reference internal" href="#src.window_classes.UpdateVehicle.build_window"><code class="docutils literal notranslate"><span class="pre">UpdateVehicle.build_window()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src.window_classes.VehiclesWithServiceDue"><code class="docutils literal notranslate"><span class="pre">VehiclesWithServiceDue</span></code></a><ul>
+<li><a class="reference internal" href="#src.window_classes.VehiclesWithServiceDue.build_window"><code class="docutils literal notranslate"><span class="pre">VehiclesWithServiceDue.build_window()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src.window_classes.VehiclesWithTaxDue"><code class="docutils literal notranslate"><span class="pre">VehiclesWithTaxDue</span></code></a><ul>
+<li><a class="reference internal" href="#src.window_classes.VehiclesWithTaxDue.build_window"><code class="docutils literal notranslate"><span class="pre">VehiclesWithTaxDue.build_window()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-src.database_setup">src.database_setup module</a><ul>
+<li><a class="reference internal" href="#src.database_setup.create_tables"><code class="docutils literal notranslate"><span class="pre">create_tables()</span></code></a></li>
+<li><a class="reference internal" href="#src.database_setup.drop_tables"><code class="docutils literal notranslate"><span class="pre">drop_tables()</span></code></a></li>
+<li><a class="reference internal" href="#src.database_setup.insert_into"><code class="docutils literal notranslate"><span class="pre">insert_into()</span></code></a></li>
+<li><a class="reference internal" href="#src.database_setup.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="index.html">
+                    <span class="icon">&lt;</span><span>Yuma Vehicle Management System documentation</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="src.tests.html"><span>src.tests package</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, 730096317.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

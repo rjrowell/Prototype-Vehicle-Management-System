@@ -1,4 +1,12 @@
-"""Defines classes to be used in this project."""
+"""Defines classes that represent the vehicles in the system.
+
+There are four 'specialised' vehicles: Car, Van, Lorry, Pickup,
+these are represented in an object oriented way by the three
+classes in this module.
+
+All 'specialised' vehicles inherit from the base class Vehicle,
+which provides common methods and properties for each vehicle.
+"""
 
 
 class Vehicle(object):
@@ -206,7 +214,10 @@ class Van(Vehicle):
 
 
 class LorryOrPickup(Vehicle):
-    """Lorry class that inherits from vehicle."""
+    """Class that represents both lorries and pickups.
+
+    Inherits from vehicle.
+    """
 
     def __init__(
         self,
@@ -268,7 +279,7 @@ class LorryOrPickup(Vehicle):
         """Get cab type of lorry.
 
         Returns:
-            Lorry's cargo capacity
+            Lorry's cab type
 
         """
         return self._cab_type
